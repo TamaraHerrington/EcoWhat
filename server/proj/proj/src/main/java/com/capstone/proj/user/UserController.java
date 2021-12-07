@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping("login")
-    public Optional<User> authenticateLogin(@RequestBody User user) {
+    public String authenticateLogin(@RequestBody User user) {
         return userService.authenticateLogin(user.getEmail(), user.getPassword());
     }
 

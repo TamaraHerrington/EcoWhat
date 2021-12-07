@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -37,7 +38,17 @@ public class UserService {
         return userDAO.deleteUser(id);
     }
 
-    public Optional<User> authenticateLogin(String email, String password) {
-        return userDAO.authenticateLogin(email, password);
+    public String authenticateLogin(String email, String password) {
+
+        Optional<User> userOptional = userDAO.authenticateLogin(email, password);
+        if(userOptional.isPresent()){
+            String token = UUID.randomUUID().toString();
+            User user = userOptional.get();
+//            user.setToken(token);
+//            customerRepository.save(custom);
+            return token;
+        }
+
+        return "";
     }
 }
