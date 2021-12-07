@@ -41,4 +41,9 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    @GetMapping("login")
+    public Optional<User> authenticateLogin(@RequestBody User user) {
+        return userService.authenticateLogin(user.getEmail(), user.getPassword());
+    }
+
 }

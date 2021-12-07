@@ -73,4 +73,14 @@ public class UserDataAccessService implements UserDAO{
         return jdbcTemplate.update(sql, id);
     }
 
+    public Optional<User> authenticateLogin(String email, String password) {
+        String sql = """
+                SELECT * FROM users
+                WHERE email = ? AND password = crypt(?, password);
+                """;
+        return jdbcTemplate.query(sql, userRowMapper, email, password)
+                .stream()
+                .findFirst();
+    }
+
 }
