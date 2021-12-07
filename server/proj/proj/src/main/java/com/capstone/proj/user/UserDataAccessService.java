@@ -23,7 +23,7 @@ public class UserDataAccessService implements UserDAO{
     public int createUser(User user) {
         String sql = """
                 INSERT INTO users (first_name, last_name, email, password)
-                VALUES (?, ?, ?, ?);
+                VALUES (?, ?, ?, crypt(?, gen_salt('bf', 8)));
                 """;
         return jdbcTemplate.update(
                 sql,
