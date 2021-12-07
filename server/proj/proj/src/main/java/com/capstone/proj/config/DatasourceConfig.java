@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
-public class DataSourceConfig {
+public class DatasourceConfig {
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "app.datasource.main")
