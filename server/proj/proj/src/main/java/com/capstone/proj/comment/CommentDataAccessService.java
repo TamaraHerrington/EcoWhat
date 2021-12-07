@@ -1,4 +1,7 @@
 package com.capstone.proj.comment;
 
-public class CommentDataAccessService {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class CommentDataAccessService implements CommentDAO{
 }

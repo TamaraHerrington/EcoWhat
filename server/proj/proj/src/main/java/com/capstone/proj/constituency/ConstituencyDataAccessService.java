@@ -1,4 +1,7 @@
 package com.capstone.proj.constituency;
 
-public class ConstituencyDataAccessService {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class ConstituencyDataAccessService implements ConstituencyDAO{
 }

@@ -1,4 +1,7 @@
 package com.capstone.proj.mp;
 
-public class MPDataAccessService {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MPDataAccessService implements MPDAO{
 }
