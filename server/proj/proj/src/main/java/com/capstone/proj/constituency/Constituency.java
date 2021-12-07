@@ -4,10 +4,20 @@ import java.util.List;
 import java.util.Objects;
 
 public class Constituency {
+    private Integer id;
     private String name;
 
-    public Constituency(String name) {
+    public Constituency(Integer id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -23,18 +33,19 @@ public class Constituency {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Constituency that = (Constituency) o;
-        return Objects.equals(name, that.name);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
         return "Constituency{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
