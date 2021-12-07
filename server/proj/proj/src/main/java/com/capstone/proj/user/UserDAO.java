@@ -1,7 +1,5 @@
 package com.capstone.proj.user;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
