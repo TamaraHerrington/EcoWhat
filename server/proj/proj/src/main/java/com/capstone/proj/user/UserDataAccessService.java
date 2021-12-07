@@ -83,4 +83,14 @@ public class UserDataAccessService implements UserDAO{
                 .findFirst();
     }
 
+    @Override
+    public int updateUserToken(User user) {
+        String sql = """
+                UPDATE users
+                SET token = ?
+                WHERE id = ?;
+                """;
+        return jdbcTemplate.update(sql, user.getToken(), user.getId());
+    }
+
 }
