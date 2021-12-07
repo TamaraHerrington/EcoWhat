@@ -10,12 +10,13 @@ public class VoteRowMapper implements RowMapper<Vote> {
     @Override
     public Vote mapRow(ResultSet rs, int rowNum) throws SQLException {
         Vote vote = new Vote(
+                rs.getInt("id"),
                 rs.getString("issue"),
                 rs.getString("details"),
                 rs.getInt("mp_id"),
                 rs.getBoolean("voted_for")
         );
-        
+
         return vote;
     }
 }
