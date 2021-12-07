@@ -44,8 +44,8 @@ public class UserService {
         if(userOptional.isPresent()){
             String token = UUID.randomUUID().toString();
             User user = userOptional.get();
-//            user.setToken(token);
-//            customerRepository.save(custom);
+            user.setToken(token);
+            userDAO.updateUserToken(user);
             return token;
         }
 
