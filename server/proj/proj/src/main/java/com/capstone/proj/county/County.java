@@ -1,4 +1,4 @@
-package com.capstone.proj.constituency;
+package com.capstone.proj.county;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,13 +12,15 @@ import java.util.Objects;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Constituency {
+public class County {
     private Integer id;
     private String name;
+    private List<Integer> constituencyIds;
 
-    public Constituency(Integer id, String name) {
-        this.id = id;
+    public County(int id, String name, List<Integer> constituencyIds) {
         this.name = name;
+        this.constituencyIds = constituencyIds;
     }
+
 
 }

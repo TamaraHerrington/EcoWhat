@@ -1,14 +1,15 @@
-package com.capstone.proj.mp;
+package com.capstone.proj.county;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MPDataAccessService implements MPDAO{
+public class CountyDataAccessService implements CountyDAO{
 
     private JdbcTemplate jdbcTemplate;
 
-    public MPDataAccessService(JdbcTemplate jdbcTemplate){
+    public CountyDataAccessService(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
+
 }

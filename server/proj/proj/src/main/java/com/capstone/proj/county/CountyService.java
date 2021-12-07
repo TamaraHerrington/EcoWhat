@@ -1,17 +1,17 @@
-package com.capstone.proj.vote;
+package com.capstone.proj.county;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VoteService {
+public class CountyService {
 
-    private VoteDAO voteDAO;
+    private CountyDAO countyDAO;
 
     @Autowired
-    public VoteService(VoteDAO voteDAO){
-        this.voteDAO = voteDAO;
+    public CountyService(CountyDAO countyDAO){
+        this.countyDAO = countyDAO;
     }
 
 }
