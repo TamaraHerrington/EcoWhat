@@ -1,20 +1,16 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ onLogin, token }) => {
 
-    // const [users, setUsers] = useState([])
-
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     useEffect(() => {
         setEmail("")
         setPassword("")
-
-        // fetch("http://localhost:8080")
-        // .then(response => response.json())
-        // .then(data => setUsers(data))
     }, [])
 
     const handleEmailChange = (event) => {
@@ -28,8 +24,21 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
+        fetch(`http://localhost:8080/token?email=${email}&&password=${password}`,
+            {
+                method: 'POST',
+                headers: {
+                    "content-type": "text/plain;charset=UTF-8"
+                }   
+            }
+        )
+        .then(response => response.text())
+        .then(data => onLogin(data))
         
-
+        if (token) {
+            navigate("/home")
+        }
+        
     }
 
     return (

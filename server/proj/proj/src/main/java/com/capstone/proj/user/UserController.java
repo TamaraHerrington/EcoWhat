@@ -41,4 +41,19 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    // || ===================  Login Authentication ===================== ||
+
+    @PostMapping("token")
+    public String authenticateLogin(
+            @RequestParam("email") final String email,
+            @RequestParam("password") final String password) {
+                return userService.authenticateLogin(email, password);
+    }
+
+//    @GetMapping("token")
+//    public String getToken(@RequestParam("email") final String email, @RequestParam("password") final String password) {
+//
+//        return userService.findByToken();
+//    }
+
 }
