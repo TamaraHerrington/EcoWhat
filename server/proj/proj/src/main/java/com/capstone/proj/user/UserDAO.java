@@ -19,4 +19,5 @@ public interface UserDAO {
     public Optional<User> authenticateLogin(String email, String password);
     public int updateUserToken(User user);
     public Optional<User> findByToken(String token);
+
 }
