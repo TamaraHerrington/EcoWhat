@@ -1,10 +1,15 @@
 
-const Home = () => {
+const Home = ({ token }) => {
 
 
     return (
         <>
-            <p>Welcome {/* User name */}</p>
+            {token ? 
+            <p>Welcome {token}</p>
+            :
+            <p>Not logged in</p>
+            }
+            
         </>
     )
 }

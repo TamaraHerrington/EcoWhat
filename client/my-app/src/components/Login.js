@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-const Login = () => {
+const Login = ({ onLogin }) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -31,9 +31,7 @@ const Login = () => {
             }
         )
         .then(response => response.text())
-        .then(data => console.log(data))
-        
-        
+        .then(data => onLogin(data))     
     }
 
     return (
