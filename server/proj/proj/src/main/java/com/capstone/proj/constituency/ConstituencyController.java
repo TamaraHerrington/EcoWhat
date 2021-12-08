@@ -14,4 +14,9 @@ public class ConstituencyController {
         this.constituencyService = constituencyService;
     }
 
+    @PostMapping
+    public void addAllConstituencies(){
+        constituencyService.addAllConstituencies();
+    }
+
 }

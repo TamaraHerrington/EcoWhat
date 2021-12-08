@@ -12,4 +12,14 @@ public class ConstituencyDataAccessService implements ConstituencyDAO{
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
+    public void addConstituency(int id, String name){
+        String sql = """
+                INSERT INTO constituencies (constituency_id, constituency_name)
+                VALUES (?, ?)
+                """;
+
+        jdbcTemplate.update(sql, id, name);
+    }
+
 }
