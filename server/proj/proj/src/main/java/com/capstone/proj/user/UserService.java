@@ -38,6 +38,8 @@ public class UserService {
         return userDAO.deleteUser(id);
     }
 
+    // || ===================  Login Authentication ===================== ||
+
     public String authenticateLogin(String email, String password) {
 
         Optional<User> userOptional = userDAO.authenticateLogin(email, password);
@@ -48,7 +50,14 @@ public class UserService {
             userDAO.updateUserToken(user);
             return token;
         }
-
         return "";
+    }
+
+    public Optional<User> findByToken(String token) {
+        Optional<User> user = userDAO.findByToken(token);
+        if (user.isPresent()) {
+            return user;
+        }
+        return Optional.empty();
     }
 }

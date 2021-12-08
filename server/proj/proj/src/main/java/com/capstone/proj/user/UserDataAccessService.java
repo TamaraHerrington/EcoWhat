@@ -73,6 +73,8 @@ public class UserDataAccessService implements UserDAO{
         return jdbcTemplate.update(sql, id);
     }
 
+    // || ===================  Login Authentication ===================== ||
+
     public Optional<User> authenticateLogin(String email, String password) {
         String sql = """
                 SELECT * FROM users
@@ -91,6 +93,17 @@ public class UserDataAccessService implements UserDAO{
                 WHERE id = ?;
                 """;
         return jdbcTemplate.update(sql, user.getToken(), user.getId());
+    }
+
+    @Override
+    public Optional<User> findByToken(String token) {
+        String sql = """
+                SELECT * FROM users
+                WHERE token = ?;
+                """;
+        return jdbcTemplate.query(sql, userRowMapper, token)
+                .stream()
+                .findFirst();
     }
 
 }
