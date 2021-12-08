@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 const Login = () => {
 
-    const [users, setUsers] = useState([])
+    // const [users, setUsers] = useState([])
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -12,9 +12,9 @@ const Login = () => {
         setEmail("")
         setPassword("")
 
-        fetch("http://localhost:8080")
-        .then(response => response.json())
-        .then(data => setUsers(data))
+        // fetch("http://localhost:8080")
+        // .then(response => response.json())
+        // .then(data => setUsers(data))
     }, [])
 
     const handleEmailChange = (event) => {
