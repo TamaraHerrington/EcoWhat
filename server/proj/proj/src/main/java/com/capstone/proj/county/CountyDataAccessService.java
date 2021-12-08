@@ -1,7 +1,10 @@
 package com.capstone.proj.county;
 
+import org.json.JSONArray;
+import org.springframework.data.relational.core.sql.SQL;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import java.sql.Array;
 
 import java.util.ArrayList;
 
@@ -24,5 +27,13 @@ public class CountyDataAccessService implements CountyDAO{
             jdbcTemplate.update(sql, county);
         }
     }
+
+    @Override
+    public void addCountyConstituencies(String county, int[] arrayOfConstituencies){
+        String sql = """
+                UPDATE counties SET constituency_ids = ? WHERE county_name = ?
+                """;
+        jdbcTemplate.update(sql, arrayOfConstituencies, county);
+    };
 
 }

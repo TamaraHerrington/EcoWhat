@@ -157,7 +157,6 @@ public class CountyService {
                 "West Yorkshire",
                 "Wiltshire",
                 "Worcestershire",
-
                 "Isle of Anglesey",
                 "Gwynedd",
                 "Conwy",
@@ -186,7 +185,7 @@ public class CountyService {
         for (String county: listOfCounties) {
             ArrayList<Integer> listOfConstituencyIds = new ArrayList<>();
             String fooResourceUrl
-                    = "https://members-api.parliament.uk/api/Location/Browse/1/" + county.replace(" ", "%20");
+                    = "https://members-api.parliament.uk/api/Location/Browse/1/" + county;
             ResponseEntity<JsonNode> response
                     = restTemplate.getForEntity(fooResourceUrl, JsonNode.class);
             JsonNode responseObj = response.getBody();
@@ -197,9 +196,12 @@ public class CountyService {
                 listOfConstituencyIds.add(constituency.get("id").intValue());
             }
 
-
+            int [] arrayOfConstituencyIds = listOfConstituencyIds.stream().mapToInt(i -> i).toArray();
             //        call dao to add to db
-            countyDAO.addCountyConstituencies(listOfConstituencyIds);
+
+            System.out.println(Arrays.toString(arrayOfConstituencyIds) + " " + county);
+
+            countyDAO.addCountyConstituencies(county, arrayOfConstituencyIds);
 
         }
 

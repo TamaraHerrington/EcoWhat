@@ -31,7 +31,7 @@ public class CountyController {
         countyService.addAllCountyNames();
     }
 
-    @PostMapping("/addcountycostituencies")
+    @PostMapping("/addcountyconstituencies")
     public void addCountyConstituencies(){
         countyService.addCountyConstituencies();
     }

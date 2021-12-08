@@ -6,5 +6,5 @@ public interface CountyDAO {
 
     public void addAllCountyNames(ArrayList<String> listOfNames);
 
-    public void addCountyConstituencies(ArrayList<Integer> listOfConstituencies);
+    public void addCountyConstituencies(String county, int[] arrayOfConstituencies);
 }
