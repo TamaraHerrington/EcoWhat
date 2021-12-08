@@ -30,8 +30,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />  
-        <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
+        {
+          !token ?
+          <>
+            <Route path="/" element={<Navigate to="/login" />} /> 
+            <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
+          </>
+          :
+          <>
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/login" element={<Navigate to="/" />} />  
+          </>
+        }
+
+        {/* <Route path="/" element={<Navigate to="/login" />} />  */}
+        {/* <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} /> */}
+        
         <Route path="/home" element={<Home token={token}/>} /> 
       </Routes>
     </BrowserRouter>
