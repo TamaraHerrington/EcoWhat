@@ -26,4 +26,16 @@ public class CountyController {
 
     }
 
+    @PostMapping("/addallcountynames")
+    public void addAllCountyNames(){
+        countyService.addAllCountyNames();
+    }
+
+    @PostMapping("/addcountycostituencies")
+    public void addCountyConstituencies(){
+        countyService.addCountyConstituencies();
+    }
+
+
+
 }
