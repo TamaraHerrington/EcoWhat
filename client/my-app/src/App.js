@@ -31,7 +31,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />  
-        <Route path="/login" element={<Login onLogin={onLogin}/>} />
+        <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
         <Route path="/home" element={<Home token={token}/>} /> 
       </Routes>
     </BrowserRouter>

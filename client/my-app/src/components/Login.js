@@ -1,8 +1,10 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, token }) => {
 
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -31,7 +33,12 @@ const Login = ({ onLogin }) => {
             }
         )
         .then(response => response.text())
-        .then(data => onLogin(data))     
+        .then(data => onLogin(data))
+        
+        if (token) {
+            navigate("/home")
+        }
+        
     }
 
     return (
