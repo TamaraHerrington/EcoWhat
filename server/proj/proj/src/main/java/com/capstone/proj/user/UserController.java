@@ -43,7 +43,7 @@ public class UserController {
 
     // || ===================  Login Authentication ===================== ||
 
-    @GetMapping("token")
+    @PostMapping("token")
     public String authenticateLogin(
             @RequestParam("email") final String email,
             @RequestParam("password") final String password) {
