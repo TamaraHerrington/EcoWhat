@@ -1,15 +1,9 @@
 
 const Home = ({ token }) => {
 
-
     return (
         <>
-            {token ? 
-            <p>Welcome {token}</p>
-            :
-            <p>Not logged in</p>
-            }
-            
+            <p>Home Page</p>
         </>
     )
 }
