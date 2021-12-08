@@ -3,18 +3,12 @@ import { useState, useEffect } from 'react'
 
 const Login = () => {
 
-    // const [users, setUsers] = useState([])
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     useEffect(() => {
         setEmail("")
         setPassword("")
-
-        // fetch("http://localhost:8080")
-        // .then(response => response.json())
-        // .then(data => setUsers(data))
     }, [])
 
     const handleEmailChange = (event) => {
@@ -28,8 +22,18 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
+        fetch(`http://localhost:8080/token?email=${email}&&password=${password}`,
+            {
+                method: 'POST',
+                headers: {
+                    "content-type": "text/plain;charset=UTF-8"
+                }   
+            }
+        )
+        .then(response => response.text())
+        .then(data => console.log(data))
         
-
+        
     }
 
     return (
