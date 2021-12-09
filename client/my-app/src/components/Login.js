@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import Registration from './Registration';
 
 const Login = ({ onLogin, token }) => {
 
@@ -24,7 +25,7 @@ const Login = ({ onLogin, token }) => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        fetch(`http://localhost:8080/token?email=${email}&&password=${password}`,
+        fetch(`http://localhost:8080/api/users/token?email=${email}&&password=${password}`,
             {
                 method: 'POST',
                 headers: {
@@ -42,17 +43,27 @@ const Login = ({ onLogin, token }) => {
     }
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <label forHtml="user-email">Email</label>
-                <input type="text" id="user-email" onChange={handleEmailChange}/>
+        <section className="login">
+            <main className="login-main">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <h1 className="login-header">Login</h1>
 
-                <label forHtml="user-password">Password</label>
-                <input type="password" id="user-password" onChange={handlePasswordChange}/>
+                    <label forHtml="user-email">Email</label>
+                    <input type="text" id="user-email" onChange={handleEmailChange}/>
 
-                <input type="submit" />
-            </form>
-        </>
+                    <label forHtml="user-password">Password</label>
+                    <input type="password" id="user-password" onChange={handlePasswordChange}/>
+
+                    <input className="login-btn" type="submit" value="Login"/>
+                    
+                    <div className="login-register">
+                        <p>Need an account?</p>
+                        <Link to="/registration">Sign Up</Link>
+                    </div>
+                    
+                </form>
+            </main>  
+        </section>
     )
 }
 

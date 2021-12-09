@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/users")
 public class UserController {
 
     private UserService userService;
@@ -50,10 +51,13 @@ public class UserController {
                 return userService.authenticateLogin(email, password);
     }
 
-//    @GetMapping("token")
-//    public String getToken(@RequestParam("email") final String email, @RequestParam("password") final String password) {
-//
-//        return userService.findByToken();
-//    }
+    @PostMapping("user")
+    public Optional<User> findByToken(@RequestBody String token) {
+        return userService.findByToken(token);
+    }
 
+    @PatchMapping("token")
+    public void removeTokenOnLogOut(@RequestBody String token) {
+        userService.removeTokenOnLogOut(token);
+    }
 }

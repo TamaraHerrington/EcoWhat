@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
+import Dashboard from './components/Dashboard';
+import Registration from './components/Registration';
 
 function getSessionStorageOrDefault(key, defaultValue) {
   const stored = sessionStorage.getItem(key);
@@ -29,6 +31,18 @@ function App() {
   }
 
   const onLogOut = () => {
+    console.log(token)
+    
+    fetch(`http://localhost:8080/api/users/token`,
+    {
+      method: 'PATCH',
+      headers: {
+          "content-type": "text/plain;charset=UTF-8"
+      },
+      body: `${token}`
+        
+    })
+
     setToken(null)
   }
 
@@ -42,16 +56,17 @@ function App() {
             <>
               <Route exact path="/" element={<Navigate to="/home" />} /> 
               <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
+              <Route path="/dashboard" element={<Navigate to="/login" />} />
+              <Route path="/registration" element={<Registration />} />
             </>
             :
             <>
               <Route exact path="/" element={<Navigate to="/home" />} />
-              <Route path="/login" element={<Navigate to="/" />} />  
+              <Route path="/login" element={<Navigate to="/" />} />
+              <Route path="/dashboard" element={<Dashboard token={token} />} />
+              <Route path="/registration" element={<Navigate to="/" />} /> 
             </>
           }
-
-          {/* <Route path="/" element={<Navigate to="/login" />} />  */}
-          {/* <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} /> */}
           
           <Route path="/home" element={<Home token={token}/>} /> 
         </Routes>
