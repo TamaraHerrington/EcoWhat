@@ -52,4 +52,11 @@ public class CountyDataAccessService implements CountyDAO{
         jdbcTemplate.execute(sql);
     }
 
+    public void addDataNotInAPI(String countyName, int[] constituencyIds){
+        String sql = """
+                UPDATE counties SET constituency_ids = ? WHERE county_name = ?
+                """;
+        jdbcTemplate.update(sql, constituencyIds, countyName);
+    }
+
 }
