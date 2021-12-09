@@ -56,8 +56,7 @@ function App() {
           
           <Route path="/home" element={<Home token={token}/>} /> 
           <>
-              <Route exact path="/" element={<Navigate to="/YouHelp" />} /> 
-              <Route path="/home" element={<YouHelp onYouHelp={YouHelp} token={token}/>} />
+          <Route path="/home" element={<Home token={token}/>}/>  
             </>
         </Routes>
       </BrowserRouter>
