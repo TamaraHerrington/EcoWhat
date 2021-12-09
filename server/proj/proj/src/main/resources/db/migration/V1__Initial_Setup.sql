@@ -1,0 +1,1 @@
+CREATE TABLE comments (id BIGSERIAL, user_is INTEGER, comment VARCHAR(255), upvotes INTEGER, downvotes INTEGER, constituency_id INTEGER);

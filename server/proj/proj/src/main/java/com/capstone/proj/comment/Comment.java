@@ -14,17 +14,21 @@ import java.util.Objects;
 public class Comment {
     private Integer id;
     private Integer userId;
+    private String comment_title;
     private String comment;
+    private String comment_category;
     private Integer upvotes;
     private Integer downvotes;
     private Integer constituencyId;
 
-    public Comment(int id, Integer userId, String comment, Integer upvotes, Integer downvotes, Integer constituencyId) {
+    public Comment(Integer id, Integer userId, String comment_title, String comment, String comment_category, Integer upvotes, Integer downvotes, Integer constituencyId) {
+        this.id = id;
         this.userId = userId;
+        this.comment_title = comment_title;
         this.comment = comment;
+        this.comment_category = comment_category;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.constituencyId = constituencyId;
     }
-
 }

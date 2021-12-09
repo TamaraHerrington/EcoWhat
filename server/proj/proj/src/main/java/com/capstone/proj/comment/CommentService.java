@@ -14,4 +14,7 @@ public class CommentService {
         this.commentDAO = commentDAO;
     }
 
+    public void addComment(Comment comment) {
+        commentDAO.addComment(comment);
+    }
 }

@@ -12,4 +12,17 @@ public class CommentDataAccessService implements CommentDAO{
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
+    public void addComment(Comment comment){
+        String sql = """
+                INSERT INTO comments 
+                (user_id, comment_title, comment, comment_category, upvotes, downvotes, constituency_id)
+                VALUES
+                (?, ?, ?, ?, ?, ?, ?);
+                """;
+
+        jdbcTemplate.update(sql, comment.getUserId(), comment.getComment_title(), comment.getComment_category(),
+                comment.getUpvotes(), comment.getDownvotes(), comment.getConstituencyId());
+    }
+
 }

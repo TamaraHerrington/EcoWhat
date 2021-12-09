@@ -13,12 +13,12 @@ import java.util.Objects;
 @EqualsAndHashCode
 @ToString
 public class Constituency {
-    private Integer id;
-    private String name;
+    private Integer constituency_id;
+    private String constituency_name;
 
-    public Constituency(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+    public Constituency(Integer constituency_id, String constituency_name) {
+        this.constituency_id = constituency_id;
+        this.constituency_name = constituency_name;
     }
 
 }

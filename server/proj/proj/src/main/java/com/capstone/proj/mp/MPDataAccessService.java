@@ -11,4 +11,8 @@ public class MPDataAccessService implements MPDAO{
     public MPDataAccessService(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    public void addMps(){
+
+    }
 }
