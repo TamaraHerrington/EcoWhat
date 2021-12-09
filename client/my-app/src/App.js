@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 import Login from './components/Login';
 import Home from './components/Home';
+import NavBar from './components/NavBar';
 
 function getSessionStorageOrDefault(key, defaultValue) {
   const stored = sessionStorage.getItem(key);
@@ -27,28 +28,35 @@ function App() {
     setToken(token)
   }
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        {
-          !token ?
-          <>
-            <Route path="/" element={<Navigate to="/login" />} /> 
-            <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
-          </>
-          :
-          <>
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/login" element={<Navigate to="/" />} />  
-          </>
-        }
+  const onLogOut = () => {
+    setToken(null)
+  }
 
-        {/* <Route path="/" element={<Navigate to="/login" />} />  */}
-        {/* <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} /> */}
-        
-        <Route path="/home" element={<Home token={token}/>} /> 
-      </Routes>
-    </BrowserRouter>
+  return (
+    <>
+      <BrowserRouter>
+      <NavBar token={token} onLogOut={onLogOut} />
+        <Routes> 
+          {
+            !token ?
+            <>
+              <Route exact path="/" element={<Navigate to="/home" />} /> 
+              <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
+            </>
+            :
+            <>
+              <Route exact path="/" element={<Navigate to="/home" />} />
+              <Route path="/login" element={<Navigate to="/" />} />  
+            </>
+          }
+
+          {/* <Route path="/" element={<Navigate to="/login" />} />  */}
+          {/* <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} /> */}
+          
+          <Route path="/home" element={<Home token={token}/>} /> 
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
