@@ -106,4 +106,14 @@ public class UserDataAccessService implements UserDAO{
                 .findFirst();
     }
 
+    @Override
+    public int removeTokenOnLogOut(String token) {
+        String sql = """
+                UPDATE users
+                SET token = null
+                WHERE token = ?;
+                """;
+        return jdbcTemplate.update(sql, token);
+    }
+
 }

@@ -56,4 +56,8 @@ public class UserController {
         return userService.findByToken(token);
     }
 
+    @PatchMapping("token")
+    public void removeTokenOnLogOut(@RequestBody String token) {
+        userService.removeTokenOnLogOut(token);
+    }
 }

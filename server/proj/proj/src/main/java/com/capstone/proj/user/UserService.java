@@ -60,4 +60,8 @@ public class UserService {
         }
         throw new IllegalStateException("No user with token");
     }
+
+    public int removeTokenOnLogOut(String token) {
+        return userDAO.removeTokenOnLogOut(token);
+    }
 }
