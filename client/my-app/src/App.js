@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
+import YouHelp from './components/YouHelp';
 
 function getSessionStorageOrDefault(key, defaultValue) {
   const stored = sessionStorage.getItem(key);
@@ -54,6 +55,10 @@ function App() {
           {/* <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} /> */}
           
           <Route path="/home" element={<Home token={token}/>} /> 
+          <>
+              <Route exact path="/" element={<Navigate to="/YouHelp" />} /> 
+              <Route path="/home" element={<YouHelp onYouHelp={YouHelp} token={token}/>} />
+            </>
         </Routes>
       </BrowserRouter>
     </>
