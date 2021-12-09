@@ -1,7 +1,4 @@
 import './App.css';
-<<<<<<< HEAD
-import MyMap from "./components/MyMap.js"
-=======
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -18,7 +15,6 @@ function getSessionStorageOrDefault(key, defaultValue) {
   }
   return JSON.parse(stored);
 }
->>>>>>> 78b51760453dde73122fed1c99b323c32d499c25
 
 function App() {
 
@@ -51,11 +47,6 @@ function App() {
   }
 
   return (
-<<<<<<< HEAD
-    <div className="App">
-      <MyMap/>
-    </div>
-=======
     <>
       <BrowserRouter>
       <NavBar token={token} onLogOut={onLogOut} />
@@ -81,7 +72,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
->>>>>>> 78b51760453dde73122fed1c99b323c32d499c25
   );
 }
 
