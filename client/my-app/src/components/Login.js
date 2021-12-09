@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Registration from './Registration';
 
 const Login = ({ onLogin, token }) => {
 
@@ -52,6 +53,10 @@ const Login = ({ onLogin, token }) => {
 
                 <input type="submit" />
             </form>
+
+            <br />
+
+            <Registration />
         </>
     )
 }
