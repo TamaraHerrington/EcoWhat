@@ -58,6 +58,6 @@ public class UserService {
         if (user.isPresent()) {
             return user;
         }
-        return Optional.empty();
+        throw new IllegalStateException("No user with token");
     }
 }
