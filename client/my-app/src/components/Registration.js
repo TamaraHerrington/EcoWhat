@@ -51,21 +51,27 @@ const Registration = () => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label forHtml="first-name">First Name</label>
-            <input type="text" id="first-name" value={firstName} required onChange={handleFirstNameChange}/>
+        <section className="signup">
+            <main className="signup-main">
+                <form className="signup-form" onSubmit={handleSubmit}>
+                    <h1 className="signup-header">Register</h1>
 
-            <label forHtml="last-name">Last Name</label>
-            <input type="text" id="last-name" value={lastName} required onChange={handleLastNameChange}/>
+                    <label forHtml="first-name">First Name</label>
+                    <input type="text" id="first-name" value={firstName} required onChange={handleFirstNameChange}/>
 
-            <label forHtml="email">Email</label>
-            <input type="text" id="email" value={email} required onChange={handleEmailChange}/>
+                    <label forHtml="last-name">Last Name</label>
+                    <input type="text" id="last-name" value={lastName} required onChange={handleLastNameChange}/>
 
-            <label forHtml="password">Password</label>
-            <input type="password" id="password" value={password} required onChange={handlePasswordChange}/>
+                    <label forHtml="email">Email</label>
+                    <input type="text" id="email" value={email} required onChange={handleEmailChange}/>
 
-            <input type="submit" />
-        </form>
+                    <label forHtml="password">Password</label>
+                    <input type="password" id="password" value={password} required onChange={handlePasswordChange}/>
+
+                    <input className="signup-btn" type="submit" value="Sign Up"/>
+                </form>
+            </main>
+        </section>
     )
 }
 

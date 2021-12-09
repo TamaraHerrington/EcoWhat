@@ -37,6 +37,17 @@ html {
   margin-bottom: 1rem;
 }
 
+.login-form > input[type=text], 
+.login-form > input[type=password] {
+  border: none;
+  border-bottom: 2px solid #777;
+}
+
+.login-form > input[type=text]:focus, 
+.login-form > input[type=password]:focus {
+  outline: none;
+}
+
 .login-btn {
   background-color: hotpink;
   color: white;
@@ -50,4 +61,56 @@ html {
 .login-register {
   text-align: center;
   padding-bottom: 0.5rem;
+}
+
+/* || ========================= Sign Up ========================= || */
+
+.signup {
+  width: 100%;
+  height: 80vh;
+}
+
+.signup-main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-form {
+  border: 2px solid #777;
+  padding: 2rem 2rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-header {
+  text-align: center;
+  margin-top: 0;
+}
+
+.signup-form > input {
+  margin-bottom: 1rem;
+}
+
+.signup-form > input[type=text], 
+.signup-form > input[type=password] {
+  border: none;
+  border-bottom: 2px solid #777;
+}
+
+.signup-form > input[type=text]:focus, 
+.signup-form > input[type=password]:focus {
+  outline: none;
+}
+
+.signup-btn {
+  background-color: hotpink;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  border-radius: 2rem;
+  margin-top: 1rem;
 }
