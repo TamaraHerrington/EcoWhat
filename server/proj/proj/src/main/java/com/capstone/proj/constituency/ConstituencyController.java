@@ -1,5 +1,6 @@
 package com.capstone.proj.constituency;
 
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +15,11 @@ public class ConstituencyController {
         this.constituencyService = constituencyService;
     }
 
-    @PostMapping
-    public void addAllConstituencies(){
-        constituencyService.addAllConstituencies();
+    @GetMapping("/{constituency_id}/county")
+    public String getCountyFromConstituency(@PathVariable("constituency_id") int constituency_id){
+        return constituencyService.getCountyFromConstituency(constituency_id);
+
+
     }
 
 }

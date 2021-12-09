@@ -7,4 +7,6 @@ public interface ConstituencyDAO {
     public void createConstituencyTable();
 
     public void dropConstituencyTable();
+
+    public String getCountyFromConstituency(int constituency_id);
 }

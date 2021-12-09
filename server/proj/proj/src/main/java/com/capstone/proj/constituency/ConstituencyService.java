@@ -64,8 +64,12 @@ public class ConstituencyService {
         constituencyDAO.createConstituencyTable();
     }
 
-    public void dropConsittuecyTable(){
+    public void dropConstituencyTable(){
         constituencyDAO.dropConstituencyTable();
     }
 
+
+    public String getCountyFromConstituency(int constituency_id) {
+        return constituencyDAO.getCountyFromConstituency(constituency_id);
+    }
 }

@@ -38,4 +38,12 @@ public class ConstituencyDataAccessService implements ConstituencyDAO{
         jdbcTemplate.execute(sql);
     }
 
+    @Override
+    public String getCountyFromConstituency(int constituency_id){
+        String sql = """
+                SELECT county_name FROM counties WHERE ? = ANY (constituency_ids) ;
+                """;
+        return jdbcTemplate.queryForObject(sql, new Object[] {constituency_id}, String.class);
+    }
+
 }

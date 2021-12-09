@@ -20,7 +20,7 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         countyService.dropCountyTable();
-        constituencyService.dropConsittuecyTable();
+        constituencyService.dropConstituencyTable();
         System.out.println("application runner running");
         countyService.createCountyTable();
         constituencyService.createConstituencyTable();
