@@ -13,6 +13,8 @@ public class CommentRowMapper implements RowMapper<Comment> {
                 rs.getInt("id"),
                 rs.getInt("user_id"),
                 rs.getString("comment"),
+                rs.getString("comment_title"),
+                rs.getString("comment_category"),
                 rs.getInt("upvotes"),
                 rs.getInt("downvotes"),
                 rs.getInt("constituency_id")

@@ -30,8 +30,15 @@ public class ConstituencyController {
         return constituencyService.getAllConstituencies();
     }
 
-    @GetMapping("/{constituency_id}")
+    @GetMapping("/{constituency_id}/name")
     public String getConstituencyNameFromId(@PathVariable("constituency_id") int constituency_id){
         return constituencyService.getConstituencyNameFromId(constituency_id);
     }
+
+    @GetMapping("/{postcode}")
+    public Constituency getConstituencyFromPostcode(@PathVariable("postcode") String postcode){
+            return constituencyService.getConstituencyFromPostcode(postcode);
+
+    }
+
 }

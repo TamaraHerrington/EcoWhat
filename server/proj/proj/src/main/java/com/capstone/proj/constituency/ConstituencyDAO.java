@@ -16,4 +16,6 @@ public interface ConstituencyDAO {
     public List<Constituency> getAllConstituencies();
 
     public String getConstituencyNameFromId(int constituency_id);
+
+    public Integer getConstituencyIdFromName(String name);
 }

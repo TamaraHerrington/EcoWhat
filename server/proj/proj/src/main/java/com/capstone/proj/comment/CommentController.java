@@ -14,4 +14,11 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+    @PostMapping("/add")
+    public void addComment(@RequestBody Comment comment){
+        commentService.addComment(comment);
+
+    }
+
+
 }

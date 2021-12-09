@@ -16,15 +16,7 @@ public class CountyController {
         this.countyService = countyService;
     }
 
-    @GetMapping("/{postcode}")
-    public String getConstituencyFromPostcode(@PathVariable("postcode") String postcode){
-        try{
-            return countyService.getConstituencyFromPostcode(postcode);
-        } catch (JSONException e) {
-            return "ERROR" + e.getMessage();
-        }
-
-    }
+    
 
 
 

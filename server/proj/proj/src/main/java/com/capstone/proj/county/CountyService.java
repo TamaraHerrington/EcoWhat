@@ -21,17 +21,6 @@ public class CountyService {
         this.countyDAO = countyDAO;
     }
 
-    public String getConstituencyFromPostcode(String postcode) throws JSONException {
-        RestTemplate restTemplate = new RestTemplate();
-        String fooResourceUrl
-                = "https://api.postcodes.io/postcodes/" + postcode;
-        ResponseEntity<JsonNode> response
-                = restTemplate.getForEntity(fooResourceUrl, JsonNode.class);
-        JsonNode responseObj = response.getBody();
-
-        return responseObj.get("result").get("parliamentary_constituency").textValue();
-    }
-
     public void addAllCountyNames(){
         ArrayList<String> listOfNames = new ArrayList<>(Arrays.asList("Bedfordshire",
                 "Berkshire",

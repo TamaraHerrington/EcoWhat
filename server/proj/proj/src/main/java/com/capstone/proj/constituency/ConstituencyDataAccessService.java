@@ -65,4 +65,12 @@ public class ConstituencyDataAccessService implements ConstituencyDAO{
         return jdbcTemplate.queryForObject(sql, new Object[] {constituency_id}, String.class);
     };
 
+    public Integer getConstituencyIdFromName(String name){
+        String sql = """
+                SELECT constituency_id FROM constituencies WHERE constituency_name LIKE ?;
+                """;
+
+        return jdbcTemplate.queryForObject(sql, new Object[]{name}, Integer.class);
+    }
+
 }

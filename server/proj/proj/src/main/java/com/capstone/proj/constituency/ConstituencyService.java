@@ -2,6 +2,7 @@ package com.capstone.proj.constituency;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.tomcat.util.bcel.Const;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -81,4 +82,24 @@ public class ConstituencyService {
     public String getConstituencyNameFromId(int constituency_id) {
         return constituencyDAO.getConstituencyNameFromId(constituency_id);
     }
+
+    public Constituency getConstituencyFromPostcode(String postcode)  {
+        RestTemplate restTemplate = new RestTemplate();
+        String fooResourceUrl
+                = "https://api.postcodes.io/postcodes/" + postcode;
+        ResponseEntity<JsonNode> response
+                = restTemplate.getForEntity(fooResourceUrl, JsonNode.class);
+        JsonNode responseObj = response.getBody();
+        String name = responseObj.get("result").get("parliamentary_constituency").textValue();
+        System.out.println(name);
+        Constituency constituency = new Constituency(getConstituencyIdFromName(name),
+                name);
+
+        return constituency;
+    }
+
+    public Integer getConstituencyIdFromName(String name){
+        return constituencyDAO.getConstituencyIdFromName(name);
+    }
+
 }
