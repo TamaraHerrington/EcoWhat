@@ -21,8 +21,19 @@ const NavBar = ({ token, onLogOut }) => {
 
             <a href="/home">Home</a>
 
+            {(() => {
+                if (token) {
+                    return(
+                    <a href="/dashboard">Dashboard</a>
+                    )
+                }
+            })()}
+
+
             {token ?
+            <>
                 <a href="/home" onClick={handleLogOut}>Log Out</a>
+                </>
                 :
                 <a href="/login">Log In</a>
             }

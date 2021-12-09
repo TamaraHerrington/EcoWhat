@@ -55,7 +55,7 @@ function App() {
             <>
               <Route exact path="/" element={<Navigate to="/home" />} /> 
               <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
-              <Route path="/dashboard" element={<Navigate to="/" />} />
+              <Route path="/dashboard" element={<Navigate to="/login" />} />
             </>
             :
             <>
