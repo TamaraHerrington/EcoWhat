@@ -199,8 +199,6 @@ public class CountyService {
             int [] arrayOfConstituencyIds = listOfConstituencyIds.stream().mapToInt(i -> i).toArray();
             //        call dao to add to db
 
-            System.out.println(Arrays.toString(arrayOfConstituencyIds) + " " + county);
-
             countyDAO.addCountyConstituencies(county, arrayOfConstituencyIds);
 
         }

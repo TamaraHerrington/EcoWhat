@@ -1,5 +1,6 @@
 package com.capstone.proj.constituency;
 
+import org.apache.tomcat.util.bcel.Const;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,10 @@ public class ConstituencyController {
     @GetMapping("/all")
     public List<Constituency> getAllConstituencies(){
         return constituencyService.getAllConstituencies();
+    }
+
+    @GetMapping("/{constituency_id}")
+    public String getConstituencyNameFromId(@PathVariable("constituency_id") int constituency_id){
+        return constituencyService.getConstituencyNameFromId(constituency_id);
     }
 }

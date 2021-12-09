@@ -40,7 +40,6 @@ public class ConstituencyService {
 //            ListOfConstituencies.add(new Constituency(constituency.get("id").intValue(),
 //                    constituency.get("name").textValue()));
         }
-        System.out.println(ListOfConstituencies);
 
         String fooResourceUrlWales
                 = "https://members-api.parliament.uk/api/Location/Browse/1/Wales";
@@ -77,5 +76,9 @@ public class ConstituencyService {
 
     public List<Constituency> getAllConstituencies() {
         return constituencyDAO.getAllConstituencies();
+    }
+
+    public String getConstituencyNameFromId(int constituency_id) {
+        return constituencyDAO.getConstituencyNameFromId(constituency_id);
     }
 }

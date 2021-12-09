@@ -14,4 +14,6 @@ public interface ConstituencyDAO {
     public String getCountyFromConstituency(int constituency_id);
 
     public List<Constituency> getAllConstituencies();
+
+    public String getConstituencyNameFromId(int constituency_id);
 }
