@@ -24,7 +24,7 @@ const Login = ({ onLogin, token }) => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        fetch(`http://localhost:8080/token?email=${email}&&password=${password}`,
+        fetch(`http://localhost:8080/api/users/token?email=${email}&&password=${password}`,
             {
                 method: 'POST',
                 headers: {
