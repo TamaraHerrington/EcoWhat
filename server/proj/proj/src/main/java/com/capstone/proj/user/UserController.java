@@ -51,8 +51,8 @@ public class UserController {
                 return userService.authenticateLogin(email, password);
     }
 
-    @GetMapping("token")
-    public Optional<User> getToken(@RequestBody String token) {
+    @PostMapping("user")
+    public Optional<User> findByToken(@RequestBody String token) {
         return userService.findByToken(token);
     }
 
