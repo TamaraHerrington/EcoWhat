@@ -21,7 +21,7 @@ public class CountyService {
         this.countyDAO = countyDAO;
     }
 
-    public JsonNode getFromApiTest(String postcode) throws JSONException {
+    public String getConstituencyFromPostcode(String postcode) throws JSONException {
         RestTemplate restTemplate = new RestTemplate();
         String fooResourceUrl
                 = "https://api.postcodes.io/postcodes/" + postcode;
@@ -29,7 +29,7 @@ public class CountyService {
                 = restTemplate.getForEntity(fooResourceUrl, JsonNode.class);
         JsonNode responseObj = response.getBody();
 
-        return responseObj.get("result").get("parliamentary_constituency");
+        return responseObj.get("result").get("parliamentary_constituency").textValue();
     }
 
     public void addAllCountyNames(){

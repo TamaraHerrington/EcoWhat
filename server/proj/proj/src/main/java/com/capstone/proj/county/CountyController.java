@@ -17,11 +17,11 @@ public class CountyController {
     }
 
     @GetMapping("/{postcode}")
-    public void fromApiTest(@PathVariable("postcode") String postcode){
+    public String getConstituencyFromPostcode(@PathVariable("postcode") String postcode){
         try{
-            System.out.println(countyService.getFromApiTest(postcode));
+            return countyService.getConstituencyFromPostcode(postcode);
         } catch (JSONException e) {
-            System.out.println("ERROR" + e.getMessage());
+            return "ERROR" + e.getMessage();
         }
 
     }
