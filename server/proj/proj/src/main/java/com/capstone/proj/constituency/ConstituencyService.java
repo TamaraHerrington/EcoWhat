@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ConstituencyService {
@@ -71,5 +73,9 @@ public class ConstituencyService {
 
     public String getCountyFromConstituency(int constituency_id) {
         return constituencyDAO.getCountyFromConstituency(constituency_id);
+    }
+
+    public List<Constituency> getAllConstituencies() {
+        return constituencyDAO.getAllConstituencies();
     }
 }

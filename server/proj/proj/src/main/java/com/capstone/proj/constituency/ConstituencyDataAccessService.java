@@ -3,6 +3,9 @@ package com.capstone.proj.constituency;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class ConstituencyDataAccessService implements ConstituencyDAO{
 
@@ -45,5 +48,14 @@ public class ConstituencyDataAccessService implements ConstituencyDAO{
                 """;
         return jdbcTemplate.queryForObject(sql, new Object[] {constituency_id}, String.class);
     }
+
+    @Override
+    public List<Constituency> getAllConstituencies(){
+        String sql =  """
+                SELECT * FROM constituencies;
+                """;
+        List<Constituency> allConstituencies = jdbcTemplate.query(sql, new ConstituencyRowMapper());
+        return allConstituencies;
+    };
 
 }
