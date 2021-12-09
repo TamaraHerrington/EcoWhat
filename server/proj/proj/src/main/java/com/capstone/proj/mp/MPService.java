@@ -44,9 +44,9 @@ public class MPService {
                 = "https://members-api.parliament.uk/api/Members/" + id + "/Contact";
         ResponseEntity<Object[]> responseContact
                 = restTemplateContact.getForEntity(mpContactUrl, Object[].class);
-        JsonNode responseContactObj = responseContact.getBody();
+//        JsonNode responseContactObj = responseContact.getBody();
 
-        String email = responseContactObj.get("value")[0].get()
+//        String email = responseContactObj.get("value")[0].get()
 
 //        filter out data we want, may need more api calls
 

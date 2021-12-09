@@ -209,4 +209,12 @@ public class CountyService {
 
     }
 
+    public void createCountyTable(){
+        countyDAO.addCountyTable();
+    }
+
+    public void dropCountyTable(){
+        countyDAO.dropCountyTable();
+    }
+
 }

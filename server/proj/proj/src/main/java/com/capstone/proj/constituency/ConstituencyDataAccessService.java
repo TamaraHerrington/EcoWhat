@@ -22,4 +22,20 @@ public class ConstituencyDataAccessService implements ConstituencyDAO{
         jdbcTemplate.update(sql, id, name);
     }
 
+    @Override
+    public void createConstituencyTable(){
+        String sql = """
+                CREATE TABLE constituencies (id BIGSERIAL, constituency_name VARCHAR(255), constituency_id INTEGER);
+                """;
+        jdbcTemplate.execute(sql);
+    }
+
+    @Override
+    public void dropConstituencyTable(){
+        String sql = """
+                DROP TABLE constituencies
+                """;
+        jdbcTemplate.execute(sql);
+    }
+
 }

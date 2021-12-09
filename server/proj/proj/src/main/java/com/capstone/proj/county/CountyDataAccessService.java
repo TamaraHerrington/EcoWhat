@@ -34,6 +34,22 @@ public class CountyDataAccessService implements CountyDAO{
                 UPDATE counties SET constituency_ids = ? WHERE county_name = ?
                 """;
         jdbcTemplate.update(sql, arrayOfConstituencies, county);
-    };
+    }
+
+    @Override
+    public void addCountyTable(){
+        String sql = """
+                CREATE TABLE counties (id BIGSERIAL, county_name VARCHAR(255), constituency_ids INTEGER[]);
+                """;
+        jdbcTemplate.execute(sql);
+    }
+
+    @Override
+    public void dropCountyTable(){
+        String sql = """
+                DROP TABLE counties;
+                """;
+        jdbcTemplate.execute(sql);
+    }
 
 }

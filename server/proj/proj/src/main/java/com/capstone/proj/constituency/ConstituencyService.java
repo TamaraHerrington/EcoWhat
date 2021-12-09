@@ -60,4 +60,12 @@ public class ConstituencyService {
 
     }
 
+    public void createConstituencyTable(){
+        constituencyDAO.createConstituencyTable();
+    }
+
+    public void dropConsittuecyTable(){
+        constituencyDAO.dropConstituencyTable();
+    }
+
 }
