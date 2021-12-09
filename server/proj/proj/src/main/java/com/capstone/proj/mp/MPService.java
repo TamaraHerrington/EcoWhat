@@ -26,18 +26,27 @@ public class MPService {
 //        use api to get info on that constituency's mp
         RestTemplate restTemplate = new RestTemplate();
         String mpResourceUrl
-                = "https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + constituencyId;
+                = "https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + constituencyId + "&IsCurrentMember=true&skip=0&take=20";
         ResponseEntity<JsonNode> response
                 = restTemplate.getForEntity(mpResourceUrl, JsonNode.class);
         JsonNode responseObj = response.getBody();
         System.out.println(responseObj.get("items"));
 //        non-active members have a .value.latestHouseMembership.membershipStatus of null, remove these, check if this
-        for (JsonNode member : responseObj.get("items")){
-            if (member.get("value").get("latestHouseMembership").get("membershipStatus").get("statusIsActive")!=null){
-                System.out.println(member.get("value").get("nameDisplayAs"));
-            }
-        }
+        System.out.println(responseObj.get("value").get("nameDisplayAs"));
 //        translates to one mp per constituency
+        String name = responseObj.get("value").get("nameDisplayAs").textValue();
+        int id = responseObj.get("value").get("id").intValue();
+        String party = responseObj.get("value").get("latestParty").get("name").textValue();
+        String thumbnailUrl = responseObj.get("value").get("thumbnailUrl").textValue();
+
+        RestTemplate restTemplateContact = new RestTemplate();
+        String mpContactUrl
+                = "https://members-api.parliament.uk/api/Members/" + id + "/Contact";
+        ResponseEntity<Object[]> responseContact
+                = restTemplateContact.getForEntity(mpContactUrl, Object[].class);
+        JsonNode responseContactObj = responseContact.getBody();
+
+        String email = responseContactObj.get("value")[0].get()
 
 //        filter out data we want, may need more api calls
 
