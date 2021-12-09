@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Registration from './Registration';
 
 const Login = ({ onLogin, token }) => {
@@ -43,7 +43,7 @@ const Login = ({ onLogin, token }) => {
     }
 
     return (
-        <>
+        <section className="login">
             <form onSubmit={handleSubmit}>
                 <label forHtml="user-email">Email</label>
                 <input type="text" id="user-email" onChange={handleEmailChange}/>
@@ -52,12 +52,10 @@ const Login = ({ onLogin, token }) => {
                 <input type="password" id="user-password" onChange={handlePasswordChange}/>
 
                 <input type="submit" />
-            </form>
+            </form>  
 
-            <br />
-
-            <Registration />
-        </>
+            <Link to="/registration">Sign Up</Link>
+        </section>
     )
 }
 
