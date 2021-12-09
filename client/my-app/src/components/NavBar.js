@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
 
 const NavBar = ({ token, onLogOut }) => {
 
@@ -19,26 +20,22 @@ const NavBar = ({ token, onLogOut }) => {
                 <p>Not logged in</p>
             }
 
-            <a href="/home">Home</a>
+            <Link to="/home">Home</Link>
 
             {(() => {
                 if (token) {
                     return(
-                    <a href="/dashboard">Dashboard</a>
+                    <Link to="/dashboard">Dashboard</Link>
                     )
                 }
             })()}
 
 
             {token ?
-            <>
-                <a href="/home" onClick={handleLogOut}>Log Out</a>
-                </>
+                <Link to="/home" onClick={handleLogOut}>Log Out</Link>
                 :
-                <a href="/login">Log In</a>
+                <Link to="/login">Log In</Link>
             }
-            
-            {/* <a href="#Footer">Contact Us</a> */}
         </>
     )
 }
