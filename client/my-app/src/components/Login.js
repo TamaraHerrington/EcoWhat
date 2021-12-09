@@ -44,17 +44,25 @@ const Login = ({ onLogin, token }) => {
 
     return (
         <section className="login">
-            <form onSubmit={handleSubmit}>
-                <label forHtml="user-email">Email</label>
-                <input type="text" id="user-email" onChange={handleEmailChange}/>
+            <main className="login-main">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <h1 className="login-header">Login</h1>
 
-                <label forHtml="user-password">Password</label>
-                <input type="password" id="user-password" onChange={handlePasswordChange}/>
+                    <label forHtml="user-email">Email</label>
+                    <input type="text" id="user-email" onChange={handleEmailChange}/>
 
-                <input type="submit" />
-            </form>  
+                    <label forHtml="user-password">Password</label>
+                    <input type="password" id="user-password" onChange={handlePasswordChange}/>
 
-            <Link to="/registration">Sign Up</Link>
+                    <input className="login-btn" type="submit" value="Login"/>
+                    
+                    <div className="login-register">
+                        <p>Need an account?</p>
+                        <Link to="/registration">Sign Up</Link>
+                    </div>
+                    
+                </form>
+            </main>  
         </section>
     )
 }
