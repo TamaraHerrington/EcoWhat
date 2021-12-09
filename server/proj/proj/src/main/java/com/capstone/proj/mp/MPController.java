@@ -14,4 +14,9 @@ public class MPController {
         this.mpService = mpService;
     }
 
+    @PostMapping
+    public void addMps(){
+        mpService.addMps();
+    }
+
 }
