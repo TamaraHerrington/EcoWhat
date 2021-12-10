@@ -1,15 +1,20 @@
 package com.capstone.proj.comment;
 
+import com.capstone.proj.user.UserDAO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class CommentDataAccessService implements CommentDAO{
 
     private JdbcTemplate jdbcTemplate;
+    private UserDAO userDAO;
 
-    public CommentDataAccessService(JdbcTemplate jdbcTemplate){
+    public CommentDataAccessService(JdbcTemplate jdbcTemplate, UserDAO userDAO) {
         this.jdbcTemplate = jdbcTemplate;
+        this.userDAO = userDAO;
     }
 
     @Override
@@ -39,4 +44,11 @@ public class CommentDataAccessService implements CommentDAO{
         jdbcTemplate.update(sql, id);
     };
 
+    public List<Comment> getAllComments(){
+        String sql = """
+                SELECT * FROM comments;
+                """;
+        List<Comment> allComments = jdbcTemplate.query(sql, new CommentRowMapper(userDAO));
+        return allComments;
+    };
 }

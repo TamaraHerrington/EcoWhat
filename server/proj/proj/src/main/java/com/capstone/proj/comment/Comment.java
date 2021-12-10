@@ -15,6 +15,7 @@ import java.util.Objects;
 public class Comment {
     private Integer id;
     private Integer userId;
+    private String user_name;
     private String comment_title;
     private String comment;
     private String comment_category;
@@ -23,11 +24,12 @@ public class Comment {
     private Integer constituencyId;
     private String post_date;
 
-    public Comment(Integer id, Integer userId, String comment_title,
+    public Comment(Integer id, Integer userId, String user_name, String comment_title,
                    String comment, String comment_category, Integer upvotes, Integer downvotes, Integer constituencyId,
                    String post_date) {
         this.id = id;
         this.userId = userId;
+        this.user_name = user_name;
         this.comment_title = comment_title;
         this.comment = comment;
         this.comment_category = comment_category;

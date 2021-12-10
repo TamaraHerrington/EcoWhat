@@ -1,5 +1,8 @@
 package com.capstone.proj.comment;
 
+import java.util.List;
+
+
 public interface CommentDAO {
 
     public void addComment(Comment comment);
@@ -7,4 +10,6 @@ public interface CommentDAO {
     public void upvoteComment(int id);
 
     public void downvoteComment(int id);
+
+    public List<Comment> getAllComments();
 }
