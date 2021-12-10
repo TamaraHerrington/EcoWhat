@@ -36,7 +36,7 @@ public class ConstituencyDataAccessService implements ConstituencyDAO{
     @Override
     public void dropConstituencyTable(){
         String sql = """
-                DROP TABLE constituencies
+                DROP TABLE IF EXISTS constituencies;
                 """;
         jdbcTemplate.execute(sql);
     }

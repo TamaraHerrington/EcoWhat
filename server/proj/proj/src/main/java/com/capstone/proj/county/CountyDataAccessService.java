@@ -47,7 +47,7 @@ public class CountyDataAccessService implements CountyDAO{
     @Override
     public void dropCountyTable(){
         String sql = """
-                DROP TABLE counties;
+                DROP TABLE IF EXISTS counties;
                 """;
         jdbcTemplate.execute(sql);
     }
