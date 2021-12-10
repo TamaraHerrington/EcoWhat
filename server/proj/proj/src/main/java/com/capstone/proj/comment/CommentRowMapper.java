@@ -17,7 +17,9 @@ public class CommentRowMapper implements RowMapper<Comment> {
                 rs.getString("comment_category"),
                 rs.getInt("upvotes"),
                 rs.getInt("downvotes"),
-                rs.getInt("constituency_id")
+                rs.getInt("constituency_id"),
+                rs.getString("post_date")
+
         );
         return comment;
     }

@@ -16,13 +16,13 @@ public class CommentDataAccessService implements CommentDAO{
     public void addComment(Comment comment){
         String sql = """
                 INSERT INTO comments 
-                (user_id, comment_title, comment, comment_category, upvotes, downvotes, constituency_id)
+                (user_id, comment_title, comment, comment_category, upvotes, downvotes, constituency_id, post_date)
                 VALUES
-                (?, ?, ?, ?, ?, ?, ?);
+                (?, ?, ?, ?, ?, ?, ?, ?);
                 """;
 
         jdbcTemplate.update(sql, comment.getUserId(), comment.getComment_title(), comment.getComment_category(),
-                comment.getUpvotes(), comment.getDownvotes(), comment.getConstituencyId());
+                comment.getUpvotes(), comment.getDownvotes(), comment.getConstituencyId(), comment.getPost_date());
     }
 
 }

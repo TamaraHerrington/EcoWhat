@@ -39,7 +39,7 @@ public class CountyDataAccessService implements CountyDAO{
     @Override
     public void addCountyTable(){
         String sql = """
-                CREATE TABLE counties (id BIGSERIAL, county_name VARCHAR(255), constituency_ids INTEGER[]);
+                CREATE TABLE counties (id BIGSERIAL PRIMARY KEY, county_name VARCHAR(255), constituency_ids INTEGER[]);
                 """;
         jdbcTemplate.execute(sql);
     }
@@ -47,7 +47,7 @@ public class CountyDataAccessService implements CountyDAO{
     @Override
     public void dropCountyTable(){
         String sql = """
-                DROP TABLE counties;
+                DROP TABLE IF EXISTS counties;
                 """;
         jdbcTemplate.execute(sql);
     }

@@ -61,6 +61,11 @@
 			<version>0.0.20131108.vaadin1</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>8.2.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -85,6 +90,15 @@
                     <target>16</target>
                 </configuration>
             </plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>8.0.0</version>
+				<configuration>
+					<user>databaseUser</user>
+					<password>databasePassword</password>
+				</configuration>
+			</plugin>
         </plugins>
 	</build>
 
