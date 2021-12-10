@@ -28,6 +28,10 @@ public class UserService {
     }
 
     public int createUser(User user) {
+        // initially set these to null
+        user.setConstituencyId(null);
+        user.setToken(null);
+
         // first name
         if (user.getFirstName() == null || user.getFirstName().length() == 0) {
             throw new BadRequest("First name cannot be empty");
@@ -42,6 +46,10 @@ public class UserService {
         boolean isEmailValid = validator.validateEmail(user.getEmail());
         if (!isEmailValid) {
             throw new BadRequest("Invalid email address");
+        }
+        Optional<User> emailUser = userDAO.getUserByEmail(user.getEmail());
+        if (emailUser.isPresent()) {
+            throw new BadRequest("User with email already exists");
         }
 
         // password

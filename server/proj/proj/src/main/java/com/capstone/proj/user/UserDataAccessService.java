@@ -51,6 +51,17 @@ public class UserDataAccessService implements UserDAO{
     }
 
     @Override
+    public Optional<User> getUserByEmail(String email) {
+        String sql = """
+                SELECT * FROM users
+                WHERE email = ?;
+                """;
+        return jdbcTemplate.query(sql, userRowMapper, email)
+                .stream()
+                .findFirst();
+    }
+
+    @Override
     public int updateUser(int id, User user) {
         String sql = """
                 UPDATE users
