@@ -54,12 +54,12 @@ public class UserDataAccessService implements UserDAO{
     public int updateUser(int id, User user) {
         String sql = """
                 UPDATE users
-                SET first_name = ?, last_name = ?, email = ?, password = ?
+                SET first_name = ?, last_name = ?, email = ?, password = crypt(?, gen_salt('bf', 8)), constituency_id = ? 
                 WHERE id = ?;
                 """;
         return jdbcTemplate.update(
                 sql,
-                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
+                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getConstituencyId(),
                 id
         );
     }

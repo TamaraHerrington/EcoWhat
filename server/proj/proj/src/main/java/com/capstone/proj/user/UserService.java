@@ -39,6 +39,12 @@ public class UserService {
     }
 
     public int updateUser(int id, User user) {
+        if (user.getPostcode() != null) {
+            Constituency constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
+            Integer constituency_id = constituency.getConstituency_id();
+            user.setConstituencyId(constituency_id);
+            user.setPostcode(null);
+        }
         return userDAO.updateUser(id, user);
     }
 
