@@ -111,15 +111,22 @@ public class UserService {
     // || ===================  Login Authentication ===================== ||
 
     public String authenticateLogin(String email, String password) {
-        Optional<User> userOptional = userDAO.authenticateLogin(email, password);
-        if(userOptional.isPresent()){
-            String token = UUID.randomUUID().toString();
-            User user = userOptional.get();
-            user.setToken(token);
-            userDAO.updateUserToken(user);
-            return token;
+        // check if user with email exists
+        Optional<User> emailUser = userDAO.getUserByEmail(email);
+        if (emailUser.isEmpty()) {
+            throw new BadRequest("No user with this email exists");
         }
-        return "";
+
+        // authenticate with password
+        Optional<User> userOptional = userDAO.authenticateLogin(email, password);
+        if (userOptional.isEmpty()) {
+            throw new BadRequest("Incorrect password");
+        }
+        String token = UUID.randomUUID().toString();
+        User user = userOptional.get();
+        user.setToken(token);
+        userDAO.updateUserToken(user);
+        return token;
     }
 
     public Optional<User> findByToken(String token) {
