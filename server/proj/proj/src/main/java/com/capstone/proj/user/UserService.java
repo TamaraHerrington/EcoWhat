@@ -87,16 +87,56 @@ public class UserService {
     }
 
     public int updateUser(int id, User user) {
+        // if id doesn't exist, create new user
         Optional<User> oldUser = userDAO.getUserById(id);
         if (oldUser.isEmpty()) {
-            throw new ResourceNotFound("User with id: " + id + " not found");
+            createUser(user);
         }
-        if (user.getPostcode() != null) {
-            Constituency constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
-            Integer constituency_id = constituency.getConstituency_id();
-            user.setConstituencyId(constituency_id);
-            user.setPostcode(null);
+
+        // initially set these as null
+        user.setConstituencyId(null);
+        user.setToken(null);
+
+        // first name
+        if (user.getFirstName() == null || user.getFirstName().length() == 0) {
+            throw new BadRequest("First name cannot be empty");
         }
+
+        // last name
+        if (user.getLastName() == null || user.getLastName().length() == 0) {
+            throw new BadRequest("Last name cannot be empty");
+        }
+
+        // email
+        boolean isEmailValid = validator.validateEmail(user.getEmail());
+        if (!isEmailValid) {
+            throw new BadRequest("Invalid email address");
+        }
+        Optional<User> emailUser = userDAO.getUserByEmail(user.getEmail());
+        if (emailUser.isPresent() && emailUser.get().getId() != id) {
+            throw new BadRequest("User with email already exists");
+        }
+
+        // password
+        boolean isPasswordValid = validator.validatePassword(user.getPassword());
+        if (!isPasswordValid) {
+            throw new BadRequest("Invalid password");
+        }
+
+        // constituency
+        if (user.getPostcode() == null || user.getPostcode().length() == 0) {
+            throw new BadRequest("Postcode cannot be empty");
+        }
+        Constituency constituency;
+        try {
+            constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
+        } catch (Exception e) {
+            throw new BadRequest(user.getPostcode() + " is not a valid postcode");
+        }
+        Integer constituency_id = constituency.getConstituency_id();
+        user.setConstituencyId(constituency_id);
+        user.setPostcode(null);
+
         return userDAO.updateUser(id, user);
     }
 
