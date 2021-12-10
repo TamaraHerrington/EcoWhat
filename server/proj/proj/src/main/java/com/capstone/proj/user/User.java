@@ -16,14 +16,18 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private String postcode;
+    private Integer constituencyId;
     private String token;
 
-    public User(Long id, String firstName, String lastName, String email, String password, String token) {
+    public User(Long id, String firstName, String lastName, String email, String password, String postcode, Integer constituencyId, String token) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.postcode = postcode;
+        this.constituencyId = constituencyId;
         this.token = token;
     }
 }
