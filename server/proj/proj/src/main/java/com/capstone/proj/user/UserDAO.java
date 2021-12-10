@@ -9,6 +9,7 @@ public interface UserDAO {
 
     public List<User> getAllUsers();
     public Optional<User> getUserById(int id);
+    public Optional<User> getUserByEmail(String email);
 
     public int updateUser(int id, User user);
 
