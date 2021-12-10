@@ -19,4 +19,12 @@ public class CommentService {
     public void addComment(Comment comment) {
         commentDAO.addComment(comment);
     }
+
+    public void upvoteComment(int id) {
+        commentDAO.upvoteComment(id);
+    }
+
+    public void downvoteComment(int id) {
+        commentDAO.downvoteComment(id);
+    }
 }

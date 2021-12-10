@@ -20,8 +20,15 @@ public class CommentController {
 
     }
 
-//    @PutMapping("/upvote")
-//    public void upvoteComment
+    @PutMapping("/upvote/{id}")
+    public void upvoteComment(@PathVariable("id") int id){
+        commentService.upvoteComment(id);
+    }
+
+    @PutMapping("/downvote/{id}")
+    public void downvoteComment(@PathVariable("id") int id){
+        commentService.downvoteComment(id);
+    }
 
 
 }
