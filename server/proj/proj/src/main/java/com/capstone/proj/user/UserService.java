@@ -25,7 +25,9 @@ public class UserService {
     public int createUser(User user) {
         Constituency constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
         Integer constituency_id = constituency.getConstituency_id();
+        String constituency_name = constituency.getConstituency_name();
         user.setConstituencyId(constituency_id);
+        user.setConstituencyName(constituency_name);
         user.setPostcode(null);
         return userDAO.createUser(user);
     }
@@ -42,7 +44,9 @@ public class UserService {
         if (user.getPostcode() != null) {
             Constituency constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
             Integer constituency_id = constituency.getConstituency_id();
+            String constituency_name = constituency.getConstituency_name();
             user.setConstituencyId(constituency_id);
+            user.setConstituencyName(constituency_name);
             user.setPostcode(null);
         }
         return userDAO.updateUser(id, user);

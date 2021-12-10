@@ -18,9 +18,10 @@ public class User {
     private String password;
     private String postcode;
     private Integer constituencyId;
+    private String constituencyName;
     private String token;
 
-    public User(Long id, String firstName, String lastName, String email, String password, String postcode, Integer constituencyId, String token) {
+    public User(Long id, String firstName, String lastName, String email, String password, String postcode, Integer constituencyId, String constituencyName, String token) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,6 +29,7 @@ public class User {
         this.password = password;
         this.postcode = postcode;
         this.constituencyId = constituencyId;
+        this.constituencyName = constituencyName;
         this.token = token;
     }
 }
