@@ -2,7 +2,9 @@ package com.capstone.proj.user;
 
 import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
+import com.capstone.proj.exception.BadRequest;
 import com.capstone.proj.exception.ResourceNotFound;
+import com.capstone.proj.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,15 +18,48 @@ public class UserService {
 
     private UserDAO userDAO;
     private ConstituencyService constituencyService;
+    private Validator validator;
 
     @Autowired
-    public UserService(@Qualifier("postgresUser") UserDAO userDAO, ConstituencyService constituencyService) {
+    public UserService(@Qualifier("postgresUser") UserDAO userDAO, ConstituencyService constituencyService, Validator validator) {
         this.userDAO = userDAO;
         this.constituencyService = constituencyService;
+        this.validator = validator;
     }
 
     public int createUser(User user) {
-        Constituency constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
+        // first name
+        if (user.getFirstName() == null || user.getFirstName().length() == 0) {
+            throw new BadRequest("First name cannot be empty");
+        }
+
+        // last name
+        if (user.getLastName() == null || user.getLastName().length() == 0) {
+            throw new BadRequest("Last name cannot be empty");
+        }
+
+        // email
+        boolean isEmailValid = validator.validateEmail(user.getEmail());
+        if (!isEmailValid) {
+            throw new BadRequest("Invalid email address");
+        }
+
+        // password
+        boolean isPasswordValid = validator.validatePassword(user.getPassword());
+        if (!isPasswordValid) {
+            throw new BadRequest("Invalid password");
+        }
+
+        // constituency
+        if (user.getPostcode() == null || user.getPostcode().length() == 0) {
+            throw new BadRequest("Postcode cannot be empty");
+        }
+        Constituency constituency;
+        try {
+            constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
+        } catch (Exception e) {
+            throw new BadRequest(user.getPostcode() + " is not a valid postcode");
+        }
         Integer constituency_id = constituency.getConstituency_id();
         user.setConstituencyId(constituency_id);
         user.setPostcode(null);
