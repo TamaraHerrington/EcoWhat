@@ -6,6 +6,44 @@ html {
   font-size: 62.5%
 }
 
+/* || ========================= Nav Bar ========================= || */
+
+nav {
+  background-color: turquoise;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  margin: 0 2rem;
+  font-size: 3rem;
+}
+
+.navbar-links {
+  margin: 0;
+  
+  list-style: none;
+  display: flex;
+  justify-content: right;
+}
+
+.navbar-link {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.navbar-links > li {
+  padding: 2rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.navbar-links > li:hover {
+  border-bottom: 2px solid dodgerblue;
+}
+
 /* || ========================= Login ========================= || */
 
 .login {
@@ -113,4 +151,10 @@ html {
   padding: 0.5rem 0;
   border-radius: 2rem;
   margin-top: 1rem;
+}
+
+/* || ========================= Profile ========================= || */
+
+.profile-header {
+  text-align: center;
 }

@@ -19,8 +19,7 @@ const Dashboard = ({ token }) => {
 
     return (
         <>
-            <p>Welcome {user.firstName}</p>
-        
+            <h1 className="profile-header">Welcome {user.firstName}</h1>
         </>
     )
 }

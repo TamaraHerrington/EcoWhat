@@ -15,6 +15,8 @@ public class UserRowMapper implements RowMapper {
                 rs.getString("last_name"),
                 rs.getString("email"),
                 rs.getString("password"),
+                null,
+                rs.getInt("constituency_id"),
                 rs.getString("token")
         );
         return user;

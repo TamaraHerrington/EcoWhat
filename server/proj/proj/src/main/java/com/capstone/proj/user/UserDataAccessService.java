@@ -22,12 +22,12 @@ public class UserDataAccessService implements UserDAO{
     @Override
     public int createUser(User user) {
         String sql = """
-                INSERT INTO users (first_name, last_name, email, password)
-                VALUES (?, ?, ?, crypt(?, gen_salt('bf', 8)));
+                INSERT INTO users (first_name, last_name, email, password, constituency_id)
+                VALUES (?, ?, ?, crypt(?, gen_salt('bf', 8)), ?);
                 """;
         return jdbcTemplate.update(
                 sql,
-                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword()
+                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getConstituencyId()
         );
     }
 
@@ -54,12 +54,12 @@ public class UserDataAccessService implements UserDAO{
     public int updateUser(int id, User user) {
         String sql = """
                 UPDATE users
-                SET first_name = ?, last_name = ?, email = ?, password = ?
+                SET first_name = ?, last_name = ?, email = ?, password = crypt(?, gen_salt('bf', 8)), constituency_id = ? 
                 WHERE id = ?;
                 """;
         return jdbcTemplate.update(
                 sql,
-                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
+                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getConstituencyId(),
                 id
         );
     }

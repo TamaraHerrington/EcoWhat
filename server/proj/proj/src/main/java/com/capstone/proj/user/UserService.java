@@ -1,5 +1,7 @@
 package com.capstone.proj.user;
 
+import com.capstone.proj.constituency.Constituency;
+import com.capstone.proj.constituency.ConstituencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,13 +14,19 @@ import java.util.UUID;
 public class UserService {
 
     private UserDAO userDAO;
+    private ConstituencyService constituencyService;
 
     @Autowired
-    public UserService(@Qualifier("postgresUser") UserDAO userDAO) {
+    public UserService(@Qualifier("postgresUser") UserDAO userDAO, ConstituencyService constituencyService) {
         this.userDAO = userDAO;
+        this.constituencyService = constituencyService;
     }
 
     public int createUser(User user) {
+        Constituency constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
+        Integer constituency_id = constituency.getConstituency_id();
+        user.setConstituencyId(constituency_id);
+        user.setPostcode(null);
         return userDAO.createUser(user);
     }
 
@@ -31,6 +39,12 @@ public class UserService {
     }
 
     public int updateUser(int id, User user) {
+        if (user.getPostcode() != null) {
+            Constituency constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
+            Integer constituency_id = constituency.getConstituency_id();
+            user.setConstituencyId(constituency_id);
+            user.setPostcode(null);
+        }
         return userDAO.updateUser(id, user);
     }
 

@@ -13,30 +13,25 @@ const NavBar = ({ token, onLogOut }) => {
     }
 
     return (
-        <>
-            {token ? 
-                <p>Welcome {token}</p>
-                :
-                <p>Not logged in</p>
-            }
-
-            <Link to="/home">Home</Link>
-
-            {(() => {
-                if (token) {
-                    return(
-                    <Link to="/dashboard">Dashboard</Link>
-                    )
+        <nav>
+            <span className="navbar-logo">🌎</span>
+            <ul className="navbar-links">
+                <li><Link className="navbar-link" to="/home">Home</Link></li>
+                <li><Link className="navbar-link" to="/home">About</Link></li>
+                <li><Link className="navbar-link" to="/home">What You Can Do</Link></li>
+                {token ?
+                    <>
+                        <li><Link className="navbar-link" to="/profile">Profile</Link></li>
+                        <li><Link className="navbar-link" to="/home" onClick={handleLogOut}>Log Out</Link></li>
+                    </>
+                    :
+                    <>
+                        <li><Link className="navbar-link" to="/login">Log In</Link></li>
+                        <li><Link className="navbar-link" to="/registration">Sign Up</Link></li>
+                    </>
                 }
-            })()}
-
-
-            {token ?
-                <Link to="/home" onClick={handleLogOut}>Log Out</Link>
-                :
-                <Link to="/login">Log In</Link>
-            }
-        </>
+            </ul>
+        </nav>
     )
 }
 
