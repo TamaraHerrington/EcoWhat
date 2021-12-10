@@ -204,4 +204,31 @@ public class CountyService {
         countyDAO.dropCountyTable();
     }
 
+    public void addDataNotInAPI(){
+        HashMap<String, int[]> map1 = new HashMap<>();
+        map1.put("Rhondda Cynon Taf", new int[]{3696, 3681, 3668, 3435});
+        HashMap<String, int[]> map2 = new HashMap<>();
+        map2.put("Worcestershire", new int[]{3848, 3609});
+        HashMap<String, int[]> map3 = new HashMap<>();
+        map3.put("Tyne and Wear", new int[]{3340, 3494, 3540,  3552,  3625, 3626, 3627,  3652,  3749,  3788, 3815,  3832});
+        HashMap<String, int[]> map4 = new HashMap<>();
+        map4.put("Rutland", new int[]{3712});
+        HashMap<String, int[]> map5 = new HashMap<>();
+        map5.put("Hertford", new int[]{3374, 3525, 3530, 3531, 3535, 3644,3756, 3765, 3773, 3833, 3839});
+        HashMap<String, int[]> map6 = new HashMap<>();
+        map6.put("Herefordshire", new int[]{3373,  3529, 3646,  3609, 3694, 3848, 3865, 3872});
+        HashMap<String, int[]> map7 = new HashMap<>();
+        map7.put("East Riding of Yorkshire", new int[]{3560, 3321, 3364, 3466, 3510});
+        HashMap<String, int[]> map8 = new HashMap<>();
+        map8.put("Bristol", new int[]{3370, 3367, 3368, 3369});
+        ArrayList<HashMap<String, int[]>> listsOfConstituencyIds =
+                new ArrayList<>(List.of(map1,map2,map3,map4,map5,map6,map7,map8));
+        for (HashMap<String, int[]> county : listsOfConstituencyIds){
+            Map.Entry<String,int[]> entry = county.entrySet().iterator().next();
+            String countyName = entry.getKey();
+            int[] constituencyIds = entry.getValue();
+            countyDAO.addDataNotInAPI(countyName, constituencyIds);
+        }
+    }
+
 }

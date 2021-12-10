@@ -28,7 +28,7 @@ public class ConstituencyDataAccessService implements ConstituencyDAO{
     @Override
     public void createConstituencyTable(){
         String sql = """
-                CREATE TABLE constituencies (id BIGSERIAL, constituency_name VARCHAR(255), constituency_id INTEGER);
+                CREATE TABLE constituencies (id BIGSERIAL, constituency_name VARCHAR(255), constituency_id INTEGER PRIMARY KEY);
                 """;
         jdbcTemplate.execute(sql);
     }

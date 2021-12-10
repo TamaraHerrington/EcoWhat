@@ -21,11 +21,12 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         countyService.dropCountyTable();
         constituencyService.dropConstituencyTable();
-        System.out.println("application runner running");
         countyService.createCountyTable();
         constituencyService.createConstituencyTable();
         countyService.addAllCountyNames();
         countyService.addCountyConstituencies();
+        countyService.addDataNotInAPI();
         constituencyService.addAllConstituencies();
+        System.out.println("Application runner complete");
     }
 }

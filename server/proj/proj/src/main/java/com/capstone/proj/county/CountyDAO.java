@@ -11,4 +11,6 @@ public interface CountyDAO {
     public void addCountyTable();
 
     public void dropCountyTable();
+
+    public void addDataNotInAPI(String countyName, int[] constituencyIds);
 }

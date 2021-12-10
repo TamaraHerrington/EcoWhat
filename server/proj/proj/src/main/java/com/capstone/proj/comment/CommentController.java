@@ -20,5 +20,8 @@ public class CommentController {
 
     }
 
+//    @PutMapping("/upvote")
+//    public void upvoteComment
+
 
 }
