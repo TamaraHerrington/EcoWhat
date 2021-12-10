@@ -152,3 +152,9 @@ nav {
   border-radius: 2rem;
   margin-top: 1rem;
 }
+
+/* || ========================= Profile ========================= || */
+
+.profile-header {
+  text-align: center;
+}
