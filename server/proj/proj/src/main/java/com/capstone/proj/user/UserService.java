@@ -30,6 +30,7 @@ public class UserService {
     public int createUser(User user) {
         // initially set these to null
         user.setConstituencyId(null);
+        user.setConstituencyName(null);
         user.setToken(null);
 
         // first name
@@ -69,7 +70,9 @@ public class UserService {
             throw new BadRequest(user.getPostcode() + " is not a valid postcode");
         }
         Integer constituency_id = constituency.getConstituency_id();
+        String constituency_name = constituency.getConstituency_name();
         user.setConstituencyId(constituency_id);
+        user.setConstituencyName(constituency_name);
         user.setPostcode(null);
         return userDAO.createUser(user);
     }
@@ -95,6 +98,7 @@ public class UserService {
 
         // initially set these as null
         user.setConstituencyId(null);
+        user.setConstituencyName(null);
         user.setToken(null);
 
         // first name
@@ -134,7 +138,9 @@ public class UserService {
             throw new BadRequest(user.getPostcode() + " is not a valid postcode");
         }
         Integer constituency_id = constituency.getConstituency_id();
+        String constituency_name = constituency.getConstituency_name();
         user.setConstituencyId(constituency_id);
+        user.setConstituencyName(constituency_name);
         user.setPostcode(null);
 
         return userDAO.updateUser(id, user);

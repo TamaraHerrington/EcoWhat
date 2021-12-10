@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CommentService {
@@ -18,5 +19,17 @@ public class CommentService {
 
     public void addComment(Comment comment) {
         commentDAO.addComment(comment);
+    }
+
+    public void upvoteComment(int id) {
+        commentDAO.upvoteComment(id);
+    }
+
+    public void downvoteComment(int id) {
+        commentDAO.downvoteComment(id);
+    }
+
+    public List<Comment> getAllComments() {
+        return commentDAO.getAllComments();
     }
 }

@@ -3,6 +3,8 @@ package com.capstone.proj.comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/comments")
 public class CommentController {
@@ -20,8 +22,18 @@ public class CommentController {
 
     }
 
-//    @PutMapping("/upvote")
-//    public void upvoteComment
+    @PutMapping("/upvote/{id}")
+    public void upvoteComment(@PathVariable("id") int id){
+        commentService.upvoteComment(id);
+    }
 
+    @PutMapping("/downvote/{id}")
+    public void downvoteComment(@PathVariable("id") int id){
+        commentService.downvoteComment(id);
+    }
 
+    @GetMapping
+    public List<Comment> getAllComments(){
+        return commentService.getAllComments();
+    };
 }
