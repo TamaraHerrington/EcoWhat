@@ -20,6 +20,7 @@ const NavBar = ({ token, onLogOut }) => {
             }
 
             <a href="/home">Home</a>
+            <a href="/YouHelp">What Can I Do?</a>
 
             {token ?
                 <a href="/home" onClick={handleLogOut}>Log Out</a>

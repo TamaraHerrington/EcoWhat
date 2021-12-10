@@ -3,9 +3,28 @@ import React from "react";
 const YouHelp=()=>{
 
     return(
-        <div>
-            <h1>Ways You Can Help</h1>
-        </div>
+  <div>      
+<div class="Iam">
+
+<p>Do Good For The</p>
+
+  <div class="innerIam">
+    Oceans<br /> 
+    Forests<br />
+    Ice Caps<br />
+    Planet<br />
+    Future
+    </div>
+</div>
+<div>
+    <p>Go Vegan</p>
+    <a></a>
+</div>
+</div>
+
+
+
+
     )
 }
 
