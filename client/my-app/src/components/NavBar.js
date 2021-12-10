@@ -14,19 +14,20 @@ const NavBar = ({ token, onLogOut }) => {
 
     return (
         <nav>
-            <ul>
-                <li><Link to="/home">Home</Link></li>
-                <li><Link to="/home">About</Link></li>
-                <li><Link to="/home">What You Can Do</Link></li>
+            <span className="navbar-logo">🌎</span>
+            <ul className="navbar-links">
+                <li><Link className="navbar-link" to="/home">Home</Link></li>
+                <li><Link className="navbar-link" to="/home">About</Link></li>
+                <li><Link className="navbar-link" to="/home">What You Can Do</Link></li>
                 {token ?
                     <>
-                        <li><Link to="/profile">Profile</Link></li>
-                        <li><Link to="/home" onClick={handleLogOut}>Log Out</Link></li>
+                        <li><Link className="navbar-link" to="/profile">Profile</Link></li>
+                        <li><Link className="navbar-link" to="/home" onClick={handleLogOut}>Log Out</Link></li>
                     </>
                     :
                     <>
-                        <li><Link to="/login">Log In</Link></li>
-                        <li><Link to="/registration">Sign Up</Link></li>
+                        <li><Link className="navbar-link" to="/login">Log In</Link></li>
+                        <li><Link className="navbar-link" to="/registration">Sign Up</Link></li>
                     </>
                 }
             </ul>
