@@ -1,14 +1,15 @@
 p {
     display: inline-block;
+    font-size: large;
 }
 
 .card {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     column-gap: 0.3rem;
+    font-size: larger;
 }
-
 
 .scroll-container {
     height: 1.2em;
