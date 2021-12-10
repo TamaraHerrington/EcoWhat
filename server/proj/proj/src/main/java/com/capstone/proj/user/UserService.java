@@ -2,6 +2,7 @@ package com.capstone.proj.user;
 
 import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
+import com.capstone.proj.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -35,10 +36,18 @@ public class UserService {
     }
 
     public Optional<User> getUserById(int id) {
-        return userDAO.getUserById(id);
+        Optional<User> user = userDAO.getUserById(id);
+        if (user.isEmpty()) {
+            throw new ResourceNotFound("User with id: " + id + " not found");
+        }
+        return user;
     }
 
     public int updateUser(int id, User user) {
+        Optional<User> oldUser = userDAO.getUserById(id);
+        if (oldUser.isEmpty()) {
+            throw new ResourceNotFound("User with id: " + id + " not found");
+        }
         if (user.getPostcode() != null) {
             Constituency constituency = constituencyService.getConstituencyFromPostcode(user.getPostcode());
             Integer constituency_id = constituency.getConstituency_id();
@@ -49,13 +58,16 @@ public class UserService {
     }
 
     public int deleteUser(int id) {
+        Optional<User> user = userDAO.getUserById(id);
+        if (user.isEmpty()) {
+            throw new ResourceNotFound("User with id: " + id + " not found");
+        }
         return userDAO.deleteUser(id);
     }
 
     // || ===================  Login Authentication ===================== ||
 
     public String authenticateLogin(String email, String password) {
-
         Optional<User> userOptional = userDAO.authenticateLogin(email, password);
         if(userOptional.isPresent()){
             String token = UUID.randomUUID().toString();
@@ -72,9 +84,11 @@ public class UserService {
         if (user.isPresent()) {
             return user;
         }
-        throw new IllegalStateException("No user with token");
+        throw new ResourceNotFound("No user with token");
     }
 
+
+    // todo: see if this is the logic we want
     public int removeTokenOnLogOut(String token) {
         return userDAO.removeTokenOnLogOut(token);
     }
