@@ -69,4 +69,11 @@ public class CommentDataAccessService implements CommentDAO{
         List<Comment> constituencyComments = jdbcTemplate.query(sql, new CommentRowMapper(userDAO), id);
         return constituencyComments;
     }
+
+    public void deleteCommentById(int id){
+        String sql = """
+                DELETE FROM comments WHERE id = ?;
+                """;
+        jdbcTemplate.update(sql, id);
+    }
 }

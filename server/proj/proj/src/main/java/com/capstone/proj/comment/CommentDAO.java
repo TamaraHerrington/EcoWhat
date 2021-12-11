@@ -16,4 +16,6 @@ public interface CommentDAO {
     public List<Comment> getCommentsByUser(int id);
 
     public List<Comment> getCommentsByConstituency(int id);
+
+    public void deleteCommentById(int id);
 }

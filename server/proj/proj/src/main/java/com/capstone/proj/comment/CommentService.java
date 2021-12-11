@@ -40,4 +40,8 @@ public class CommentService {
     public List<Comment> getCommentsByConstituency(int id) {
         return commentDAO.getCommentsByConstituency(id);
     }
+
+    public void deleteCommentById(int id) {
+        commentDAO.deleteCommentById(id);
+    }
 }

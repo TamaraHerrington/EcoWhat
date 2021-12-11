@@ -46,4 +46,9 @@ public class CommentController {
     public List<Comment> getCommentsByConstituency(@PathVariable("id") int id){
         return commentService.getCommentsByConstituency(id);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCommentById(@PathVariable("id") int id){
+        commentService.deleteCommentById(id);
+    }
 }
