@@ -18,4 +18,6 @@ public interface CommentDAO {
     public List<Comment> getCommentsByConstituency(int id);
 
     public void deleteCommentById(int id);
+
+    public void editCommentById(Comment newComment, int id);
 }

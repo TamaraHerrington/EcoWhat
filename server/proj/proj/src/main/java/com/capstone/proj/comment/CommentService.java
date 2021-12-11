@@ -44,4 +44,8 @@ public class CommentService {
     public void deleteCommentById(int id) {
         commentDAO.deleteCommentById(id);
     }
+
+    public void editCommentById(Comment comment, int id) {
+        commentDAO.editCommentById(comment, id);
+    }
 }

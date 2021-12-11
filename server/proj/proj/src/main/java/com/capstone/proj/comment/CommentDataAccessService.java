@@ -76,4 +76,12 @@ public class CommentDataAccessService implements CommentDAO{
                 """;
         jdbcTemplate.update(sql, id);
     }
+
+    public void editCommentById(Comment newComment, int id){
+        String sql = """
+                UPDATE comments SET comment_title = ?, comment = ?, comment_category = ? WHERE id = ?;
+                """;
+        jdbcTemplate.update(sql, newComment.getComment_title(), newComment.getComment(),
+                newComment.getComment_category(), id);
+    }
 }

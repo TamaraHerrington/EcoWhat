@@ -51,4 +51,9 @@ public class CommentController {
     public void deleteCommentById(@PathVariable("id") int id){
         commentService.deleteCommentById(id);
     }
+
+    @PutMapping("/edit/{id}")
+    public void editCommentById(@PathVariable("id") int id, @RequestBody Comment comment){
+        commentService.editCommentById(comment, id);
+    }
 }
