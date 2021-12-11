@@ -51,4 +51,13 @@ public class CommentDataAccessService implements CommentDAO{
         List<Comment> allComments = jdbcTemplate.query(sql, new CommentRowMapper(userDAO));
         return allComments;
     };
+
+    public List<Comment> getCommentsByUser(int id){
+        String sql = """
+                SELECT * FROM comments WHERE user_id = ?;
+                """;
+
+        List<Comment> userComments = jdbcTemplate.query(sql, new CommentRowMapper(userDAO), id);
+        return userComments;
+    }
 }

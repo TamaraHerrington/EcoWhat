@@ -32,8 +32,13 @@ public class CommentController {
         commentService.downvoteComment(id);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Comment> getAllComments(){
         return commentService.getAllComments();
     };
+
+    @GetMapping("/user/{id}")
+    public List<Comment> getCommentsByUser(@PathVariable("id") int id){
+        return commentService.getCommentsByUser(id);
+    }
 }

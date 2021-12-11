@@ -12,4 +12,6 @@ public interface CommentDAO {
     public void downvoteComment(int id);
 
     public List<Comment> getAllComments();
+
+    public List<Comment> getCommentsByUser(int id);
 }
