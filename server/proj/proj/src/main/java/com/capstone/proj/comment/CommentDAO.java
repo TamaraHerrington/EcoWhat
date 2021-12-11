@@ -14,4 +14,6 @@ public interface CommentDAO {
     public List<Comment> getAllComments();
 
     public List<Comment> getCommentsByUser(int id);
+
+    public List<Comment> getCommentsByConstituency(int id);
 }

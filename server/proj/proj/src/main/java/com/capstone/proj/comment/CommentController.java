@@ -41,4 +41,9 @@ public class CommentController {
     public List<Comment> getCommentsByUser(@PathVariable("id") int id){
         return commentService.getCommentsByUser(id);
     }
+
+    @GetMapping("/constituency/{id}")
+    public List<Comment> getCommentsByConstituency(@PathVariable("id") int id){
+        return commentService.getCommentsByConstituency(id);
+    }
 }

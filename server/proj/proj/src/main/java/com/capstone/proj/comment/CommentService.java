@@ -36,4 +36,8 @@ public class CommentService {
     public List<Comment> getCommentsByUser(int id) {
         return commentDAO.getCommentsByUser(id);
     }
+
+    public List<Comment> getCommentsByConstituency(int id) {
+        return commentDAO.getCommentsByConstituency(id);
+    }
 }
