@@ -44,20 +44,21 @@ public class UserController {
 
     // || ===================  Login Authentication ===================== ||
 
-    @PostMapping("token")
+    @PostMapping("login")
     public String authenticateLogin(
             @RequestParam("email") final String email,
             @RequestParam("password") final String password) {
                 return userService.authenticateLogin(email, password);
     }
 
-    @PostMapping("user")
-    public Optional<User> findByToken(@RequestBody String token) {
-        return userService.findByToken(token);
-    }
-
-    @PatchMapping("token")
-    public void removeTokenOnLogOut(@RequestBody String token) {
-        userService.removeTokenOnLogOut(token);
-    }
+    // old methods that don't coincide with token based authentication
+//    @PostMapping("user")
+//    public Optional<User> findByToken(@RequestBody String token) {
+//        return userService.findByToken(token);
+//    }
+//
+//    @PatchMapping("token")
+//    public void removeTokenOnLogOut(@RequestBody String token) {
+//        userService.removeTokenOnLogOut(token);
+//    }
 }
