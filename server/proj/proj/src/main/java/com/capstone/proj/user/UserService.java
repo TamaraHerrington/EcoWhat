@@ -173,12 +173,9 @@ public class UserService {
         if (user.isEmpty()) {
             throw new BadRequest("Incorrect password");
         }
+
         // generate token
-        Token token = new Token(
-                user.get().getId(),
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
-                "Secret Key");
+        Token token = tokenService.generateToken(user.get().getId());
         return token;
     }
 
