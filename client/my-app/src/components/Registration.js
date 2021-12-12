@@ -9,6 +9,7 @@ const Registration = () => {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [postcode, setPostcode] = useState("")
     const [error, setError] = useState(null)
 
     const handleFirstNameChange = (event) => {
@@ -27,6 +28,10 @@ const Registration = () => {
         setPassword(event.target.value)
     }
 
+    const handlePostcodeChange = (event) => {
+        setPostcode(event.target.value)
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -34,7 +39,8 @@ const Registration = () => {
             "firstName": firstName,
             "lastName": lastName,
             "email": email,
-            "password": password
+            "password": password,
+            "postcode": postcode
         }
 
         fetch("http://localhost:8080/api/users",
@@ -75,6 +81,9 @@ const Registration = () => {
 
                     <label forHtml="password">Password</label>
                     <input type="password" id="password" value={password} required onChange={handlePasswordChange}/>
+
+                    <label forHtml="postcode">Postcode</label>
+                    <input type="text" id="postcode" value={postcode} required onChange={handlePostcodeChange}/>
 
                     <input className="signup-btn" type="submit" value="Sign Up"/>
 
