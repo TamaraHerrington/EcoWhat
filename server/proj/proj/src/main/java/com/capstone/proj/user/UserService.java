@@ -5,6 +5,7 @@ import com.capstone.proj.constituency.ConstituencyService;
 import com.capstone.proj.exception.BadRequest;
 import com.capstone.proj.exception.ResourceNotFound;
 import com.capstone.proj.token.Token;
+import com.capstone.proj.token.TokenService;
 import com.capstone.proj.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,12 +20,14 @@ import java.util.UUID;
 public class UserService {
 
     private UserDAO userDAO;
+    private TokenService tokenService;
     private ConstituencyService constituencyService;
     private Validator validator;
 
     @Autowired
-    public UserService(@Qualifier("postgresUser") UserDAO userDAO, ConstituencyService constituencyService, Validator validator) {
+    public UserService(@Qualifier("postgresUser") UserDAO userDAO, TokenService tokenService, ConstituencyService constituencyService, Validator validator) {
         this.userDAO = userDAO;
+        this.tokenService = tokenService;
         this.constituencyService = constituencyService;
         this.validator = validator;
     }
@@ -177,6 +180,13 @@ public class UserService {
                 LocalDateTime.now().plusMinutes(15),
                 "Secret Key");
         return token;
+    }
+
+    public int logOut(Token token) {
+        // validate token
+
+        // blacklist token
+        return tokenService.blackListToken(token);
     }
 
     // old methods that don't coincide with token based authentication

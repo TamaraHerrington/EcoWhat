@@ -52,6 +52,11 @@ public class UserController {
                 return userService.authenticateLogin(email, password);
     }
 
+    @PostMapping("logout")
+    public void logOut(@RequestBody Token token) {
+        userService.logOut(token);
+    }
+
     // old methods that don't coincide with token based authentication
 //    @PostMapping("user")
 //    public Optional<User> findByToken(@RequestBody String token) {
