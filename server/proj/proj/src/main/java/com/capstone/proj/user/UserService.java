@@ -163,6 +163,13 @@ public class UserService {
     // || ===================  Login Authentication ===================== ||
 
     public Token authenticateLogin(String email, String password) {
+        if (email == null || email.length() == 0) {
+            throw new BadRequest("Email cannot be empty");
+        }
+        if (password == null || password.length() == 0) {
+            throw new BadRequest("Password cannot be empty");
+        }
+
         // check if user with email exists
         Optional<User> emailUser = userDAO.getUserByEmail(email);
         if (emailUser.isEmpty()) {
