@@ -163,11 +163,18 @@ public class UserService {
     // || ===================  Login Authentication ===================== ||
 
     public Token authenticateLogin(String email, String password) {
+        // check values not null
         if (email == null || email.length() == 0) {
             throw new BadRequest("Email cannot be empty");
         }
         if (password == null || password.length() == 0) {
             throw new BadRequest("Password cannot be empty");
+        }
+
+        // check email is a valid email
+        boolean isEmailValid = validator.validateEmail(email);
+        if (!isEmailValid) {
+            throw new BadRequest("Invalid email address");
         }
 
         // check if user with email exists
