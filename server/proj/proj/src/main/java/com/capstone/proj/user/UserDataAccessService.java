@@ -86,6 +86,7 @@ public class UserDataAccessService implements UserDAO{
 
     // || ===================  Login Authentication ===================== ||
 
+    @Override
     public Optional<User> authenticateLogin(String email, String password) {
         String sql = """
                 SELECT * FROM users
@@ -96,35 +97,36 @@ public class UserDataAccessService implements UserDAO{
                 .findFirst();
     }
 
-    @Override
-    public int updateUserToken(User user) {
-        String sql = """
-                UPDATE users
-                SET token = ?
-                WHERE id = ?;
-                """;
-        return jdbcTemplate.update(sql, user.getToken(), user.getId());
-    }
-
-    @Override
-    public Optional<User> findByToken(String token) {
-        String sql = """
-                SELECT * FROM users
-                WHERE token = ?;
-                """;
-        return jdbcTemplate.query(sql, userRowMapper, token)
-                .stream()
-                .findFirst();
-    }
-
-    @Override
-    public int removeTokenOnLogOut(String token) {
-        String sql = """
-                UPDATE users
-                SET token = null
-                WHERE token = ?;
-                """;
-        return jdbcTemplate.update(sql, token);
-    }
+    // old methods that don't coincide with token based authentication
+//    @Override
+//    public int updateUserToken(User user) {
+//        String sql = """
+//                UPDATE users
+//                SET token = ?
+//                WHERE id = ?;
+//                """;
+//        return jdbcTemplate.update(sql, user.getToken(), user.getId());
+//    }
+//
+//    @Override
+//    public Optional<User> findByToken(String token) {
+//        String sql = """
+//                SELECT * FROM users
+//                WHERE token = ?;
+//                """;
+//        return jdbcTemplate.query(sql, userRowMapper, token)
+//                .stream()
+//                .findFirst();
+//    }
+//
+//    @Override
+//    public int removeTokenOnLogOut(String token) {
+//        String sql = """
+//                UPDATE users
+//                SET token = null
+//                WHERE token = ?;
+//                """;
+//        return jdbcTemplate.update(sql, token);
+//    }
 
 }

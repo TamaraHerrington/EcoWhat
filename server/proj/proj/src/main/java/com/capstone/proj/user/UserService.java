@@ -169,23 +169,21 @@ public class UserService {
             throw new BadRequest("Incorrect password");
         }
         String token = UUID.randomUUID().toString();
-        User user = userOptional.get();
-        user.setToken(token);
-        userDAO.updateUserToken(user);
         return token;
     }
 
-    public Optional<User> findByToken(String token) {
-        Optional<User> user = userDAO.findByToken(token);
-        if (user.isPresent()) {
-            return user;
-        }
-        throw new ResourceNotFound("No user with token");
-    }
-
-
-    // todo: see if this is the logic we want
-    public int removeTokenOnLogOut(String token) {
-        return userDAO.removeTokenOnLogOut(token);
-    }
+    // old methods that don't coincide with token based authentication
+//    public Optional<User> findByToken(String token) {
+//        Optional<User> user = userDAO.findByToken(token);
+//        if (user.isPresent()) {
+//            return user;
+//        }
+//        throw new ResourceNotFound("No user with token");
+//    }
+//
+//
+//    // todo: see if this is the logic we want
+//    public int removeTokenOnLogOut(String token) {
+//        return userDAO.removeTokenOnLogOut(token);
+//    }
 }
