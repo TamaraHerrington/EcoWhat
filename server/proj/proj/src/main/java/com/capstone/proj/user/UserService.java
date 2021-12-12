@@ -179,6 +179,13 @@ public class UserService {
         return token;
     }
 
+    public Optional<User> getLoggedInUserById(int id, Token token) {
+        // authenticate request
+
+        // return user by id
+        return getUserById(id);
+    }
+
     public int logOut(Token token) {
         // validate token
 

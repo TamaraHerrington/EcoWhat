@@ -52,6 +52,11 @@ public class UserController {
                 return userService.authenticateLogin(email, password);
     }
 
+    @PostMapping("{id}")
+    public Optional<User> getLoggedInUserById(@PathVariable int id, @RequestBody Token token) {
+        return userService.getLoggedInUserById(id, token);
+    }
+
     @PostMapping("logout")
     public void logOut(@RequestBody Token token) {
         userService.logOut(token);
