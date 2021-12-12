@@ -53,10 +53,10 @@ const Login = ({ onLogin }) => {
                 <form className="login-form" onSubmit={handleSubmit}>
                     <h1 className="login-header">Login</h1>
 
-                    <label forHtml="user-email">Email</label>
+                    <label forhtml="user-email">Email</label>
                     <input type="text" id="user-email" value={email} required onChange={handleEmailChange}/>
 
-                    <label forHtml="user-password">Password</label>
+                    <label forhtml="user-password">Password</label>
                     <input type="password" id="user-password" value={password} required onChange={handlePasswordChange}/>
 
                     <input className="login-btn" type="submit" value="Login"/>

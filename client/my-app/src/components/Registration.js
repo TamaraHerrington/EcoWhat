@@ -70,19 +70,19 @@ const Registration = () => {
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <h1 className="signup-header">Register</h1>
 
-                    <label forHtml="first-name">First Name</label>
+                    <label forhtml="first-name">First Name</label>
                     <input type="text" id="first-name" value={firstName} required onChange={handleFirstNameChange}/>
 
-                    <label forHtml="last-name">Last Name</label>
+                    <label forhtml="last-name">Last Name</label>
                     <input type="text" id="last-name" value={lastName} required onChange={handleLastNameChange}/>
 
-                    <label forHtml="email">Email</label>
+                    <label forhtml="email">Email</label>
                     <input type="text" id="email" value={email} required onChange={handleEmailChange}/>
 
-                    <label forHtml="password">Password</label>
+                    <label forhtml="password">Password</label>
                     <input type="password" id="password" value={password} required onChange={handlePasswordChange}/>
 
-                    <label forHtml="postcode">Postcode</label>
+                    <label forhtml="postcode">Postcode</label>
                     <input type="text" id="postcode" value={postcode} required onChange={handlePostcodeChange}/>
 
                     <input className="signup-btn" type="submit" value="Sign Up"/>

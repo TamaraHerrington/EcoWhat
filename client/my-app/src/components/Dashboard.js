@@ -15,7 +15,7 @@ const Dashboard = ({ token }) => {
         })
         .then(response => response.json())
         .then(data => setUser(data))
-    }, [])
+    }, [token])
 
     return (
         <>
