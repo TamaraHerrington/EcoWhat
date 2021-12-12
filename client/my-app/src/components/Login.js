@@ -27,15 +27,12 @@ const Login = ({ onLogin, token }) => {
 
         fetch(`http://localhost:8080/api/users/login?email=${email}&&password=${password}`,
             {
-                method: 'POST',
-                headers: {
-                    "content-type": "text/plain;charset=UTF-8"
-                }   
+                method: 'POST'   
             }
         )
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => onLogin(data))
-        
+
         if (token) {
             navigate("/home")
         }
