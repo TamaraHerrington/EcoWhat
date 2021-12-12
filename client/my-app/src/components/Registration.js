@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Registration = () => {
+
+    const navigate = useNavigate()
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState(null)
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value)
@@ -42,11 +46,15 @@ const Registration = () => {
                 body: JSON.stringify(newUser) 
             }
         )
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {throw new Error(err.message)})
+            } else {
+                navigate("/login")
+            }
+        })
+        .catch(err => setError(err))
 
-        setFirstName("")
-        setLastName("")
-        setEmail("")
-        setPassword("")
     }
 
 
@@ -69,6 +77,14 @@ const Registration = () => {
                     <input type="password" id="password" value={password} required onChange={handlePasswordChange}/>
 
                     <input className="signup-btn" type="submit" value="Sign Up"/>
+
+                    {(() => {
+                        if (error) {
+                            return (
+                                <p>{error.message}</p>
+                            )
+                        }
+                    })()}
                 </form>
             </main>
         </section>
