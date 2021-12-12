@@ -21,6 +21,11 @@ public class TokenService {
         return token;
     }
 
+    public int authenticateToken(int id, Token token) {
+        // logic to authenticate token
+        return 1;
+    }
+
     public int blackListToken(Token token) {
         // logic to add token to token blacklist
         return 1;

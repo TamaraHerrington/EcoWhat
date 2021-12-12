@@ -4,6 +4,7 @@ import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
 import com.capstone.proj.exception.BadRequest;
 import com.capstone.proj.exception.ResourceNotFound;
+import com.capstone.proj.exception.Unauthorized;
 import com.capstone.proj.token.Token;
 import com.capstone.proj.token.TokenService;
 import com.capstone.proj.validator.Validator;
@@ -181,6 +182,11 @@ public class UserService {
 
     public Optional<User> getLoggedInUserById(int id, Token token) {
         // authenticate request
+        try {
+            tokenService.authenticateToken(id, token);
+        } catch (Exception e) {
+            throw new Unauthorized("User is not authorized");
+        }
 
         // return user by id
         return getUserById(id);
