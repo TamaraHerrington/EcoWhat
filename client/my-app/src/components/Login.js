@@ -29,13 +29,14 @@ const Login = ({ onLogin, token }) => {
                 method: 'POST'   
             }
         )
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {throw new Error(err.message)})
+            }
+            return response.json()    
+        })
         .then(data => onLogin(data))
-
-        if (token) {
-            navigate("/home")
-        }
-        
+        .catch(err => console.log(err))
     }
 
     return (
