@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Token {
 
-    private Integer userId;
+    private Long userId;
     private LocalDateTime issuedAt;
     private LocalDateTime expiresAt;
     private String secret;

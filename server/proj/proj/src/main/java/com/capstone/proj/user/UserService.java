@@ -4,11 +4,13 @@ import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
 import com.capstone.proj.exception.BadRequest;
 import com.capstone.proj.exception.ResourceNotFound;
+import com.capstone.proj.token.Token;
 import com.capstone.proj.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -156,7 +158,7 @@ public class UserService {
 
     // || ===================  Login Authentication ===================== ||
 
-    public String authenticateLogin(String email, String password) {
+    public Token authenticateLogin(String email, String password) {
         // check if user with email exists
         Optional<User> emailUser = userDAO.getUserByEmail(email);
         if (emailUser.isEmpty()) {
@@ -164,11 +166,16 @@ public class UserService {
         }
 
         // authenticate with password
-        Optional<User> userOptional = userDAO.authenticateLogin(email, password);
-        if (userOptional.isEmpty()) {
+        Optional<User> user = userDAO.authenticateLogin(email, password);
+        if (user.isEmpty()) {
             throw new BadRequest("Incorrect password");
         }
-        String token = UUID.randomUUID().toString();
+        // generate token
+        Token token = new Token(
+                user.get().getId(),
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                "Secret Key");
         return token;
     }
 

@@ -1,5 +1,6 @@
 package com.capstone.proj.user;
 
+import com.capstone.proj.token.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,7 @@ public class UserController {
     // || ===================  Login Authentication ===================== ||
 
     @PostMapping("login")
-    public String authenticateLogin(
+    public Token authenticateLogin(
             @RequestParam("email") final String email,
             @RequestParam("password") final String password) {
                 return userService.authenticateLogin(email, password);
