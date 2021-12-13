@@ -74,6 +74,7 @@ function App() {
           
           <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} /> 
           <Route path={`/constituency/${currentConstituency.constituency_name}`} element={<MPContainer currentConstituency={currentConstituency}/>}/>
+          <Route path={`/constituency/current`} element={<MPContainer currentConstituency={currentConstituency}/>}/>
         </Routes>
       </BrowserRouter>
     </>

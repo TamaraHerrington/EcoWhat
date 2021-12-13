@@ -32,7 +32,7 @@ const MPContainer = ({currentConstituency}) => {
         .then(data => fetch(`https://members-api.parliament.uk/api/Members/${data}/Contact`)
         .then(response => response.json())
         .then(data => data.value)
-        .then(data => data[3].twitter)
+        .then(data => data.filter(item => item.type=="Twitter")[0].line1.slice(20))
         )
         .then(data => setMpTwitter(data))
     }

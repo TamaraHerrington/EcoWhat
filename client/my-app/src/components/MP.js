@@ -19,7 +19,6 @@ const MP = ({mpData, mpVotes, email, twitter}) => {
             <h2>Constituency: {mpData[0].value.latestHouseMembership.membershipFrom}</h2>
             
             <div>
-                votes are here
             <VotesList mpVotes={mpVotes}/>
             </div>
 

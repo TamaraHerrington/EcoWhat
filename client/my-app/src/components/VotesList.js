@@ -3,7 +3,7 @@ import {useState} from 'react';
 
 const VotesList = ({mpVotes}) => {
 
-    console.log(mpVotes[0].title);
+    // console.log(mpVotes[0].title);
 
     const voteComponentsList = mpVotes.map(votes=> {
         return (

@@ -20,6 +20,12 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
 
         layer.on({
             click: (event) => {
+                fetch("https://members-api.parliament.uk/api/Location/Constituency/Search?searchText=" + 
+                event.target.feature.properties.PCON13NM)
+                .then(response => response.json())
+                .then(data => data.items[0].value.id)
+                .then(data => setCurrentConstituency({constituency_id: data,
+                    constituency_name: event.target.feature.properties.PCON13NM}))
                 
             },
             mouseover: (event) => {
