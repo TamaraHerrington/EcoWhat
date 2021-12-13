@@ -18,7 +18,10 @@ const MP = ({mpData, mpVotes, email, twitter}) => {
             <h2>Party: {mpData[0].value.latestParty.name}</h2>
             <h2>Constituency: {mpData[0].value.latestHouseMembership.membershipFrom}</h2>
             
+            <div>
+                votes are here
             <VotesList mpVotes={mpVotes}/>
+            </div>
 
             <div className='mp-contact'>
                     <a className="mp-twitter" href={`https://twitter.com/intent/tweet?text=@${twitter}%20${tweetText}`}>

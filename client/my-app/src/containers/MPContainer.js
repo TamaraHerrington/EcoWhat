@@ -40,30 +40,29 @@ const MPContainer = ({currentConstituency}) => {
     
 
     const getMpVotes = () => {
-        if (mpData!=""){
-            const allVotes = [];
-        fetch(`https://commonsvotes-api.parliament.uk/data/divisions.json/membervoting?queryParameters.memberId=${mpData.items[0].value.id}&queryParameters.searchTerm=climate`)
+        fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
+        .then(response => response.json())
+        .then(data => data.value.currentRepresentation.member.value.id)    
+        .then(data =>  
+        fetch(`https://commonsvotes-api.parliament.uk/data/divisions.json/membervoting?queryParameters.memberId=
+        ${data}
+        &queryParameters.searchTerm=climate`)
         .then(result => result.json())
-        .then(data => allVotes.push(data))
-        .then(fetch(`https://commonsvotes-api.parliament.uk/data/divisions.json/membervoting?queryParameters.memberId=${mpData.items[0].value.id}&queryParameters.searchTerm=environment`)
-        .then(result => result.json())
-        .then(data => allVotes.push(data)))
-        .then(fetch(`https://commonsvotes-api.parliament.uk/data/divisions.json/membervoting?queryParameters.memberId=${mpData.items[0].value.id}&queryParameters.searchTerm=carbon`)
-        .then(result => result.json())
-        .then(data => allVotes.push(data)))
-        .then(fetch(`https://commonsvotes-api.parliament.uk/data/divisions.json/membervoting?queryParameters.memberId=${mpData.items[0].value.id}&queryParameters.searchTerm=pollution`)
-        .then(result => result.json())
-        .then(data => allVotes.push(data)))
-        .then(() => setMpVotes(allVotes.flat()))
-    
-        }
-        
+        .then(data =>data.map(item => { 
+            return {"title": item.PublishedDivision.Title, "vote": item.MemberVotedAye}
+            }
+        ))
+        .then(data => setMpVotes(data))
+        )
     }
+
+    // return { `${item.PublishedDivision.Title}`: item.MemberVotedAye}
 
     useEffect(() => {
         getMpData();
         getMpEmail();
         getMpTwitter();
+        getMpVotes();
     }, [])
 
 
