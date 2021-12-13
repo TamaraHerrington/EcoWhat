@@ -1,10 +1,12 @@
-import MP from '../components/MP'
+import MP from '../components/mp/MP'
 import {useState, useEffect} from 'react';
+import CommentsList from "../components/comments/CommentsList"
 
 const MPContainer = ({currentConstituency}) => {
     const [mpData, setMpData] = useState("");
     const [mpContact, setMpContact] = useState([]);
     const [mpVotes, setMpVotes] = useState([]);
+    const [comments, setComments] = useState([]);
     // console.log("MP DATA: " + mpData)
     
 
@@ -48,8 +50,17 @@ const MPContainer = ({currentConstituency}) => {
         
     }
 
+    const getComments = () => {
+        fetch(
+            `http://localhost:8080/api/comments/constituency/${currentConstituency.constituency_id}`
+        )
+        .then(result => result.json())
+        .then(data => setComments(data))
+    }
+
     useEffect(() => {
         getMpData();
+        getComments();
         // getMpContact();
     }, [])
 
@@ -61,6 +72,7 @@ const MPContainer = ({currentConstituency}) => {
         
         {/* <p>{JSON.stringify(mpData)}</p> */}
         <MP mpData={mpData} mpVotes={mpVotes}/>
+        <CommentsList comments={comments}/>
         </>
         :
         <p>Loading...</p>
