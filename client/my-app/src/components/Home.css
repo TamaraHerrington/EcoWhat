@@ -1,0 +1,8 @@
+.leaflet-container{
+    background-color: white;
+}
+
+.geo-json:hover{
+    color: red;
+
+}
