@@ -1,0 +1,10 @@
+.contact-button{
+    background-color: rgb(108, 196, 255);
+    border-radius: 15px;
+    border-color: transparent;
+    padding: 0.25em;
+}
+.contact-button, a {
+    text-decoration: none;
+    color: white;
+}

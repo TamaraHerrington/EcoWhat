@@ -7,6 +7,7 @@ import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard';
 import Registration from './components/Registration';
+import MPContainer from './containers/MPContainer'
 
 function getSessionStorageOrDefault(key, defaultValue) {
   const stored = sessionStorage.getItem(key);
@@ -69,6 +70,7 @@ function App() {
           }
           
           <Route path="/home" element={<Home token={token}/>} /> 
+          <Route path="/mp" element={<MPContainer constituencyId={3345}/>}/>
         </Routes>
       </BrowserRouter>
     </>
