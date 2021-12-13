@@ -19,6 +19,8 @@ function getSessionStorageOrDefault(key, defaultValue) {
 
 function App() {
 
+  const [currentConstituency, setCurrentConstituency] = useState();
+
   const [token, setToken] = useState(
     getSessionStorageOrDefault('token', null)
   )
@@ -69,7 +71,7 @@ function App() {
             </>
           }
           
-          <Route path="/home" element={<Home token={token}/>} /> 
+          <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} /> 
           <Route path="/mp" element={<MPContainer constituencyId={3345}/>}/>
         </Routes>
       </BrowserRouter>
