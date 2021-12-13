@@ -56,6 +56,7 @@ function App() {
               <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
               <Route path="/dashboard" element={<Navigate to="/login" />} />
               <Route path="/registration" element={<Registration />} />
+              <Route path="/youhelp" element={<YouHelp token={token}/>}/> 
             </>
             :
             <>
@@ -63,8 +64,7 @@ function App() {
               <Route path="/login" element={<Navigate to="/" />} />
               <Route path="/profile" element={<Dashboard token={token} />} />
               <Route path="/registration" element={<Navigate to="/" />} /> 
-              <Route path="/YouHelp" element={<YouHelp token={token}/>}/> 
-              <Route path="/YouHelp" element={<YouHelp token={token}/>}/> 
+              <Route path="/youhelp" element={<YouHelp token={token}/>}/> 
             </>
           }
           

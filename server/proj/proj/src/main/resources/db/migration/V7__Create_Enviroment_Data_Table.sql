@@ -6,4 +6,4 @@ particulate_matter TEXT,
 herbicides TEXT,
 fungicides TEXT,
 DBPs_winter TEXT,
-DBPs_summer TEXT;
+DBPs_summer TEXT);
