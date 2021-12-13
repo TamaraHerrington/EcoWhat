@@ -31,16 +31,13 @@ function App() {
   }
 
   const onLogOut = () => {
-    console.log(token)
-    
-    fetch(`http://localhost:8080/api/users/token`,
+    fetch("http://localhost:8080/api/users/logout",
     {
-      method: 'PATCH',
+      method: "POST",
       headers: {
-          "content-type": "text/plain;charset=UTF-8"
+        "content-type": "application/json"
       },
-      body: `${token}`
-        
+      body: JSON.stringify(token)
     })
 
     setToken(null)
