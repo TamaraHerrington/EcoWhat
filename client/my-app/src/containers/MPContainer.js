@@ -11,11 +11,14 @@ const MPContainer = ({constituencyId}) => {
         // get basic info and contact info in two calls
         fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + constituencyId)
         .then(result => result.json())
-        .then(data => setMpData(data))
+        .then(data => setMpData(data.items.filter(datum => datum.value.latestHouseMembership.membershipStatus.statusIsActive===true)))
         .then(getMpVotes)
         console.log("MP DATA: " + mpData)
         // contact data
-        // https://members-api.parliament.uk/api/Members/{id}/Contact
+        // fetch(`https://members-api.parliament.uk/api/Members/${mpData.items[0].value.id}/Contact`)
+        // .then(result => result.json())
+        // .then(data => data.value.filter(datum => datum.type=="Constituency" || datum.type=="Parliamentary"))
+        // .then(data => console.log(data))
     }
 
     // 

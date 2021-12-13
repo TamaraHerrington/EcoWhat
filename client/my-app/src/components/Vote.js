@@ -1,7 +1,7 @@
 const Vote = ({vote}) => {
     return (
         <div className="vote">
-            <p>Bill: {JSON.stringify(vote)}</p>
+            <h2>Bill: {JSON.stringify(vote.PublishedDivision.Title)}</h2>
         </div>
     )
 }

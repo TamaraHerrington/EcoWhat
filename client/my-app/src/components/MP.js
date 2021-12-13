@@ -4,15 +4,17 @@ import './MP.css'
 
 const MP = ({mpData, mpVotes}) => {
     // id is mpData.items.value.id
-    console.log("NAME: " + mpData.items[0].value.NameDisplayAs);
+    
     // placeholder text, maybe have a few options based on specific topics
     const tweetText = "Please care more about the environment!";
-    const emailText = `Dear ${"mpName"}, I am a constituent concerned about the environment, please help, From ${"userName"}`;
+    const emailText = `Dear ${mpData[0].value.nameDisplayAs}, I am a constituent concerned about the environment, please help, From ${"userName"}`;
     
     return (
         
         <div key={mpData} className="mp-container">
-            <h2>{JSON.stringify(mpData)}</h2>
+            <h2>{mpData[0].value.nameDisplayAs}</h2>
+            <h3>Party: {mpData[0].value.latestParty.name}</h3>
+            <h3>Constituency: {mpData[0].value.latestHouseMembership.membershipFrom}</h3>
             <VotesList mpVotes={mpVotes}/>
 
             <div className='contact'>
