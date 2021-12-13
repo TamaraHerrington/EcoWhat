@@ -3,29 +3,41 @@ import {useState, useEffect} from 'react';
 
 const MPContainer = ({currentConstituency}) => {
     const [mpData, setMpData] = useState("");
-    const [mpContact, setMpContact] = useState([]);
+    const [mpTwitter, setMpTwitter] = useState("");
+    const [mpEmail, setMpEmail] = useState("");
     const [mpVotes, setMpVotes] = useState([]);
-    // console.log("MP DATA: " + mpData)
-    
 
     const getMpData = () => {
-        // get basic info and contact info in two calls
         fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + currentConstituency.constituency_id + "&IsCurrentMember=true")
         .then(result => result.json())
         .then(data => setMpData(data.items))
-        // .filter(datum => datum.value.latestHouseMembership.membershipStatus.statusIsActive===true)))
-        .then(getMpVotes)
-        // console.log("MP DATA: " + mpData)
-        // contact data
     }
-    // const getMpContact = () => {
-    //     fetch(`https://members-api.parliament.uk/api/Members/${mpData[0].value.id}/Contact`)
-    //     .then(result => result.json())
-    //     .then(data => data.value.filter(datum => datum.type=="Constituency" || datum.type=="Parliamentary")
-    //     .then(data => setMpContact(data)))
-    // }
 
-    // 
+    const getMpEmail = () => {
+        fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
+        .then(response => response.json())
+        .then(data => data.value.currentRepresentation.member.value.id)
+        .then(data => fetch(`https://members-api.parliament.uk/api/Members/${data}/Contact`)
+        .then(response => response.json())
+        .then(data => data.value)
+        .then(data => data[0].email)
+        )
+        .then(data => setMpEmail(data))
+    }
+
+    const getMpTwitter = () => {
+        fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
+        .then(response => response.json())
+        .then(data => data.value.currentRepresentation.member.value.id)
+        .then(data => fetch(`https://members-api.parliament.uk/api/Members/${data}/Contact`)
+        .then(response => response.json())
+        .then(data => data.value)
+        .then(data => data[3].twitter)
+        )
+        .then(data => setMpTwitter(data))
+    }
+
+    
 
     const getMpVotes = () => {
         if (mpData!=""){
@@ -50,8 +62,12 @@ const MPContainer = ({currentConstituency}) => {
 
     useEffect(() => {
         getMpData();
-        // getMpContact();
+        getMpEmail();
+        getMpTwitter();
     }, [])
+
+
+
 
 
     return (
@@ -60,7 +76,7 @@ const MPContainer = ({currentConstituency}) => {
         <>
         
         {/* <p>{JSON.stringify(mpData)}</p> */}
-        <MP mpData={mpData} mpVotes={mpVotes}/>
+        <MP mpData={mpData} mpVotes={mpVotes} email={mpEmail} twitter={mpTwitter} />
         </>
         :
         <p>Loading...</p>

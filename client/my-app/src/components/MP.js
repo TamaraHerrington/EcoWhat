@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import VotesList from './VotesList';
 import './MP.css'
 
-const MP = ({mpData, mpVotes}) => {
+const MP = ({mpData, mpVotes, email, twitter}) => {
     // id is mpData.items.value.id
     
     // placeholder text, maybe have a few options based on specific topics
@@ -21,11 +21,11 @@ const MP = ({mpData, mpVotes}) => {
             <VotesList mpVotes={mpVotes}/>
 
             <div className='mp-contact'>
-                    <a className="mp-twitter" href={`https://twitter.com/intent/tweet?text=@${"twitter"}%20${tweetText}`}>
+                    <a className="mp-twitter" href={`https://twitter.com/intent/tweet?text=@${twitter}%20${tweetText}`}>
                     Tweet
                     </a>
                 
-                <a className="mp-mail" href={`mailto:${"mpemail@mp.com"}?subject=${"The Environment"}&body=${emailText}`}>
+                <a className="mp-mail" href={`mailto:${email}?subject=${"The Environment"}&body=${emailText}`}>
                     E-mail
                     </a>
             </div>
