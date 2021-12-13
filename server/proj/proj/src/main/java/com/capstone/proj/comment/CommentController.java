@@ -32,8 +32,28 @@ public class CommentController {
         commentService.downvoteComment(id);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Comment> getAllComments(){
         return commentService.getAllComments();
     };
+
+    @GetMapping("/user/{id}")
+    public List<Comment> getCommentsByUser(@PathVariable("id") int id){
+        return commentService.getCommentsByUser(id);
+    }
+
+    @GetMapping("/constituency/{id}")
+    public List<Comment> getCommentsByConstituency(@PathVariable("id") int id){
+        return commentService.getCommentsByConstituency(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCommentById(@PathVariable("id") int id){
+        commentService.deleteCommentById(id);
+    }
+
+    @PutMapping("/edit/{id}")
+    public void editCommentById(@PathVariable("id") int id, @RequestBody Comment comment){
+        commentService.editCommentById(comment, id);
+    }
 }

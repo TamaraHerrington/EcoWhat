@@ -12,4 +12,12 @@ public interface CommentDAO {
     public void downvoteComment(int id);
 
     public List<Comment> getAllComments();
+
+    public List<Comment> getCommentsByUser(int id);
+
+    public List<Comment> getCommentsByConstituency(int id);
+
+    public void deleteCommentById(int id);
+
+    public void editCommentById(Comment newComment, int id);
 }

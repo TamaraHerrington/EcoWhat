@@ -32,4 +32,20 @@ public class CommentService {
     public List<Comment> getAllComments() {
         return commentDAO.getAllComments();
     }
+
+    public List<Comment> getCommentsByUser(int id) {
+        return commentDAO.getCommentsByUser(id);
+    }
+
+    public List<Comment> getCommentsByConstituency(int id) {
+        return commentDAO.getCommentsByConstituency(id);
+    }
+
+    public void deleteCommentById(int id) {
+        commentDAO.deleteCommentById(id);
+    }
+
+    public void editCommentById(Comment comment, int id) {
+        commentDAO.editCommentById(comment, id);
+    }
 }
