@@ -1,25 +1,29 @@
 import MP from '../components/MP'
 import {useState, useEffect} from 'react';
 
-const MPContainer = ({constituencyId}) => {
+const MPContainer = ({currentConstituency}) => {
     const [mpData, setMpData] = useState("");
+    const [mpContact, setMpContact] = useState([]);
     const [mpVotes, setMpVotes] = useState([]);
     // console.log("MP DATA: " + mpData)
     
 
     const getMpData = () => {
         // get basic info and contact info in two calls
-        fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + constituencyId)
+        fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + currentConstituency.constituency_id + "&IsCurrentMember=true")
         .then(result => result.json())
-        .then(data => setMpData(data.items.filter(datum => datum.value.latestHouseMembership.membershipStatus.statusIsActive===true)))
+        .then(data => setMpData(data.items))
+        // .filter(datum => datum.value.latestHouseMembership.membershipStatus.statusIsActive===true)))
         .then(getMpVotes)
-        console.log("MP DATA: " + mpData)
+        // console.log("MP DATA: " + mpData)
         // contact data
-        // fetch(`https://members-api.parliament.uk/api/Members/${mpData.items[0].value.id}/Contact`)
-        // .then(result => result.json())
-        // .then(data => data.value.filter(datum => datum.type=="Constituency" || datum.type=="Parliamentary"))
-        // .then(data => console.log(data))
     }
+    // const getMpContact = () => {
+    //     fetch(`https://members-api.parliament.uk/api/Members/${mpData[0].value.id}/Contact`)
+    //     .then(result => result.json())
+    //     .then(data => data.value.filter(datum => datum.type=="Constituency" || datum.type=="Parliamentary")
+    //     .then(data => setMpContact(data)))
+    // }
 
     // 
 
@@ -46,6 +50,7 @@ const MPContainer = ({constituencyId}) => {
 
     useEffect(() => {
         getMpData();
+        // getMpContact();
     }, [])
 
 

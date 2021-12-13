@@ -19,7 +19,8 @@ function getSessionStorageOrDefault(key, defaultValue) {
 
 function App() {
 
-  const [currentConstituency, setCurrentConstituency] = useState();
+  const [currentConstituency, setCurrentConstituency] = useState({constituency_id: 3345,
+  constituency_name: "Bolton"});
 
   const [token, setToken] = useState(
     getSessionStorageOrDefault('token', null)
@@ -72,7 +73,7 @@ function App() {
           }
           
           <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} /> 
-          <Route path="/mp" element={<MPContainer constituencyId={3345}/>}/>
+          <Route path={`/constituency/${currentConstituency.constituency_name}`} element={<MPContainer currentConstituency={currentConstituency}/>}/>
         </Routes>
       </BrowserRouter>
     </>
