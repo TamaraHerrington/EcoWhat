@@ -11,26 +11,27 @@ const MP = ({mpData, mpVotes}) => {
     
     return (
         
-        <div key={mpData} className="mp-container">
-            <h2>{mpData[0].value.nameDisplayAs}</h2>
-            <h3>Party: {mpData[0].value.latestParty.name}</h3>
-            <h3>Constituency: {mpData[0].value.latestHouseMembership.membershipFrom}</h3>
+        <section key={mpData} className="mp-container">
+            <main>
+            <h1 className="mp-name">{mpData[0].value.nameDisplayAs}</h1>
+            <img className="mp-img" src={mpData[0].value.thumbnailUrl}/>
+            <h2>Party: {mpData[0].value.latestParty.name}</h2>
+            <h2>Constituency: {mpData[0].value.latestHouseMembership.membershipFrom}</h2>
+            
             <VotesList mpVotes={mpVotes}/>
 
-            <div className='contact'>
-                <button className='contact-button'><a class="twitter-share-button"
-                // put in mp twitter account in @
-                    href={`https://twitter.com/intent/tweet?text=@${"twitter"}%20${tweetText}`}>
+            <div className='mp-contact'>
+                    <a className="mp-twitter" href={`https://twitter.com/intent/tweet?text=@${"twitter"}%20${tweetText}`}>
                     Tweet
-                </a>
-                </button>
-                <br></br>
-                <button className='contact-button'>
-                <a href={`mailto:${"mpemail@mp.com"}?subject=${"The Environment"}&body=${emailText}`}>E-mail</a>
-                </button>
+                    </a>
+                
+                <a className="mp-mail" href={`mailto:${"mpemail@mp.com"}?subject=${"The Environment"}&body=${emailText}`}>
+                    E-mail
+                    </a>
             </div>
+            </main>
 
-        </div>
+        </section>
         
     )
 

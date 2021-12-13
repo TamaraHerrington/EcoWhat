@@ -1,10 +1,34 @@
-.contact-button{
-    background-color: rgb(108, 196, 255);
-    border-radius: 15px;
-    border-color: transparent;
-    padding: 0.25em;
+.mp-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }
-.contact-button, a {
+
+.mp-container > main {
+    border: 1px solid #777;
+    padding: 2rem;
+    border-radius: 3rem;
+    text-align: center;
+}
+
+.mp-name {
+    margin: 0 0 1.5rem;
+}
+
+.mp-img {
+    width: 100%;
+}
+
+.mp-contact {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.mp-twitter, .mp-mail {
+    font-size: 2rem;
+    color: hotpink;
     text-decoration: none;
-    color: white;
 }
