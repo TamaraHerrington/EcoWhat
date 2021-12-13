@@ -7,6 +7,7 @@ import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard';
 import Registration from './components/Registration';
+import YouHelp from './components/YouHelp';
 
 function getSessionStorageOrDefault(key, defaultValue) {
   const stored = sessionStorage.getItem(key);
@@ -62,6 +63,8 @@ function App() {
               <Route path="/login" element={<Navigate to="/" />} />
               <Route path="/profile" element={<Dashboard token={token} />} />
               <Route path="/registration" element={<Navigate to="/" />} /> 
+              <Route path="/YouHelp" element={<YouHelp token={token}/>}/> 
+              <Route path="/YouHelp" element={<YouHelp token={token}/>}/> 
             </>
           }
           
@@ -71,5 +74,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
