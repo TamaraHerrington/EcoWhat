@@ -14,7 +14,7 @@ const NavBar = ({ token, onLogOut }) => {
 
     return (
         <nav>
-            <span className="navbar-logo">🌎 EcoWhat?</span>
+            <span className="navbar-logo">🌎</span>
             <ul className="navbar-links">
                 <li><Link className="navbar-link" to="/home">Home</Link></li>
                 <li><Link className="navbar-link" to="/home">About</Link></li>
