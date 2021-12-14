@@ -21,9 +21,11 @@ const MP = ({mpData, mpVotes, email, twitter}) => {
             <div>
             <VotesList mpVotes={mpVotes}/>
             </div>
-
+            <p>{twitter==null? "This MP doesn't have a Twitter on record. Click to tweet Downing Street instead!": ""}</p>
             <div className='mp-contact'>
-                    <a className="mp-twitter" href={`https://twitter.com/intent/tweet?text=@${twitter}%20${tweetText}`}>
+                    
+                    <a className="mp-twitter" href={twitter===null? `https://twitter.com/intent/tweet?text=@10DowningStreet%20${tweetText}`
+                    :`https://twitter.com/intent/tweet?text=@${twitter}%20${tweetText}`}>
                     Tweet
                     </a>
                 
