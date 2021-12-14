@@ -7,6 +7,7 @@ import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard';
 import Registration from './components/Registration';
+import MPContainer from './containers/MPContainer'
 import YouHelp from './components/YouHelp';
 
 function getSessionStorageOrDefault(key, defaultValue) {
@@ -18,6 +19,8 @@ function getSessionStorageOrDefault(key, defaultValue) {
 }
 
 function App() {
+
+  const [currentConstituency, setCurrentConstituency] = useState({});
 
   const [token, setToken] = useState(
     getSessionStorageOrDefault('token', null)
@@ -68,7 +71,9 @@ function App() {
             </>
           }
           
-          <Route path="/home" element={<Home token={token}/>} /> 
+          <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} /> 
+          {/* <Route path={`/constituency/${currentConstituency.constituency_id}`} element={<MPContainer currentConstituency={currentConstituency}/>}/> */}
+          <Route path={`/constituency/current`} element={<MPContainer token={token} currentConstituency={currentConstituency}/>}/>
         </Routes>
       </BrowserRouter>
     </>
