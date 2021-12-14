@@ -19,8 +19,7 @@ function getSessionStorageOrDefault(key, defaultValue) {
 
 function App() {
 
-  const [currentConstituency, setCurrentConstituency] = useState({constituency_id: 3346,
-  constituency_name: "Bolton"});
+  const [currentConstituency, setCurrentConstituency] = useState({});
 
   const [token, setToken] = useState(
     getSessionStorageOrDefault('token', null)

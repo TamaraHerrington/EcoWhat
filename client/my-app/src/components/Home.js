@@ -29,7 +29,7 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
                 .then(data => data.items[0].value.id)
                 .then(data => setCurrentConstituency({constituency_id: data,
                     constituency_name: event.target.feature.properties.PCON13NM}))
-                    .then(setTimeout(navigate('/constituency/current'), 200))
+                    .then(setTimeout(()=>navigate('/constituency/current'), 300))
                 
             },
             mouseover: (event) => {
