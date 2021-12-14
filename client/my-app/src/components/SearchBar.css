@@ -1,0 +1,15 @@
+.search-bar{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding-bottom: 1em;
+}
+.constituency-search{
+    border-radius: 10px;
+    width: 20em;
+    height: 2em;
+}
+.search-button{
+    border-radius: 10px;
+    height: 2em;
+}
