@@ -1,0 +1,11 @@
+.leaflet-container{
+    background-color: white;
+}
+
+.map-container{
+    margin-left: auto;
+    margin-right: auto;
+}
+.header{
+    text-align: center;
+}
