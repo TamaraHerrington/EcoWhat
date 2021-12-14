@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Registration = () => {
+
+    const navigate = useNavigate()
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [postcode, setPostcode] = useState("")
+    const [error, setError] = useState(null)
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value)
@@ -23,6 +28,10 @@ const Registration = () => {
         setPassword(event.target.value)
     }
 
+    const handlePostcodeChange = (event) => {
+        setPostcode(event.target.value)
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -30,7 +39,8 @@ const Registration = () => {
             "firstName": firstName,
             "lastName": lastName,
             "email": email,
-            "password": password
+            "password": password,
+            "postcode": postcode
         }
 
         fetch("http://localhost:8080/api/users",
@@ -42,11 +52,15 @@ const Registration = () => {
                 body: JSON.stringify(newUser) 
             }
         )
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {throw new Error(err.message)})
+            } else {
+                navigate("/login")
+            }
+        })
+        .catch(err => setError(err))
 
-        setFirstName("")
-        setLastName("")
-        setEmail("")
-        setPassword("")
     }
 
 
@@ -56,19 +70,30 @@ const Registration = () => {
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <h1 className="signup-header">Register</h1>
 
-                    <label forHtml="first-name">First Name</label>
+                    <label forhtml="first-name">First Name</label>
                     <input type="text" id="first-name" value={firstName} required onChange={handleFirstNameChange}/>
 
-                    <label forHtml="last-name">Last Name</label>
+                    <label forhtml="last-name">Last Name</label>
                     <input type="text" id="last-name" value={lastName} required onChange={handleLastNameChange}/>
 
-                    <label forHtml="email">Email</label>
+                    <label forhtml="email">Email</label>
                     <input type="text" id="email" value={email} required onChange={handleEmailChange}/>
 
-                    <label forHtml="password">Password</label>
+                    <label forhtml="password">Password</label>
                     <input type="password" id="password" value={password} required onChange={handlePasswordChange}/>
 
+                    <label forhtml="postcode">Postcode</label>
+                    <input type="text" id="postcode" value={postcode} required onChange={handlePostcodeChange}/>
+
                     <input className="signup-btn" type="submit" value="Sign Up"/>
+
+                    {(() => {
+                        if (error) {
+                            return (
+                                <p>{error.message}</p>
+                            )
+                        }
+                    })()}
                 </form>
             </main>
         </section>

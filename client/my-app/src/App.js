@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard';
 import Registration from './components/Registration';
 import MPContainer from './containers/MPContainer'
+import YouHelp from './components/YouHelp';
 
 function getSessionStorageOrDefault(key, defaultValue) {
   const stored = sessionStorage.getItem(key);
@@ -34,16 +35,13 @@ function App() {
   }
 
   const onLogOut = () => {
-    console.log(token)
-    
-    fetch(`http://localhost:8080/api/users/token`,
+    fetch("http://localhost:8080/api/users/logout",
     {
-      method: 'PATCH',
+      method: "POST",
       headers: {
-          "content-type": "text/plain;charset=UTF-8"
+        "content-type": "application/json"
       },
-      body: `${token}`
-        
+      body: JSON.stringify(token)
     })
 
     setToken(null)
@@ -61,6 +59,7 @@ function App() {
               <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
               <Route path="/dashboard" element={<Navigate to="/login" />} />
               <Route path="/registration" element={<Registration />} />
+              <Route path="/youhelp" element={<YouHelp token={token}/>}/> 
             </>
             :
             <>
@@ -68,6 +67,7 @@ function App() {
               <Route path="/login" element={<Navigate to="/" />} />
               <Route path="/profile" element={<Dashboard token={token} />} />
               <Route path="/registration" element={<Navigate to="/" />} /> 
+              <Route path="/youhelp" element={<YouHelp token={token}/>}/> 
             </>
           }
           
@@ -79,5 +79,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
