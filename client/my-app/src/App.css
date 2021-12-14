@@ -26,7 +26,6 @@ nav {
 
 .navbar-links {
   margin: 0;
-  
   list-style: none;
   display: flex;
   justify-content: right;
@@ -84,7 +83,7 @@ nav {
   }
 
   .mobile-nav > li:hover {
-    background: #fff;
+    background: #777;
     cursor: pointer
   }
 
