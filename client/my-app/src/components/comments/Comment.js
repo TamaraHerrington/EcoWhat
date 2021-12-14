@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Comment({comment}) {
+function Comment({comment, upvoteComment, downvoteComment}) {
 
     return (
         <div>
@@ -9,9 +9,9 @@ function Comment({comment}) {
             <h5>{comment.post_date}</h5>
             <p>{comment.comment}</p>
             <h5>{comment.upvotes}</h5>
-            <button>Upvote</button>
+            <button type="button" onClick={() => upvoteComment(comment.id)}>Upvote</button>
             <h5>{comment.downvotes}</h5>
-            <button>Downvote</button>
+            <button type="button" onClick={() => downvoteComment(comment.id)}> Downvote</button>
         </div>
     )
 }

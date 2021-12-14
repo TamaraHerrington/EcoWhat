@@ -112,6 +112,32 @@ const MPContainer = ({currentConstituency, token}) => {
             })
     }
 
+    const upvoteComment = (id) => {
+        console.log("upvote")
+        fetch(`http://localhost:8080/api/comments/upvote/${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    "content-type": "application/json"
+                }
+            }
+        )
+        .then(() => getComments())
+    }
+
+    const downvoteComment = (id) => {
+        console.log("downvote")
+        fetch(`http://localhost:8080/api/comments/downvote/${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                "content-type": "application/json"
+                }
+            }
+        )
+        .then(() => getComments())
+    }
+
     useEffect(() => {
         getMpData();
         getComments();
@@ -127,8 +153,8 @@ const MPContainer = ({currentConstituency, token}) => {
         <>   
 
         {/* <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} /> */}
-        <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency}/>
-        <CommentsList comments={comments}/>
+        <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
+        <CommentsList comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
         </>
         :
         <p>Loading...</p>
