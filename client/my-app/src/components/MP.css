@@ -3,8 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 .mp-container > main {
@@ -19,7 +18,8 @@
 }
 
 .mp-img {
-    width: 100%;
+    width: 50%;
+    border-radius: 10px;
 }
 
 .mp-contact {
@@ -32,4 +32,16 @@
     font-size: 2rem;
     color: hotpink;
     text-decoration: none;
+}
+
+.votes-container{
+    border: 1px solid hotpink;
+    border-radius: 10px;
+    padding: 0.5em;
+    margin: 0.5em;
+    
+}
+
+.votes-container h3{
+    text-align: left;
 }

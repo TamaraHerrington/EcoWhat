@@ -15,11 +15,6 @@ const MP = ({mpData, mpVotes, email, twitter, user}) => {
             <img className="mp-img" src={mpData[0].value.thumbnailUrl}/>
             <h2>Party: {mpData[0].value.latestParty.name}</h2>
             <h2>Constituency: {mpData[0].value.latestHouseMembership.membershipFrom}</h2>
-            
-            <div>
-                <h2>Voting History</h2>
-            <VotesList mpVotes={mpVotes}/>
-            </div>
             <p>{twitter==null? "This MP doesn't have a Twitter on record. Click to tweet Downing Street instead!": ""}</p>
             <div className='mp-contact'>
                     
@@ -32,6 +27,11 @@ const MP = ({mpData, mpVotes, email, twitter, user}) => {
                     E-mail
                     </a>
             </div>
+            <div className='votes-container'>
+                <h2>Voting History</h2>
+            <VotesList mpVotes={mpVotes}/>
+            </div>
+            
             </main>
 
         </section>

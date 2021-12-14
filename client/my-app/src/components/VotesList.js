@@ -2,10 +2,10 @@ const VotesList = ({mpVotes}) => {
 
     const voteComponentsList = mpVotes.map(votes=> {
         return (
-            <>
-            <h2>Bill: {votes.title}</h2>
-            <h2>Voted: {votes.vote===true? "For": "Against"}</h2>
-            </>
+            <ul>
+            <li><h3>Bill: {votes.title}</h3></li>
+            <h3>Voted: {votes.vote===true? "For": "Against"}</h3>
+            </ul>
         )
     })
 
