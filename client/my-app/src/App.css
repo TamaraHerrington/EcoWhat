@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background-color: #b5afcc;
+  /* background-color: #b5afcc; */
 }
 /* || ========================= Nav Bar ========================= || */
 
@@ -216,8 +216,6 @@ nav {
 
 
 /* || ========================= What You Can Do ========================= || */
-
-
 .youhelp {
   width: 100%;
 }
@@ -290,11 +288,12 @@ nav {
 }
 
 .youhelp__card--1 {
-  background: 
-  url(https://images.unsplash.com/photo-1528190336454-13cd56b45b5a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+  background: url(https://images.unsplash.com/photo-1532768778661-1b347c5f02ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2187&q=80);
+  
 }
 .youhelp__card--2 {
-  background: url(https://images.unsplash.com/photo-1532768778661-1b347c5f02ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2187&q=80);
+  background: url(https://images.unsplash.com/photo-1528190336454-13cd56b45b5a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+  ;
 }
 .youhelp__card--3 {
   background: url(https://images.unsplash.com/photo-1572797988761-19ef379d5091?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
@@ -314,6 +313,7 @@ nav {
 
 .youhelp__card-title {
   text-align: center;
+  color: white;
 }
 
 .youhelp__card:hover {
