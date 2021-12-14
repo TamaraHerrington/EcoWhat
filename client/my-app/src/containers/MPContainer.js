@@ -5,7 +5,9 @@ const MPContainer = ({currentConstituency}) => {
     const [mpData, setMpData] = useState("");
     const [mpTwitter, setMpTwitter] = useState("");
     const [mpEmail, setMpEmail] = useState("");
-    const [mpVotes, setMpVotes] = useState([]);
+    const [mpVotesCarbon, setMpVotesCarbon] = useState([]);
+    const [mpVotesClimate, setMpVotesClimate] = useState([]);
+    const [mpVotesEvironment, setMpVotesEnvironment] = useState([]);
 
     const getMpData = () => {
         fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + currentConstituency.constituency_id + "&IsCurrentMember=true")
@@ -39,7 +41,24 @@ const MPContainer = ({currentConstituency}) => {
 
     
 
-    const getMpVotes = () => {
+    const getMpVotesCarbon = () => {
+        fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
+        .then(response => response.json())
+        .then(data => data.value.currentRepresentation.member.value.id)    
+        .then(data =>  
+        fetch(`https://commonsvotes-api.parliament.uk/data/divisions.json/membervoting?queryParameters.memberId=
+        ${data}
+        &queryParameters.searchTerm=carbon`)
+        .then(result => result.json())
+        .then(data =>data.map(item => { 
+            return {"title": item.PublishedDivision.Title, "vote": item.MemberVotedAye}
+            }
+        ))
+        .then(data => setMpVotesCarbon(data))
+        )
+    }
+
+    const getMpVotesClimate = () => {
         fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
         .then(response => response.json())
         .then(data => data.value.currentRepresentation.member.value.id)    
@@ -52,7 +71,24 @@ const MPContainer = ({currentConstituency}) => {
             return {"title": item.PublishedDivision.Title, "vote": item.MemberVotedAye}
             }
         ))
-        .then(data => setMpVotes(data))
+        .then(data => setMpVotesClimate(data))
+        )
+    }
+
+    const getMpVotesEnvironment = () => {
+        fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
+        .then(response => response.json())
+        .then(data => data.value.currentRepresentation.member.value.id)    
+        .then(data =>  
+        fetch(`https://commonsvotes-api.parliament.uk/data/divisions.json/membervoting?queryParameters.memberId=
+        ${data}
+        &queryParameters.searchTerm=environment`)
+        .then(result => result.json())
+        .then(data =>data.map(item => { 
+            return {"title": item.PublishedDivision.Title, "vote": item.MemberVotedAye}
+            }
+        ))
+        .then(data => setMpVotesEnvironment(data))
         )
     }
 
@@ -62,7 +98,9 @@ const MPContainer = ({currentConstituency}) => {
         getMpData();
         getMpEmail();
         getMpTwitter();
-        getMpVotes();
+        getMpVotesCarbon();
+        getMpVotesClimate();
+        getMpVotesEnvironment();
     }, [])
 
 
@@ -75,7 +113,7 @@ const MPContainer = ({currentConstituency}) => {
         <>
         
         {/* <p>{JSON.stringify(mpData)}</p> */}
-        <MP mpData={mpData} mpVotes={mpVotes} email={mpEmail} twitter={mpTwitter} />
+        <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
         </>
         :
         <p>Loading...</p>
