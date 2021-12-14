@@ -3,8 +3,11 @@ import {MapContainer, GeoJSON} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Home.css';
 import SearchBar from './SearchBar';
+import { useNavigate } from 'react-router-dom';
 
 const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
+    const navigate = useNavigate();
+
     const mapStyle = {
         fillColor: "navy",
         fillOpacity: 0.6,
@@ -15,7 +18,7 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
 
     const onEachConstituency = (constituency, layer) => {
         const constituencyName = constituency.properties.PCON13NM;
-        console.log(constituencyName);
+        // console.log(constituencyName);
         layer.bindPopup(constituencyName);
 
         layer.on({
@@ -26,6 +29,7 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
                 .then(data => data.items[0].value.id)
                 .then(data => setCurrentConstituency({constituency_id: data,
                     constituency_name: event.target.feature.properties.PCON13NM}))
+                    .then(setTimeout(navigate('/constituency/current'), 200))
                 
             },
             mouseover: (event) => {
