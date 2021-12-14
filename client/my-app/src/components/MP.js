@@ -2,12 +2,12 @@ import {useState, useEffect} from 'react';
 import VotesList from './VotesList';
 import './MP.css'
 
-const MP = ({mpData, mpVotes, email, twitter}) => {
+const MP = ({mpData, mpVotes, email, twitter, user}) => {
     // id is mpData.items.value.id
     
     // placeholder text, maybe have a few options based on specific topics
     const tweetText = "Please care more about the environment!";
-    const emailText = `Dear ${mpData[0].value.nameDisplayAs}, I am a constituent concerned about the environment, please help, From ${"userName"}`;
+    const emailText = `Dear ${mpData[0].value.nameDisplayAs}, I am a constituent concerned about the environment, please help, From ${user==null?"your costituent": user.firstName + " " + user.latName}`;
     
     return (
         
@@ -19,6 +19,7 @@ const MP = ({mpData, mpVotes, email, twitter}) => {
             <h2>Constituency: {mpData[0].value.latestHouseMembership.membershipFrom}</h2>
             
             <div>
+                <h2>Voting History</h2>
             <VotesList mpVotes={mpVotes}/>
             </div>
             <p>{twitter==null? "This MP doesn't have a Twitter on record. Click to tweet Downing Street instead!": ""}</p>

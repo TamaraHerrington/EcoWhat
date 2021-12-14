@@ -1,13 +1,14 @@
 import MP from '../components/MP'
 import {useState, useEffect} from 'react';
 
-const MPContainer = ({currentConstituency}) => {
+const MPContainer = ({currentConstituency, token}) => {
     const [mpData, setMpData] = useState("");
     const [mpTwitter, setMpTwitter] = useState("");
     const [mpEmail, setMpEmail] = useState("");
     const [mpVotesCarbon, setMpVotesCarbon] = useState([]);
     const [mpVotesClimate, setMpVotesClimate] = useState([]);
     const [mpVotesEvironment, setMpVotesEnvironment] = useState([]);
+    const [user, setUser] = useState(null);
 
     const getMpData = () => {
         fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + currentConstituency.constituency_id + "&IsCurrentMember=true")
@@ -92,6 +93,19 @@ const MPContainer = ({currentConstituency}) => {
         )
     }
 
+    const getUser = () => {
+        fetch(`http://localhost:8080/api/users/user`,
+    {
+      method: 'POST',
+      headers: {
+          "content-type": "text/plain;charset=UTF-8"
+      },
+      body: `${token}`
+        
+    }).then(response => response.json())
+    .then(data => setUser(data))
+    }
+
     // return { `${item.PublishedDivision.Title}`: item.MemberVotedAye}
 
     useEffect(() => {
@@ -101,6 +115,7 @@ const MPContainer = ({currentConstituency}) => {
         getMpVotesCarbon();
         getMpVotesClimate();
         getMpVotesEnvironment();
+        getUser();
     }, [])
 
 
@@ -113,7 +128,7 @@ const MPContainer = ({currentConstituency}) => {
         <>
         
         {/* <p>{JSON.stringify(mpData)}</p> */}
-        <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
+        <MP user={user} mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
         </>
         :
         <p>Loading...</p>
