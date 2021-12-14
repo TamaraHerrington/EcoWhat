@@ -1,8 +1,9 @@
 import MP from '../components/mp/MP'
 import {useState, useEffect} from 'react';
 import CommentsList from "../components/comments/CommentsList"
+import CommentForm from '../components/comments/CommentForm';
 
-const MPContainer = ({currentConstituency}) => {
+const MPContainer = ({currentConstituency, user, token}) => {
     const [mpData, setMpData] = useState("");
     const [mpContact, setMpContact] = useState([]);
     const [mpVotes, setMpVotes] = useState([]);
@@ -54,8 +55,16 @@ const MPContainer = ({currentConstituency}) => {
         fetch(
             `http://localhost:8080/api/comments/constituency/${currentConstituency.constituency_id}`
         )
-        .then(result => result.json())
+        .then(response => {
+                if(!response.ok){
+                    return response.json().then(err => {throw new Error(err.message)})
+                }
+                return response.json()})
         .then(data => setComments(data))
+        .catch(err => {
+                const errorList = [{comment_title: "No comments available. Please try reloading"}]
+                setComments(errorList);
+            })
     }
 
     useEffect(() => {
@@ -65,6 +74,7 @@ const MPContainer = ({currentConstituency}) => {
     }, [])
 
 
+
     return (
         // ***
         mpData != ""?
@@ -72,6 +82,7 @@ const MPContainer = ({currentConstituency}) => {
         
         {/* <p>{JSON.stringify(mpData)}</p> */}
         <MP mpData={mpData} mpVotes={mpVotes}/>
+        <CommentForm user={user} getComments={getComments} token={token} currentConstituency={{currentConstituency}}/>
         <CommentsList comments={comments}/>
         </>
         :

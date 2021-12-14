@@ -18,6 +18,7 @@ function getSessionStorageOrDefault(key, defaultValue) {
 }
 
 function App() {
+  const [user, setUser] = useState([])
 
   const [currentConstituency, setCurrentConstituency] = useState({constituency_id: 3345,
   constituency_name: "Bolton"});
@@ -32,6 +33,7 @@ function App() {
 
   const onLogin = (token) => {
     setToken(token)
+    console.log(user)
   }
 
   const onLogOut = () => {
@@ -59,7 +61,7 @@ function App() {
             !token ?
             <>
               <Route exact path="/" element={<Navigate to="/home" />} /> 
-              <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
+              <Route path="/login" element={<Login onLogin={onLogin} token={token} user={user} setUser={setUser}/>} />
               <Route path="/dashboard" element={<Navigate to="/login" />} />
               <Route path="/registration" element={<Registration />} />
             </>
@@ -73,7 +75,7 @@ function App() {
           }
           
           <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} /> 
-          <Route path={`/constituency/${currentConstituency.constituency_name}`} element={<MPContainer currentConstituency={currentConstituency}/>}/>
+          <Route path={`/constituency/${currentConstituency.constituency_name}`} element={<MPContainer currentConstituency={currentConstituency} user={user} token={token}/>}/>
         </Routes>
       </BrowserRouter>
     </>
