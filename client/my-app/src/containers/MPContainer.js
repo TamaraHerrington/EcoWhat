@@ -106,8 +106,6 @@ const MPContainer = ({currentConstituency, token}) => {
     .then(data => setUser(data))
     }
 
-    // return { `${item.PublishedDivision.Title}`: item.MemberVotedAye}
-
     useEffect(() => {
         getMpData();
         getMpEmail();
@@ -118,16 +116,10 @@ const MPContainer = ({currentConstituency, token}) => {
         getUser();
     }, [])
 
-
-
-
-
     return (
-        // ***
         mpData != ""?
         <>
         
-        {/* <p>{JSON.stringify(mpData)}</p> */}
         <MP user={user} mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
         </>
         :

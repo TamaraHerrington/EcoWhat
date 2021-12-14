@@ -3,9 +3,7 @@ import VotesList from './VotesList';
 import './MP.css'
 
 const MP = ({mpData, mpVotes, email, twitter, user}) => {
-    // id is mpData.items.value.id
-    
-    // placeholder text, maybe have a few options based on specific topics
+
     const tweetText = "Please care more about the environment!";
     const emailText = `Dear ${mpData[0].value.nameDisplayAs}, I am a constituent concerned about the environment, please help, From ${user==null?"your costituent": user.firstName + " " + user.latName}`;
     
