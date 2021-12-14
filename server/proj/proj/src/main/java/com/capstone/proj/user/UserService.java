@@ -4,11 +4,15 @@ import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
 import com.capstone.proj.exception.BadRequest;
 import com.capstone.proj.exception.ResourceNotFound;
+import com.capstone.proj.exception.Unauthorized;
+import com.capstone.proj.token.Token;
+import com.capstone.proj.token.TokenService;
 import com.capstone.proj.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,12 +21,14 @@ import java.util.UUID;
 public class UserService {
 
     private UserDAO userDAO;
+    private TokenService tokenService;
     private ConstituencyService constituencyService;
     private Validator validator;
 
     @Autowired
-    public UserService(@Qualifier("postgresUser") UserDAO userDAO, ConstituencyService constituencyService, Validator validator) {
+    public UserService(@Qualifier("postgresUser") UserDAO userDAO, TokenService tokenService, ConstituencyService constituencyService, Validator validator) {
         this.userDAO = userDAO;
+        this.tokenService = tokenService;
         this.constituencyService = constituencyService;
         this.validator = validator;
     }
@@ -156,7 +162,21 @@ public class UserService {
 
     // || ===================  Login Authentication ===================== ||
 
-    public String authenticateLogin(String email, String password) {
+    public Token authenticateLogin(String email, String password) {
+        // check values not null
+        if (email == null || email.length() == 0) {
+            throw new BadRequest("Email cannot be empty");
+        }
+        if (password == null || password.length() == 0) {
+            throw new BadRequest("Password cannot be empty");
+        }
+
+        // check email is a valid email
+        boolean isEmailValid = validator.validateEmail(email);
+        if (!isEmailValid) {
+            throw new BadRequest("Invalid email address");
+        }
+
         // check if user with email exists
         Optional<User> emailUser = userDAO.getUserByEmail(email);
         if (emailUser.isEmpty()) {
@@ -164,28 +184,47 @@ public class UserService {
         }
 
         // authenticate with password
-        Optional<User> userOptional = userDAO.authenticateLogin(email, password);
-        if (userOptional.isEmpty()) {
+        Optional<User> user = userDAO.authenticateLogin(email, password);
+        if (user.isEmpty()) {
             throw new BadRequest("Incorrect password");
         }
-        String token = UUID.randomUUID().toString();
-        User user = userOptional.get();
-        user.setToken(token);
-        userDAO.updateUserToken(user);
+
+        // generate token
+        Token token = tokenService.generateToken(user.get().getId());
         return token;
     }
 
-    public Optional<User> findByToken(String token) {
-        Optional<User> user = userDAO.findByToken(token);
-        if (user.isPresent()) {
-            return user;
+    public Optional<User> getLoggedInUserById(int id, Token token) {
+        // authenticate request
+        try {
+            tokenService.authenticateToken(id, token);
+        } catch (Exception e) {
+            throw new Unauthorized("User is not authorized");
         }
-        throw new ResourceNotFound("No user with token");
+
+        // return user by id
+        return getUserById(id);
     }
 
+    public int logOut(Token token) {
+        // validate token
 
-    // todo: see if this is the logic we want
-    public int removeTokenOnLogOut(String token) {
-        return userDAO.removeTokenOnLogOut(token);
+        // blacklist token
+        return tokenService.blackListToken(token);
     }
+
+    // old methods that don't coincide with token based authentication
+//    public Optional<User> findByToken(String token) {
+//        Optional<User> user = userDAO.findByToken(token);
+//        if (user.isPresent()) {
+//            return user;
+//        }
+//        throw new ResourceNotFound("No user with token");
+//    }
+//
+//
+//    // todo: see if this is the logic we want
+//    public int removeTokenOnLogOut(String token) {
+//        return userDAO.removeTokenOnLogOut(token);
+//    }
 }

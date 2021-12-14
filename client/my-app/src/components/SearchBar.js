@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
 import {useState} from "react";
+import './SearchBar.css'
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar({setCurrentConstituency}) {
 
     const [searchTerm, setSearchTerm] = useState();
+    const navigate = useNavigate();
 
     const handleSubmit = (event, postcode) => {
         event.preventDefault();
@@ -21,20 +24,22 @@ function SearchBar({setCurrentConstituency}) {
                 return response.json()})
             .then(data =>{
                 console.log(data)
-                setCurrentConstituency(data);
-            })
+                setCurrentConstituency(data)
+                
+            }).then(()=>navigate('/constituency/current'))
             .catch(err => {
+                console.log(err)
                 alert("Please enter a valid postcode");
             })
         }
     
 
     return (
-        <div>
+        <div className='search-bar'>
             <form onSubmit={(event) => handleSubmit(event, searchTerm)}>
-            <input type="text" placeholder="Find your constituency by postcode" 
+            <input className='constituency-search' type="text" placeholder="Find your constituency by postcode" 
             onChange={(event) => setSearchTerm(event.target.value)}></input>
-            <button type="submit">Search</button>
+            <button className='search-button' type="submit">Search</button>
             </form>
         </div>
     )

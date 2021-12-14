@@ -1,14 +1,14 @@
-import Vote from './Vote';
-import {useState} from 'react';
-
 const VotesList = ({mpVotes}) => {
 
-
-    const voteComponentsList = mpVotes.map(vote=> {
+    const voteComponentsList = mpVotes.map(votes=> {
         return (
-            <Vote vote={vote}/>
+            <>
+            <h2>Bill: {votes.title}</h2>
+            <h2>Voted: {votes.vote===true? "For": "Against"}</h2>
+            </>
         )
     })
+
     return (
         <div className="votes-list-container">
             {voteComponentsList}

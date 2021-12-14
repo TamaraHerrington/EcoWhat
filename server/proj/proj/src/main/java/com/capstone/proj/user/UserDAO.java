@@ -18,8 +18,10 @@ public interface UserDAO {
     // || ===================  Login Authentication ===================== ||
 
     public Optional<User> authenticateLogin(String email, String password);
-    public int updateUserToken(User user);
-    public Optional<User> findByToken(String token);
-    public int removeTokenOnLogOut(String token);
+
+    // old methods that don't coincide with token based authentication
+//    public int updateUserToken(User user);
+//    public Optional<User> findByToken(String token);
+//    public int removeTokenOnLogOut(String token);
 
 }

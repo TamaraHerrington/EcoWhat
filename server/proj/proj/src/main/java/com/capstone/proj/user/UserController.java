@@ -1,5 +1,6 @@
 package com.capstone.proj.user;
 
+import com.capstone.proj.token.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,20 +45,31 @@ public class UserController {
 
     // || ===================  Login Authentication ===================== ||
 
-    @PostMapping("token")
-    public String authenticateLogin(
+    @PostMapping("login")
+    public Token authenticateLogin(
             @RequestParam("email") final String email,
             @RequestParam("password") final String password) {
                 return userService.authenticateLogin(email, password);
     }
 
-    @PostMapping("user")
-    public Optional<User> findByToken(@RequestBody String token) {
-        return userService.findByToken(token);
+    @PostMapping("{id}")
+    public Optional<User> getLoggedInUserById(@PathVariable int id, @RequestBody Token token) {
+        return userService.getLoggedInUserById(id, token);
     }
 
-    @PatchMapping("token")
-    public void removeTokenOnLogOut(@RequestBody String token) {
-        userService.removeTokenOnLogOut(token);
+    @PostMapping("logout")
+    public void logOut(@RequestBody Token token) {
+        userService.logOut(token);
     }
+
+    // old methods that don't coincide with token based authentication
+//    @PostMapping("user")
+//    public Optional<User> findByToken(@RequestBody String token) {
+//        return userService.findByToken(token);
+//    }
+//
+//    @PatchMapping("token")
+//    public void removeTokenOnLogOut(@RequestBody String token) {
+//        userService.removeTokenOnLogOut(token);
+//    }
 }
