@@ -2,6 +2,10 @@
     background-color: white;
 }
 
-.geo-json:hover{
-    color: red;
+.map-container{
+    margin-left: auto;
+    margin-right: auto;
+}
+.header{
+    text-align: center;
 }
