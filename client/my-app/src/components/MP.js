@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
 import VotesList from './VotesList';
 import './MP.css'
+import EnvironmentalData from './EnvironmentalData';
 
-const MP = ({mpData, mpVotes, email, twitter, user}) => {
+const MP = ({mpData, mpVotes, email, twitter, user, constituencyId}) => {
 
     const tweetText = "Please care more about the environment!";
     const emailText = `Dear ${mpData[0].value.nameDisplayAs}, I am a constituent concerned about the environment, please help, From ${user==null?"your costituent": user.firstName + " " + user.latName}`;

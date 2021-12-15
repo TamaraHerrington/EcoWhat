@@ -1,5 +1,6 @@
 import MP from '../components/MP'
 import {useState, useEffect} from 'react';
+import EnvironmentalData from '../components/EnvironmentalData';
 
 const MPContainer = ({currentConstituency, token}) => {
     const [mpData, setMpData] = useState("");
@@ -10,6 +11,18 @@ const MPContainer = ({currentConstituency, token}) => {
     const [mpVotesEvironment, setMpVotesEnvironment] = useState([]);
     const [user, setUser] = useState(null);
     const [mpVotesEnergy, setMpVotesEnergy] = useState([])
+    const [envData, setEnvData] = useState(null)
+
+    const getCountyData = () => {
+        fetch(`http://localhost:8080/api/constituencies/${currentConstituency.constituency_id}/county`)
+        .then(response => response.text())
+        .then(data => {
+        fetch(`http://localhost:8080/api/environment/${data}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setEnvData(data)})})
+    }
 
     const getMpData = () => {
         fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + currentConstituency.constituency_id + "&IsCurrentMember=true")
@@ -133,15 +146,18 @@ const MPContainer = ({currentConstituency, token}) => {
         getMpVotesEnvironment();
         getUser();
         getMpVotesEnergy();
+        getCountyData();
+        console.log(envData)
     }, [])
 
     return (
         mpData != ""?
-        <>
+        <div className='mp-container'>
         
         <MP user={user} mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
-        email={mpEmail} twitter={mpTwitter} />
-        </>
+        email={mpEmail} twitter={mpTwitter} envData={envData}/>
+        <EnvironmentalData envData={envData}/>
+        </div>
         :
         <p>Loading...</p>
     )
