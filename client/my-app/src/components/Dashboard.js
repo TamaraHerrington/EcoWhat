@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 
-<<<<<<< HEAD
 const Dashboard = ({ token }) => {
 
     const [user, setUser] = useState(null)
