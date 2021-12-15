@@ -1,10 +1,10 @@
 import MP from '../components/mp/MP'
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import EnvironmentalData from '../components/EnvironmentalData';
 import CommentsList from "../components/comments/CommentsList"
 import CommentForm from '../components/comments/CommentForm';
 
-const MPContainer = ({currentConstituency, token}) => {
+const MPContainer = ({ currentConstituency, token }) => {
     const [mpData, setMpData] = useState("");
     const [mpTwitter, setMpTwitter] = useState("");
     const [mpEmail, setMpEmail] = useState("");
@@ -13,7 +13,7 @@ const MPContainer = ({currentConstituency, token}) => {
     const [mpVotesEvironment, setMpVotesEnvironment] = useState([]);
     const [comments, setComments] = useState([]);
     const [mpVotesEnergy, setMpVotesEnergy] = useState([])
-    const [envData, setEnvData] = useState(null)
+    const [envData, setEnvData] = useState([])
 
     const getCountyData = () => {
         fetch(`http://localhost:8080/api/constituencies/${currentConstituency.constituency_id}/county`)
@@ -51,7 +51,7 @@ const MPContainer = ({currentConstituency, token}) => {
         .then(data => fetch(`https://members-api.parliament.uk/api/Members/${data}/Contact`)
         .then(response => response.json())
         .then(data => data.value)
-        .then(data => data.filter(d => d.type=="Twitter").length==0? null: data.filter(d => d.type=="Twitter")[0].line1.split('twitter.com/').at(-1))
+        .then(data => data.filter(d => d.type==="Twitter").length===0 ? null : data.filter(d => d.type==="Twitter")[0].line1.split('twitter.com/').at(-1))
         )
         .then(data => setMpTwitter(data))
     }
@@ -181,19 +181,17 @@ const MPContainer = ({currentConstituency, token}) => {
     }, [])
 
     return (
-        mpData != ""?
-        <div className='mp-container'>
-        
-        <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
-        email={mpEmail} twitter={mpTwitter} envData={envData}/>
-        <EnvironmentalData envData={envData}/>
-        <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
-        <CommentsList comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
+        mpData !== "" ?
+        <div className='mp-container'>   
+            <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
+                email={mpEmail} twitter={mpTwitter} envData={envData}/>
+            <EnvironmentalData envData={envData}/>
+            <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
+            <CommentsList comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
         </div>
         :
         <p>Loading...</p>
     )
-
 }
 
 
