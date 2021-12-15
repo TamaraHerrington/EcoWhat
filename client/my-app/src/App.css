@@ -349,6 +349,7 @@ nav {
 
 .youhelp__comment {
   text-align: center;
+  background-color: rgb(226, 226, 226);
 }
 
 @media screen and (max-width: 630px) {
