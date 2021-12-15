@@ -19,7 +19,10 @@ const About=()=>{
         </section>
         <h1>About EcoWhat</h1>
         <img class="image" src={"https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"}/>
+      <p>Welcome to EcoWhat? We're a team of eco-concious software engineers looking to make a positive change for the environment.
+          Together we developed EcoWhat? - a website that allows you to get involved in eco-activism. Here you can search for your MP and use our auto-generated templates to ask them to care more for the environemnt. </p>
        </>
+       
     )
 }
 

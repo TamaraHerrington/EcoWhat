@@ -13,7 +13,7 @@ const YouHelp=()=>{
                     <span class="scroll-text">
                         Planet <br></br>
                         Future <br></br>
-                        Home
+                        You
                     </span>
                 </div>
             </header>
