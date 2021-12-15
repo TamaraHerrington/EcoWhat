@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import CommentsList from "../components/comments/CommentsList"
 import CommentForm from '../components/comments/CommentForm';
 
-const MPContainer = ({currentConstituency, user, token}) => {
+const MPContainer = ({currentConstituency, token}) => {
     const [mpData, setMpData] = useState("");
     const [mpTwitter, setMpTwitter] = useState("");
     const [mpEmail, setMpEmail] = useState("");
@@ -95,18 +95,6 @@ const MPContainer = ({currentConstituency, user, token}) => {
         )
     }
 
-    const getUser = () => {
-        fetch(`http://localhost:8080/api/users/user`,
-    {
-      method: 'POST',
-      headers: {
-          "content-type": "text/plain;charset=UTF-8"
-      },
-      body: `${token}`
-        
-    }).then(response => response.json())
-    .then(data => setUser(data))
-    }
 
     const getComments = () => {
         fetch(
@@ -124,6 +112,32 @@ const MPContainer = ({currentConstituency, user, token}) => {
             })
     }
 
+    const upvoteComment = (id) => {
+        console.log("upvote")
+        fetch(`http://localhost:8080/api/comments/upvote/${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    "content-type": "application/json"
+                }
+            }
+        )
+        .then(() => getComments())
+    }
+
+    const downvoteComment = (id) => {
+        console.log("downvote")
+        fetch(`http://localhost:8080/api/comments/downvote/${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                "content-type": "application/json"
+                }
+            }
+        )
+        .then(() => getComments())
+    }
+
     useEffect(() => {
         getMpData();
         getComments();
@@ -132,16 +146,14 @@ const MPContainer = ({currentConstituency, user, token}) => {
         getMpVotesCarbon();
         getMpVotesClimate();
         getMpVotesEnvironment();
-        getUser();
     }, [])
 
     return (
         mpData != ""?
-        <>    
-        <CommentForm user={user} getComments={getComments} token={token} currentConstituency={{currentConstituency}}/>
-        <CommentsList comments={comments}/>
-
-        <MP user={user} mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
+        <>   
+        <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
+        <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
+        <CommentsList comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
         </>
         :
         <p>Loading...</p>

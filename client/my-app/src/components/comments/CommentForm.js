@@ -1,25 +1,59 @@
 import { DomEvent } from 'leaflet'
 import React from 'react'
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { Link } from 'react-router-dom'
 import react from 'react';
 
-function CommentForm({user, getComments, token, currentConstituency}) {
+function CommentForm({ getComments, token, currentConstituency}) {
 
     const [title, setTitle] = useState();
     const [comment, setComment] = useState();
     const [category, setCategory] = useState("Recylcing");
 
+    const [user, setUser] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/api/users/${token.userId}`,
+        {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(token)
+        })
+        .then(response => response.json())
+        .then(data => setUser(data))
+    }, [token])
+
     //TODO: Add some logic for content checking here (swearing, banned words, etc)
-    const handleCommentSubmit = () => {
+    const handleCommentSubmit = (event) => {
+        event.preventDefault();
         const today = new Date();
         const dateTime = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        console.log(user.id)
         console.log(title)
         console.log(comment)
+        console.log(user.id)
+        console.log(category)
+        console.log(typeof(category))
         console.log(currentConstituency.constituency_id)
         console.log(dateTime)
 
+        const commentToSubmit = {
+                        "userId" : user.id,
+                        "comment_title" : title,
+                        "comment": comment,
+                        "comment_category": category,
+                        "constituencyId": currentConstituency.constituency_id,
+                        "post_date": dateTime
+                    };
+
+        const commentToSubmitJSON = JSON.stringify(commentToSubmit) 
+
+        console.log(commentToSubmitJSON)
+
+        console.log(commentToSubmit)
+        console.log(typeof(commentToSubmit))
+        
         if(comment && title && token){
             fetch(
                 "http://localhost:8080/api/comments/add",
@@ -28,25 +62,17 @@ function CommentForm({user, getComments, token, currentConstituency}) {
                     headers: {
                         "content-type": "application/json"
                     },
-                    body: {
-                        "userId" : user.id,
-                        "comment_title" : title,
-                        "comment": comment,
-                        "comment_category": category,
-                        "constituencId": currentConstituency.constituency_id,
-                        "post_date": dateTime
-                    }   
+                    body: commentToSubmitJSON
                 }
             )
             .then(response => {
                 if(!response.ok){
                     return response.json().then(err => {throw new Error(err.message)})
                 }
-                return response.json();
             })
             .then(() => getComments())
             .catch(err => {
-                alert("Comment not posted. Please try again");
+                alert("Comment not posted. Please try again" + err);
             })
         }
         else if(comment && title && !token){
@@ -55,6 +81,7 @@ function CommentForm({user, getComments, token, currentConstituency}) {
         else{
             alert("Please enter a valid comment")
         }
+
     }
 
     return (

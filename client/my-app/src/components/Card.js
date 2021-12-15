@@ -22,6 +22,7 @@ const Card = ()=> {
 
         </section>
     )
+        
 }
 
 

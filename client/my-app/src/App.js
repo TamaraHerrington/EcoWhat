@@ -19,9 +19,9 @@ function getSessionStorageOrDefault(key, defaultValue) {
 }
 
 function App() {
-  const [user, setUser] = useState([])
+  
 
-  const [currentConstituency, setCurrentConstituency] = useState({});
+  const [currentConstituency, setCurrentConstituency] = useState(getSessionStorageOrDefault("currentConstituency", null));
 
   const [token, setToken] = useState(
     getSessionStorageOrDefault('token', null)
@@ -29,11 +29,11 @@ function App() {
 
   useEffect(() => {
     sessionStorage.setItem('token', JSON.stringify(token))
-  }, [token])
+    sessionStorage.setItem("currentConstituency", JSON.stringify(currentConstituency))
+  }, [token, currentConstituency])
 
   const onLogin = (token) => {
     setToken(token)
-    console.log(user)
   }
 
   const onLogOut = () => {
@@ -58,7 +58,7 @@ function App() {
             !token ?
             <>
               <Route exact path="/" element={<Navigate to="/home" />} /> 
-              <Route path="/login" element={<Login onLogin={onLogin} token={token} user={user} setUser={setUser}/>} />
+              <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
               <Route path="/dashboard" element={<Navigate to="/login" />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/youhelp" element={<YouHelp token={token}/>}/> 
@@ -74,7 +74,7 @@ function App() {
           }
           
           <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} /> 
-          <Route path={`/constituency/${currentConstituency.constituency_name}`} element={<MPContainer currentConstituency={currentConstituency} user={user} token={token}/>}/>
+          <Route path={"/constituency/current"} element={<MPContainer currentConstituency={currentConstituency} token={token}/>}/>
         </Routes>
       </BrowserRouter>
     </>
