@@ -152,7 +152,7 @@ const MPContainer = ({currentConstituency, token}) => {
         mpData != ""?
         <>   
 
-        {/* <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} /> */}
+        <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
         <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
         <CommentsList comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
         </>
