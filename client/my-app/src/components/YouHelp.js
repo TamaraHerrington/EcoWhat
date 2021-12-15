@@ -18,9 +18,7 @@ const YouHelp=()=>{
                 </div>
             </header>
         </section>
-        <section>
-            <h3>How you can help the environment...</h3>
-        </section>
+            <p className="youhelp__comment">How you can help the environment...</p>
 
         <Card card />
         </>
