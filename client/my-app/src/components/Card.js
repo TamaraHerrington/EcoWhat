@@ -33,7 +33,7 @@ const Card = ()=> {
           </section>
 
           <section class="youhelp__card youhelp__card--8">
-            <h2 class="youhelp__card-title"></h2>
+            <h2 class="youhelp__card-title">Avoid Palm Oil</h2>
           </section>
 
         </section>
