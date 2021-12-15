@@ -311,6 +311,9 @@ nav {
 .youhelp__card--7 {
   background: url(https://images.unsplash.com/photo-1596078864284-bf704dda0cc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80);
 }
+.youhelp__card--8 {
+  background: url(https://images.unsplash.com/photo-1507048947301-7afc2aca0edc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80);
+}
 
 .youhelp__card--1,
 .youhelp__card--2,
@@ -318,7 +321,8 @@ nav {
 .youhelp__card--4,
 .youhelp__card--5,
 .youhelp__card--6,
-.youhelp__card--7  {
+.youhelp__card--7,
+.youhelp__card--8  {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

@@ -5,7 +5,7 @@ const Card = ()=> {
         <section class="youhelp-card-container">
 
           <section class="youhelp__card youhelp__card--1">
-            <h2 class="youhelp__card-title">Eat Less Meat/Dairy</h2>
+            <h2 class="youhelp__card-title">Eat Less Meat and Dairy</h2>
           </section>
 
           <section class="youhelp__card youhelp__card--2">
@@ -30,6 +30,10 @@ const Card = ()=> {
 
           <section class="youhelp__card youhelp__card--7">
             <h2 class="youhelp__card-title">Conserve Water</h2>
+          </section>
+
+          <section class="youhelp__card youhelp__card--8">
+            <h2 class="youhelp__card-title"></h2>
           </section>
 
         </section>
