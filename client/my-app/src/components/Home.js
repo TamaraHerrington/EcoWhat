@@ -51,7 +51,7 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
             
             <h1 className='header'>Find your constituency. Understand your MPs stance on climate change. Have your say.</h1>
             <SearchBar setCurrentConstituency={setCurrentConstituency}/>
-      <MapContainer className="map-container" style={{height: "85vh", width: "95vw"}} zoom={6.5} center={[53,0]}>
+      <MapContainer className="map-container" style={{height: "80vh", width: "95vw"}} zoom={6.5} center={[53,0]}>
         <GeoJSON className="geo-json" style={mapStyle} data={constituencies.features} onEachFeature={onEachConstituency}/>
       </MapContainer>
         </>
