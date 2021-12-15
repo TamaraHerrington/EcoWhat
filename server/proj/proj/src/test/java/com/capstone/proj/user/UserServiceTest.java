@@ -4,13 +4,17 @@ import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
 import com.capstone.proj.exception.BadRequest;
 import com.capstone.proj.exception.ResourceNotFound;
+import com.capstone.proj.exception.Unauthorized;
+import com.capstone.proj.token.Token;
 import com.capstone.proj.token.TokenService;
 import com.capstone.proj.validator.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +22,8 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 class UserServiceTest {
@@ -769,6 +775,281 @@ class UserServiceTest {
             verify(userDAOMock).getUserById(1);
 
             verifyNoMoreInteractions(userDAOMock);
+        }
+    }
+
+    @Nested
+    class AuthenticateLoginTests {
+
+        @Test
+        void shouldAuthenticateLoginIfCredentialsAreCorrect() {
+            // given
+            String email = "john@doe.com";
+            String password = "P@ssword1";
+            User userInDatabase = new User(
+                    1L,
+                    "John", "Doe", "john@doe.com", "P@ssword1",
+                    null, 100, "Constituency 1", null
+            );
+            Token generatedToken = new Token(
+                    1L, LocalDateTime.of(2000, 1, 1, 0, 0),
+                    LocalDateTime.of(2000, 1, 1, 0, 15),
+                    "secret"
+            );
+
+            when(validatorMock.validateEmail("john@doe.com")).thenReturn(true);
+            when(userDAOMock.getUserByEmail("john@doe.com")).thenReturn(Optional.of(userInDatabase));
+            when(userDAOMock.authenticateLogin(email, password)).thenReturn(Optional.of(userInDatabase));
+            when(tokenServiceMock.generateToken(1L)).thenReturn(generatedToken);
+
+            // when
+            Token actual = userServiceTest.authenticateLogin(email, password);
+            Token expected = generatedToken;
+
+            // then
+            assertThat(actual).isEqualTo(expected);
+
+            verify(validatorMock).validateEmail("john@doe.com");
+            verify(userDAOMock).getUserByEmail("john@doe.com");
+            verify(userDAOMock).authenticateLogin(email, password);
+            verify(tokenServiceMock).generateToken(1L);
+
+            verifyNoMoreInteractions(validatorMock);
+            verifyNoMoreInteractions(userDAOMock);
+            verifyNoMoreInteractions(tokenServiceMock);
+        }
+
+        @Test
+        void shouldThrowErrorIfEmailIsEmpty() {
+            // given
+            String email = "";
+            String password = "P@ssword1";
+
+            // when
+
+            // then
+            assertThatThrownBy(() -> userServiceTest.authenticateLogin(email, password))
+                    .hasMessage("Email cannot be empty")
+                    .isInstanceOf(BadRequest.class);
+
+            verifyNoInteractions(validatorMock);
+            verifyNoInteractions(userDAOMock);
+            verifyNoInteractions(tokenServiceMock);
+        }
+
+        @Test
+        void shouldThrowErrorIfEmailIsNull() {
+            // given
+            String email = null;
+            String password = "P@ssword1";
+
+            // when
+
+            // then
+            assertThatThrownBy(() -> userServiceTest.authenticateLogin(email, password))
+                    .hasMessage("Email cannot be empty")
+                    .isInstanceOf(BadRequest.class);
+
+            verifyNoInteractions(validatorMock);
+            verifyNoInteractions(userDAOMock);
+            verifyNoInteractions(tokenServiceMock);
+        }
+
+        @Test
+        void shouldThrowErrorIfPasswordIsEmpty() {
+            // given
+            String email = "john@doe.com";
+            String password = "";
+
+            // when
+
+            // then
+            assertThatThrownBy(() -> userServiceTest.authenticateLogin(email, password))
+                    .hasMessage("Password cannot be empty")
+                    .isInstanceOf(BadRequest.class);
+
+            verifyNoInteractions(validatorMock);
+            verifyNoInteractions(userDAOMock);
+            verifyNoInteractions(tokenServiceMock);
+        }
+
+        @Test
+        void shouldThrowErrorIfPasswordIsNull() {
+            // given
+            String email = "john@doe.com";
+            String password = null;
+
+            // when
+
+            // then
+            assertThatThrownBy(() -> userServiceTest.authenticateLogin(email, password))
+                    .hasMessage("Password cannot be empty")
+                    .isInstanceOf(BadRequest.class);
+
+            verifyNoInteractions(validatorMock);
+            verifyNoInteractions(userDAOMock);
+            verifyNoInteractions(tokenServiceMock);
+        }
+
+        @Test
+        void shouldThrowErrorIfEmailIsNotValid() {
+            // given
+            String email = "johndoe.com";
+            String password = "P@ssword1";
+
+            when(validatorMock.validateEmail(email)).thenReturn(false);
+
+            // when
+
+            // then
+            assertThatThrownBy(() -> userServiceTest.authenticateLogin(email, password))
+                    .hasMessage("Invalid email address")
+                    .isInstanceOf(BadRequest.class);
+
+            verify(validatorMock).validateEmail(email);
+
+            verifyNoMoreInteractions(validatorMock);
+            verifyNoInteractions(userDAOMock);
+            verifyNoInteractions(tokenServiceMock);
+        }
+
+        @Test
+        void shouldThrowErrorIfUserWithEmailDoesNotExist() {
+            // given
+            String email = "johndoe.com";
+            String password = "P@ssword1";
+
+            when(validatorMock.validateEmail(email)).thenReturn(true);
+            when(userDAOMock.getUserByEmail(email)).thenReturn(Optional.empty());
+
+            // when
+
+            // then
+            assertThatThrownBy(() -> userServiceTest.authenticateLogin(email, password))
+                    .hasMessage("No user with this email exists")
+                    .isInstanceOf(BadRequest.class);
+
+            verify(validatorMock).validateEmail(email);
+            verify(userDAOMock).getUserByEmail(email);
+
+            verifyNoMoreInteractions(validatorMock);
+            verifyNoMoreInteractions(userDAOMock);
+            verifyNoInteractions(tokenServiceMock);
+        }
+
+        @Test
+        void shouldThrowErrorIfPasswordIsIncorrect() {
+            // given
+            String email = "johndoe.com";
+            String password = "password";
+            User userInDatabase = new User(
+                    1L,
+                    "John", "Doe", "john@doe.com", "P@ssword1",
+                    null, 100, "Constituency 1", null);
+
+            when(validatorMock.validateEmail(email)).thenReturn(true);
+            when(userDAOMock.getUserByEmail(email)).thenReturn(Optional.of(userInDatabase));
+            when(userDAOMock.authenticateLogin(email, password)).thenReturn(Optional.empty());
+
+            // when
+
+            // then
+            assertThatThrownBy(() -> userServiceTest.authenticateLogin(email, password))
+                    .hasMessage("Incorrect password")
+                    .isInstanceOf(BadRequest.class);
+
+            verify(validatorMock).validateEmail(email);
+            verify(userDAOMock).getUserByEmail(email);
+            verify(userDAOMock).authenticateLogin(email, password);
+
+            verifyNoMoreInteractions(validatorMock);
+            verifyNoMoreInteractions(userDAOMock);
+            verifyNoInteractions(tokenServiceMock);
+        }
+    }
+
+    @Nested
+    class GetLoggedInUserByIdTests {
+
+        @Test
+        void shouldGetUserIfAuthenticated() {
+            // given
+            UserService userServiceSpy = spy(userServiceTest);
+
+
+            Token token = new Token(
+                    1L, LocalDateTime.of(2000, 1, 1, 0, 0),
+                    LocalDateTime.of(2000, 1, 1, 0, 15),
+                    "secret"
+            );
+            User userInDatabase = new User(
+                    1L,
+                    "John", "Doe", "john@doe.com", "P@ssword1",
+                    null, 100, "Constituency 1", null
+            );
+
+            when(tokenServiceMock.authenticateToken(1, token)).thenReturn(1);
+            Mockito.doReturn(Optional.of(userInDatabase)).when(userServiceSpy).getUserById(1);
+
+            // when
+            Optional<User> actual = userServiceSpy.getLoggedInUserById(1, token);
+            Optional<User> expected = Optional.of(userInDatabase);
+
+            // then
+            assertThat(actual).isEqualTo(expected);
+
+            verify(tokenServiceMock).authenticateToken(1, token);
+            verify(userServiceSpy).getUserById(1);
+
+            verifyNoMoreInteractions(tokenServiceMock);
+        }
+
+        @Test
+        void shouldThrowErrorIfTokenFailsAuthentication() {
+            // given
+            Token token = new Token(
+                    1L, LocalDateTime.of(2000, 1, 1, 0, 0),
+                    LocalDateTime.of(2000, 1, 1, 0, 15),
+                    "secret"
+            );
+
+            when(tokenServiceMock.authenticateToken(1, token)).thenThrow(new RuntimeException());
+
+            // when
+
+            // then
+            assertThatThrownBy(() -> userServiceTest.getLoggedInUserById(1, token))
+                    .hasMessage("User is not authorized")
+                    .isInstanceOf(Unauthorized.class);
+
+//            verify(tokenServiceMock.authenticateToken(1, token));
+
+//            verifyNoMoreInteractions(tokenServiceMock);
+        }
+    }
+
+    @Nested
+    class LogOutTests {
+
+        @Test
+        void shouldLogOut() {
+            // given
+            Token token = new Token(
+                    1L, LocalDateTime.of(2000, 1, 1, 0, 0),
+                    LocalDateTime.of(2000, 1, 1, 0, 15),
+                    "secret"
+            );
+
+            when(tokenServiceMock.blackListToken(token)).thenReturn(1);
+
+            // when
+            int actual = userServiceTest.logOut(token);
+
+            // then
+            assertThat(actual).isEqualTo(1);
+
+            verify(tokenServiceMock).blackListToken(token);
+            verifyNoMoreInteractions(tokenServiceMock);
         }
     }
 }
