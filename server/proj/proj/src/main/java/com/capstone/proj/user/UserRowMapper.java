@@ -20,8 +20,7 @@ public class UserRowMapper implements RowMapper {
                 rs.getString("password"),
                 null,
                 rs.getInt("constituency_id"),
-                rs.getString("constituency_name"),
-                rs.getString("token")
+                rs.getString("constituency_name")
         );
         return user;
     }

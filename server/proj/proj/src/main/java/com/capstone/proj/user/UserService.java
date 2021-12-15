@@ -37,7 +37,6 @@ public class UserService {
         // initially set these to null
         user.setConstituencyId(null);
         user.setConstituencyName(null);
-        user.setToken(null);
 
         // first name
         if (user.getFirstName() == null || user.getFirstName().length() == 0) {
@@ -105,7 +104,6 @@ public class UserService {
         // initially set these as null
         user.setConstituencyId(null);
         user.setConstituencyName(null);
-        user.setToken(null);
 
         // first name
         if (user.getFirstName() == null || user.getFirstName().length() == 0) {
