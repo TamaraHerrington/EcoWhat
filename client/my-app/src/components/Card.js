@@ -20,6 +20,10 @@ const Card = ()=> {
             <h2 class="youhelp__card-title">Ditch Single-Use Plastics</h2>
           </section>
 
+          <section class="youhelp__card youhelp__card--5">
+            <h2 class="youhelp__card-title">Engage in Politics</h2>
+          </section>
+
         </section>
     )
 }
