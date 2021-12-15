@@ -48,11 +48,11 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
     return (
         <>
             {/* <h1>Constituencies Map</h1> */}
-            <section class="youhelp">
+            <section className="youhelp">
             <header className="youhelp__header">
                 <h1 className="youhelp__heading">Eco</h1>
-                <div class="scroll-container">
-                    <span class="scroll-text">
+                <div className="scroll-container">
+                    <span className="scroll-text">
                         Worrier? <br></br>
                         Warrior? <br></br>
                         What?

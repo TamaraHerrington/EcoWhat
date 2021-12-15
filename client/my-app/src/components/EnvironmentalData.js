@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
 import './EnvironmentalData.css'
 
 const EnvironmentalData = ({envData}) => {
     
-    return(envData==undefined?
+    return (envData === undefined ?
         <div key={envData} className="env-data">           
             <p>Loading...</p>
         </div>
@@ -17,7 +16,6 @@ const EnvironmentalData = ({envData}) => {
             <p>DBPS Summer: {envData.dbpsSummer}</p>
             <p>DBPS Winter: {envData.dbpsWinter}</p>
         </div>
-
     )
 }
 

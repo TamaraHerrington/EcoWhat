@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import CommentsList from "./comments/CommentsList"
 
 const Dashboard = ({ token }) => {
 
@@ -33,16 +34,13 @@ const Dashboard = ({ token }) => {
                 <main className="profile-main-card">
                     <section className="profile-user-card">
                         <img className="profile-user-img" 
-                            src={`https://avatars.dicebear.com/api/human/${user.firstName+user.lastName}.svg?size=200`} alt="User profile image" />
+                            src={`https://avatars.dicebear.com/api/human/${user.firstName+user.lastName}.svg?size=200`} alt="User avatar" />
                         <p>Email: {user.email}</p>
-                        <p>Constituency: {user.constituencyId}</p>
-
+                        <p>Constituency: {user.constituencyName}</p>
                     </section>
                     <section className="profile-user-comment-card">
-                        <p>lorem somth</p>
-
+                        <CommentsList comments={user.commentList}/>
                     </section>
-
                 </main>
             </section>
             }

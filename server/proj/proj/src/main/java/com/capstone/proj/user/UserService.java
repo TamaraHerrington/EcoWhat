@@ -1,5 +1,7 @@
 package com.capstone.proj.user;
 
+import com.capstone.proj.comment.Comment;
+import com.capstone.proj.comment.CommentDAO;
 import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
 import com.capstone.proj.exception.BadRequest;
@@ -21,13 +23,15 @@ import java.util.UUID;
 public class UserService {
 
     private UserDAO userDAO;
+    private CommentDAO commentDAO;
     private TokenService tokenService;
     private ConstituencyService constituencyService;
     private Validator validator;
 
     @Autowired
-    public UserService(@Qualifier("postgresUser") UserDAO userDAO, TokenService tokenService, ConstituencyService constituencyService, Validator validator) {
+    public UserService(@Qualifier("postgresUser") UserDAO userDAO, CommentDAO commentDAO, TokenService tokenService, ConstituencyService constituencyService, Validator validator) {
         this.userDAO = userDAO;
+        this.commentDAO = commentDAO;
         this.tokenService = tokenService;
         this.constituencyService = constituencyService;
         this.validator = validator;
@@ -37,7 +41,7 @@ public class UserService {
         // initially set these to null
         user.setConstituencyId(null);
         user.setConstituencyName(null);
-        user.setToken(null);
+        user.setCommentList(null);
 
         // first name
         if (user.getFirstName() == null || user.getFirstName().length() == 0) {
@@ -88,11 +92,16 @@ public class UserService {
     }
 
     public Optional<User> getUserById(int id) {
-        Optional<User> user = userDAO.getUserById(id);
-        if (user.isEmpty()) {
+        Optional<User> userOptional = userDAO.getUserById(id);
+        if (userOptional.isEmpty()) {
             throw new ResourceNotFound("User with id: " + id + " not found");
         }
-        return user;
+
+        User user = userOptional.get();
+        List<Comment> commentList = commentDAO.getCommentsByUser(id);
+        user.setCommentList(commentList);
+
+        return Optional.of(user);
     }
 
     public int updateUser(int id, User user) {
@@ -105,7 +114,7 @@ public class UserService {
         // initially set these as null
         user.setConstituencyId(null);
         user.setConstituencyName(null);
-        user.setToken(null);
+        user.setCommentList(null);
 
         // first name
         if (user.getFirstName() == null || user.getFirstName().length() == 0) {
