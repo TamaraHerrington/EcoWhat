@@ -9,6 +9,7 @@ const MPContainer = ({currentConstituency, token}) => {
     const [mpVotesClimate, setMpVotesClimate] = useState([]);
     const [mpVotesEvironment, setMpVotesEnvironment] = useState([]);
     const [user, setUser] = useState(null);
+    const [mpVotesEnergy, setMpVotesEnergy] = useState([])
 
     const getMpData = () => {
         fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + currentConstituency.constituency_id + "&IsCurrentMember=true")
@@ -93,6 +94,23 @@ const MPContainer = ({currentConstituency, token}) => {
         )
     }
 
+    const getMpVotesEnergy = () => {
+        fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
+        .then(response => response.json())
+        .then(data => data.value.currentRepresentation.member.value.id)    
+        .then(data =>  
+        fetch(`https://commonsvotes-api.parliament.uk/data/divisions.json/membervoting?queryParameters.memberId=
+        ${data}
+        &queryParameters.searchTerm=energy`)
+        .then(result => result.json())
+        .then(data =>data.map(item => { 
+            return {"title": item.PublishedDivision.Title, "vote": item.MemberVotedAye}
+            }
+        ))
+        .then(data => setMpVotesEnergy(data))
+        )
+    }
+
     const getUser = () => {
         fetch(`http://localhost:8080/api/users/user`,
     {
@@ -114,13 +132,15 @@ const MPContainer = ({currentConstituency, token}) => {
         getMpVotesClimate();
         getMpVotesEnvironment();
         getUser();
+        getMpVotesEnergy();
     }, [])
 
     return (
         mpData != ""?
         <>
         
-        <MP user={user} mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
+        <MP user={user} mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
+        email={mpEmail} twitter={mpTwitter} />
         </>
         :
         <p>Loading...</p>
