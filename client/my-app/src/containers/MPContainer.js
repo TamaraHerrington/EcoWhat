@@ -151,7 +151,6 @@ const MPContainer = ({currentConstituency, token}) => {
     return (
         mpData != ""?
         <>   
-
         <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
         <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
         <CommentsList comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
