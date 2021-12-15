@@ -126,30 +126,50 @@ const MPContainer = ({currentConstituency, token}) => {
             })
     }
 
-    const upvoteComment = (id) => {
+    const upvoteComment = (userId, comment_id) => {
         console.log("upvote")
-        fetch(`http://localhost:8080/api/comments/upvote/${id}`,
+       
+        const requestBody = JSON.stringify({
+            "user_id": userId,
+            "comment_id": comment_id,
+            "upvoted": 1,
+            "downvoted": 0
+        })
+
+        fetch("http://localhost:8080/api/usercommentvotes",
             {
                 method: 'PUT',
                 headers: {
                     "content-type": "application/json"
-                }
+                },
+                body: requestBody
             }
         )
         .then(() => getComments())
     }
 
-    const downvoteComment = (id) => {
+    const downvoteComment = (userId, comment_id) => {
         console.log("downvote")
-        fetch(`http://localhost:8080/api/comments/downvote/${id}`,
+
+        const requestBody = JSON.stringify({
+            "user_id": userId,
+            "comment_id": comment_id,
+            "upvoted": 0,
+            "downvoted": 1
+        })
+
+        fetch("http://localhost:8080/api/usercommentvotes",
             {
                 method: 'PUT',
                 headers: {
-                "content-type": "application/json"
-                }
+                    "content-type": "application/json"
+                },
+                body: requestBody
             }
         )
-        .then(() => getComments())}
+        .then(() => getComments())
+    }
+    
     const getMpVotesEnergy = () => {
         fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
         .then(response => response.json())
@@ -188,7 +208,7 @@ const MPContainer = ({currentConstituency, token}) => {
         email={mpEmail} twitter={mpTwitter} envData={envData}/>
         <EnvironmentalData envData={envData}/>
         <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
-        <CommentsList comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
+        <CommentsList token={token} comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
         </div>
         :
         <p>Loading...</p>

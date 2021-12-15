@@ -19,7 +19,6 @@ public class CommentController {
     @PostMapping("/add")
     public void addComment(@RequestBody Comment comment){
         commentService.addComment(comment);
-
     }
 
     @PutMapping("/upvote/{id}")
