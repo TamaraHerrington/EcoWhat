@@ -31,7 +31,7 @@ const NavBar = ({ token, onLogOut }) => {
             <span className="navbar-logo">🌎 EcoWhat?</span>
             <ul className="navbar-links">
                 <li><Link className="navbar-link" to="/home">Home</Link></li>
-                <li><Link className="navbar-link" to="/home">About</Link></li>
+                <li><Link className="navbar-link" to="/about">About</Link></li>
                 <li><Link className="navbar-link" to="/youhelp">What You Can Do</Link></li>
                 {token ?
                     <>

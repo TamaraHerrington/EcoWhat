@@ -18,6 +18,9 @@ const YouHelp=()=>{
                 </div>
             </header>
         </section>
+        <section>
+            <h3>How you can help the environment...</h3>
+        </section>
 
         <Card card />
         </>

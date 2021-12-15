@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import Registration from './components/Registration';
 import MPContainer from './containers/MPContainer'
 import YouHelp from './components/YouHelp';
+import About from './components/About';
 
 function getSessionStorageOrDefault(key, defaultValue) {
   const stored = sessionStorage.getItem(key);
@@ -71,7 +72,8 @@ function App() {
             </>
           }
           
-          <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} /> 
+          <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} />
+          <Route path="/about" element={<About /> } /> 
           {/* <Route path={`/constituency/${currentConstituency.constituency_id}`} element={<MPContainer currentConstituency={currentConstituency}/>}/> */}
           <Route path={`/constituency/current`} element={<MPContainer token={token} currentConstituency={currentConstituency}/>}/>
         </Routes>
