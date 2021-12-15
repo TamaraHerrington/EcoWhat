@@ -2,11 +2,12 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import Login from './components/Login';
+import Login from './components/login/Login';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard';
-import Registration from './components/Registration';
+import Registration from './components/login/Registration';
+import MPContainer from './containers/MPContainer'
 import YouHelp from './components/YouHelp';
 
 function getSessionStorageOrDefault(key, defaultValue) {
@@ -18,6 +19,9 @@ function getSessionStorageOrDefault(key, defaultValue) {
 }
 
 function App() {
+  
+
+  const [currentConstituency, setCurrentConstituency] = useState(getSessionStorageOrDefault("currentConstituency", null));
 
   const [token, setToken] = useState(
     getSessionStorageOrDefault('token', null)
@@ -25,7 +29,8 @@ function App() {
 
   useEffect(() => {
     sessionStorage.setItem('token', JSON.stringify(token))
-  }, [token])
+    sessionStorage.setItem("currentConstituency", JSON.stringify(currentConstituency))
+  }, [token, currentConstituency])
 
   const onLogin = (token) => {
     setToken(token)
@@ -68,7 +73,8 @@ function App() {
             </>
           }
           
-          <Route path="/home" element={<Home token={token}/>} /> 
+          <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} /> 
+          <Route path={"/constituency/current"} element={<MPContainer currentConstituency={currentConstituency} token={token}/>}/>
         </Routes>
       </BrowserRouter>
     </>
