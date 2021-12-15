@@ -3,16 +3,14 @@ import React from "react";
 const About=()=>{
     return(
         <>
-        <section class="youhelp">
+       <section class="youhelp">
             <header className="youhelp__header">
-                <h1 className="youhelp__heading">Meet the Team:  </h1>
+                <h1 className="youhelp__heading">For A Better</h1>
                 <div class="scroll-container">
                     <span class="scroll-text">
-                        Helena <br></br>
-                        Vinh <br></br>
-                        Chaam <br></br>
-                        Jonathan<br></br>
-                        Tamara
+                        Planet <br></br>
+                        Future <br></br>
+                        You
                     </span>
                 </div>
             </header>
