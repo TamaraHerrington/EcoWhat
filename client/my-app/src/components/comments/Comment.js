@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Comment({comment, upvoteComment, downvoteComment}) {
+function Comment({token, comment, upvoteComment, downvoteComment}) {
 
     return (
         <div>
@@ -11,9 +11,9 @@ function Comment({comment, upvoteComment, downvoteComment}) {
             {upvoteComment && downvoteComment ?
                 <>
                     <h5>{comment.upvotes}</h5>
-                    <button type="button" onClick={() => upvoteComment(comment.id)}>Upvote</button>
+                    <button type="button" onClick={() => upvoteComment(token.userId, comment.id)}>Upvote</button>
                     <h5>{comment.downvotes}</h5>
-                    <button type="button" onClick={() => downvoteComment(comment.id)}> Downvote</button>
+                    <button type="button" onClick={() => downvoteComment(token.userId, comment.id)}> Downvote</button>
                 </>
                 :
                 <></>

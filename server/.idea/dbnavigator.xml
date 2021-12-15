@@ -46,6 +46,7 @@
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$PROJECT_DIR$/proj/proj/src/main/resources/db/migration/V6__Create_User_Table.sql" connection-id="7a756e9e-ccde-45b5-981c-8ec99d2b2af7" session-id="MAIN" current-schema="" />
     <mapping file-url="file://$PROJECT_DIR$/proj/proj/src/main/resources/db/migration/V8__Inserting_Data_To_Enviroment_Data_Table.sql" connection-id="7a756e9e-ccde-45b5-981c-8ec99d2b2af7" session-id="MAIN" current-schema="" />
+    <mapping file-url="file://$PROJECT_DIR$/proj/proj/src/main/resources/db/migration/V9__CreateingUpvoteDownvoteTable.sql" connection-id="7a756e9e-ccde-45b5-981c-8ec99d2b2af7" session-id="MAIN" current-schema="" />
     <mapping file-url="file://$PROJECT_DIR$/proj/proj/src/main/resources/db/migration/V7__Create_Enviroment_Data_Table.sql" connection-id="7a756e9e-ccde-45b5-981c-8ec99d2b2af7" session-id="MAIN" current-schema="" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">

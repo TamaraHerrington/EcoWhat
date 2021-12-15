@@ -13,12 +13,12 @@ const YouHelp = () => {
                         <span className="scroll-text">
                             Planet <br></br>
                             Future <br></br>
-                            Home
+                            You
                         </span>
                     </div>
                 </header>
             </section>
-            <p className="youhelp__comment">How you can help the environment...</p>
+            <h2 className="youhelp__comment">How you can help the environment...</h2>
 
             <Card card />
         </>   
