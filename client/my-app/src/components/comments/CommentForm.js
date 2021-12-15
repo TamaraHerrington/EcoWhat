@@ -3,6 +3,7 @@ import React from 'react'
 import {useState, useEffect} from "react";
 import { Link } from 'react-router-dom'
 import react from 'react';
+import './CommentForm.css';
 
 function CommentForm({ getComments, token, currentConstituency}) {
 

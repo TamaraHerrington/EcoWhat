@@ -9,7 +9,7 @@ const EnvironmentalData = ({envData}) => {
         </div>
             :
         <div key={envData} className="env-data">
-            <h2>Environmental Data:</h2>
+            <h2>Environmental Data</h2>
             <p>County: {envData.countyName}</p>
             <p>Nitrogen Dioxide: {envData.nitrogenDioxide} ug/m3</p>
             <p>Particulate Matter: {envData.particulateMatter} ug/m3</p>
