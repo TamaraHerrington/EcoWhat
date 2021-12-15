@@ -60,7 +60,7 @@ function App() {
             <>
               <Route exact path="/" element={<Navigate to="/home" />} /> 
               <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
-              <Route path="/dashboard" element={<Navigate to="/login" />} />
+              <Route path="/profile" element={<Navigate to="/login" />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/youhelp" element={<YouHelp token={token}/>}/> 
             </>

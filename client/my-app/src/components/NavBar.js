@@ -1,6 +1,4 @@
 import { useState } from "react"
-
-import { useNavigate } from "react-router"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -9,19 +7,18 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 const NavBar = ({ token, onLogOut }) => {
 
     const [click, setClick] = useState(false);
+    
     const handleClick = () => {
         setClick(!click);
-        }
+    }
+
     const closeMenu = () => {
         setClick(false);
     }
 
-    const navigate = useNavigate()
-
     const handleLogOut = (event) => {
         event.preventDefault()
 
-        navigate("/home")
         onLogOut()   
     }
 
@@ -56,7 +53,7 @@ const NavBar = ({ token, onLogOut }) => {
                 {token ?
                     <>
                         <li onClick={closeMenu}><Link className="navbar-link" to="/profile">Profile</Link></li>
-                        <li onClick={closeMenu}><Link className="navbar-link" to="/home" onClick={handleLogOut}>Log Out</Link></li>
+                        <li onClick={closeMenu}><Link className="navbar-link" to="/" onClick={handleLogOut}>Log Out</Link></li>
                     </>
                     :
                     <>
