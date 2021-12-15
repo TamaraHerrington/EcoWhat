@@ -137,7 +137,7 @@ const MPContainer = ({currentConstituency, token}) => {
                 }
             }
         )
-        .then(() => getComments())
+        .then(() => getComments())}
     const getMpVotesEnergy = () => {
         fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
         .then(response => response.json())
@@ -178,6 +178,6 @@ const MPContainer = ({currentConstituency, token}) => {
     )
 
 }
-}
+
 
 export default MPContainer;
