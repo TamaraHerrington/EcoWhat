@@ -1,14 +1,41 @@
+.mp-section {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1rem;
+    padding: 4rem 10rem;
+}
+
+.mp-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.mp-info__header {
+    text-align: center;
+    border: 2px solid #777;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
 .mp-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 70vh;
-    margin-top: 150px;
+}
+
+
+.mp__image-container {
+    display: block;
+
+}
+
+.mp__img {
+    width: 100%;
 }
 
 .mp-container > main {
-    border: 1px solid #777;
+    border: 2px solid #777;
     padding: 2rem;
     border-radius: 3rem;
     text-align: center;
@@ -16,10 +43,30 @@
 
 .mp-name {
     margin: 0 0 1.5rem;
+    font-size: 2rem;
 }
 
-.mp-img {
+.mp__img-container {
+    width: 30rem;
+    height: 30rem;
+}
+
+.mp__img {
     width: 100%;
+}
+
+.mp-contact--icon {
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+}
+
+.mp-twitter--icon, .mp-mail--icon {
+    font-size: 2rem;
+    color: hotpink;
+    border: 1px solid #777;
+    padding: 0.5rem 0.7rem;
+    border-radius: 50%;
 }
 
 .mp-contact {
@@ -32,4 +79,16 @@
     font-size: 2rem;
     color: hotpink;
     text-decoration: none;
+}
+
+.mp-vote-titles {
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 700px) {
+    .mp-section {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2rem;
+    }
 }
