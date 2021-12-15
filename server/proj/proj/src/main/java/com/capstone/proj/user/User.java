@@ -1,10 +1,11 @@
 package com.capstone.proj.user;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.capstone.proj.comment.Comment;
+import lombok.*;
 
+import java.util.List;
+
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -19,15 +20,6 @@ public class User {
     private String postcode;
     private Integer constituencyId;
     private String constituencyName;
+    private List<Comment> commentList;
 
-    public User(Long id, String firstName, String lastName, String email, String password, String postcode, Integer constituencyId, String constituencyName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.postcode = postcode;
-        this.constituencyId = constituencyId;
-        this.constituencyName = constituencyName;
-    }
 }
