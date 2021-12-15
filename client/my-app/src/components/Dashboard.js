@@ -20,9 +20,31 @@ const Dashboard = ({ token }) => {
     return (
         <>
             {!user ?
-            <p>Loading...</p>
+            <p>Loading...</p> 
             :
-            <h1 className="profile-header">Welcome {user.firstName}</h1>
+            <section>
+                <header>
+                    <h1 className="profile-header">
+                        Welcome 
+                        {' ' + user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) + ' '} 
+                        {user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}
+                    </h1>
+                </header>
+                <main className="profile-main-card">
+                    <section className="profile-user-card">
+                        <img className="profile-user-img" 
+                            src={`https://avatars.dicebear.com/api/human/${user.firstName+user.lastName}.svg?size=200`} alt="User profile image" />
+                        <p>Email: {user.email}</p>
+                        <p>Constituency: {user.constituencyId}</p>
+
+                    </section>
+                    <section className="profile-user-comment-card">
+                        <p>lorem somth</p>
+
+                    </section>
+
+                </main>
+            </section>
             }
         </>
     )
