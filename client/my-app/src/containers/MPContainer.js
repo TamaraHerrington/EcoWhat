@@ -1,5 +1,6 @@
 import MP from '../components/mp/MP'
 import {useState, useEffect} from 'react';
+import EnvironmentalData from '../components/EnvironmentalData';
 import CommentsList from "../components/comments/CommentsList"
 import CommentForm from '../components/comments/CommentForm';
 
@@ -11,8 +12,19 @@ const MPContainer = ({currentConstituency, token}) => {
     const [mpVotesClimate, setMpVotesClimate] = useState([]);
     const [mpVotesEvironment, setMpVotesEnvironment] = useState([]);
     const [comments, setComments] = useState([]);
-    const [user, setUser] = useState(null);
     const [mpVotesEnergy, setMpVotesEnergy] = useState([])
+    const [envData, setEnvData] = useState(null)
+
+    const getCountyData = () => {
+        fetch(`http://localhost:8080/api/constituencies/${currentConstituency.constituency_id}/county`)
+        .then(response => response.text())
+        .then(data => {
+        fetch(`http://localhost:8080/api/environment/${data}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setEnvData(data)})})
+    }
 
     const getMpData = () => {
         fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + currentConstituency.constituency_id + "&IsCurrentMember=true")
@@ -157,7 +169,7 @@ const MPContainer = ({currentConstituency, token}) => {
         )
         .then(() => getComments())
     }
-
+    
     const getMpVotesEnergy = () => {
         fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
         .then(response => response.json())
@@ -184,15 +196,20 @@ const MPContainer = ({currentConstituency, token}) => {
         getMpVotesClimate();
         getMpVotesEnvironment();
         getMpVotesEnergy();
+        getCountyData();
+        console.log(envData)
     }, [])
 
     return (
         mpData != ""?
-        <>   
-        <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
+        <div className='mp-container'>
+        
+        <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
+        email={mpEmail} twitter={mpTwitter} envData={envData}/>
+        <EnvironmentalData envData={envData}/>
         <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
         <CommentsList token={token} comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
-        </>
+        </div>
         :
         <p>Loading...</p>
     )

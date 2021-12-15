@@ -48,7 +48,19 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
     return (
         <>
             {/* <h1>Constituencies Map</h1> */}
-            
+            <section class="youhelp">
+            <header className="youhelp__header">
+                <h1 className="youhelp__heading">Eco</h1>
+                <div class="scroll-container">
+                    <span class="scroll-text">
+                        Worrier? <br></br>
+                        Warrior? <br></br>
+                        What?
+                    </span>
+                </div>
+            </header>
+        </section>
+
             <h1 className='header'>Find your constituency. Understand your MPs stance on climate change. Have your say.</h1>
             <SearchBar setCurrentConstituency={setCurrentConstituency}/>
       <MapContainer className="map-container" style={{height: "80vh", width: "95vw"}} zoom={6.5} center={[53,0]}>

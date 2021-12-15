@@ -26,9 +26,8 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="e7286310-6224-4d00-915a-c3fba1865df2">
-        <schema name="information_schema" object-types="table, view" />
-        <schema name="pg_catalog" object-types="table, view" />
-        <schema name="public" object-types="table, view" />
+        <schema name="pg_catalog" object-types="table, view, function" />
+        <schema name="public" object-types="table, view, function" />
       </connection>
     </loaded-nodes>
   </component>
@@ -54,6 +53,7 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/proj/src/main/resources/db/migration/V9__Adding_Environment_Data.sql" connection-id="e7286310-6224-4d00-915a-c3fba1865df2" session-id="MAIN" current-schema="public" />
     <mapping file-url="file://$PROJECT_DIR$/proj/src/main/resources/db/migration/V2__Fixing_Typo.sql" connection-id="e7286310-6224-4d00-915a-c3fba1865df2" session-id="MAIN" current-schema="public" />
     <mapping file-url="file://$PROJECT_DIR$/proj/src/main/resources/db/migration/V1_1__.sql" connection-id="e7286310-6224-4d00-915a-c3fba1865df2" session-id="MAIN" current-schema="public" />
   </component>

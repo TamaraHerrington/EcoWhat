@@ -10,19 +10,21 @@ function CommentForm({ getComments, token, currentConstituency}) {
     const [comment, setComment] = useState();
     const [category, setCategory] = useState("Recylcing");
 
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/users/${token.userId}`,
-        {
-            method: 'POST',
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(token)
-        })
-        .then(response => response.json())
-        .then(data => setUser(data))
+        if (token) {
+            fetch(`http://localhost:8080/api/users/${token.userId}`,
+            {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(token)
+            })
+            .then(response => response.json())
+            .then(data => setUser(data))
+        }
     }, [token])
 
     //TODO: Add some logic for content checking here (swearing, banned words, etc)
