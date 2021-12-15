@@ -22,12 +22,12 @@ public class UserDataAccessService implements UserDAO{
     @Override
     public int createUser(User user) {
         String sql = """
-                INSERT INTO users (first_name, last_name, email, password, constituency_id)
-                VALUES (?, ?, ?, crypt(?, gen_salt('bf', 8)), ?);
+                INSERT INTO users (first_name, last_name, email, password, constituency_id, constituency_name)
+                VALUES (?, ?, ?, crypt(?, gen_salt('bf', 8)), ?, ?);
                 """;
         return jdbcTemplate.update(
                 sql,
-                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getConstituencyId()
+                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getConstituencyId(), user.getConstituencyName()
         );
     }
 
@@ -51,15 +51,26 @@ public class UserDataAccessService implements UserDAO{
     }
 
     @Override
+    public Optional<User> getUserByEmail(String email) {
+        String sql = """
+                SELECT * FROM users
+                WHERE email = ?;
+                """;
+        return jdbcTemplate.query(sql, userRowMapper, email)
+                .stream()
+                .findFirst();
+    }
+
+    @Override
     public int updateUser(int id, User user) {
         String sql = """
                 UPDATE users
-                SET first_name = ?, last_name = ?, email = ?, password = crypt(?, gen_salt('bf', 8)), constituency_id = ? 
+                SET first_name = ?, last_name = ?, email = ?, password = crypt(?, gen_salt('bf', 8)), constituency_id = ?, constituency_name = ? 
                 WHERE id = ?;
                 """;
         return jdbcTemplate.update(
                 sql,
-                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getConstituencyId(),
+                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getConstituencyId(), user.getConstituencyName(),
                 id
         );
     }
@@ -75,6 +86,7 @@ public class UserDataAccessService implements UserDAO{
 
     // || ===================  Login Authentication ===================== ||
 
+    @Override
     public Optional<User> authenticateLogin(String email, String password) {
         String sql = """
                 SELECT * FROM users
@@ -85,35 +97,36 @@ public class UserDataAccessService implements UserDAO{
                 .findFirst();
     }
 
-    @Override
-    public int updateUserToken(User user) {
-        String sql = """
-                UPDATE users
-                SET token = ?
-                WHERE id = ?;
-                """;
-        return jdbcTemplate.update(sql, user.getToken(), user.getId());
-    }
-
-    @Override
-    public Optional<User> findByToken(String token) {
-        String sql = """
-                SELECT * FROM users
-                WHERE token = ?;
-                """;
-        return jdbcTemplate.query(sql, userRowMapper, token)
-                .stream()
-                .findFirst();
-    }
-
-    @Override
-    public int removeTokenOnLogOut(String token) {
-        String sql = """
-                UPDATE users
-                SET token = null
-                WHERE token = ?;
-                """;
-        return jdbcTemplate.update(sql, token);
-    }
+    // old methods that don't coincide with token based authentication
+//    @Override
+//    public int updateUserToken(User user) {
+//        String sql = """
+//                UPDATE users
+//                SET token = ?
+//                WHERE id = ?;
+//                """;
+//        return jdbcTemplate.update(sql, user.getToken(), user.getId());
+//    }
+//
+//    @Override
+//    public Optional<User> findByToken(String token) {
+//        String sql = """
+//                SELECT * FROM users
+//                WHERE token = ?;
+//                """;
+//        return jdbcTemplate.query(sql, userRowMapper, token)
+//                .stream()
+//                .findFirst();
+//    }
+//
+//    @Override
+//    public int removeTokenOnLogOut(String token) {
+//        String sql = """
+//                UPDATE users
+//                SET token = null
+//                WHERE token = ?;
+//                """;
+//        return jdbcTemplate.update(sql, token);
+//    }
 
 }

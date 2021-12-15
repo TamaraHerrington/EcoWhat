@@ -56,7 +56,6 @@
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$PROJECT_DIR$/proj/src/main/resources/db/migration/V2__Fixing_Typo.sql" connection-id="e7286310-6224-4d00-915a-c3fba1865df2" session-id="MAIN" current-schema="public" />
     <mapping file-url="file://$PROJECT_DIR$/proj/src/main/resources/db/migration/V1_1__.sql" connection-id="e7286310-6224-4d00-915a-c3fba1865df2" session-id="MAIN" current-schema="public" />
-    <mapping file-url="file://$PROJECT_DIR$/proj/src/main/resources/db/migration/V4__Adding_Comments_Table.sql" connection-id="e7286310-6224-4d00-915a-c3fba1865df2" session-id="MAIN" current-schema="public" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
