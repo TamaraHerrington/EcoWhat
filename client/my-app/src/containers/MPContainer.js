@@ -1,5 +1,7 @@
-import MP from '../components/MP'
+import MP from '../components/mp/MP'
 import {useState, useEffect} from 'react';
+import CommentsList from "../components/comments/CommentsList"
+import CommentForm from '../components/comments/CommentForm';
 
 const MPContainer = ({currentConstituency, token}) => {
     const [mpData, setMpData] = useState("");
@@ -8,6 +10,7 @@ const MPContainer = ({currentConstituency, token}) => {
     const [mpVotesCarbon, setMpVotesCarbon] = useState([]);
     const [mpVotesClimate, setMpVotesClimate] = useState([]);
     const [mpVotesEvironment, setMpVotesEnvironment] = useState([]);
+    const [comments, setComments] = useState([]);
     const [user, setUser] = useState(null);
     const [mpVotesEnergy, setMpVotesEnergy] = useState([])
 
@@ -94,6 +97,47 @@ const MPContainer = ({currentConstituency, token}) => {
         )
     }
 
+
+    const getComments = () => {
+        fetch(
+            `http://localhost:8080/api/comments/constituency/${currentConstituency.constituency_id}`
+        )
+        .then(response => {
+                if(!response.ok){
+                    return response.json().then(err => {throw new Error(err.message)})
+                }
+                return response.json()})
+        .then(data => setComments(data))
+        .catch(err => {
+                const errorList = [{comment_title: "No comments available. Please try reloading"}]
+                setComments(errorList);
+            })
+    }
+
+    const upvoteComment = (id) => {
+        console.log("upvote")
+        fetch(`http://localhost:8080/api/comments/upvote/${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    "content-type": "application/json"
+                }
+            }
+        )
+        .then(() => getComments())
+    }
+
+    const downvoteComment = (id) => {
+        console.log("downvote")
+        fetch(`http://localhost:8080/api/comments/downvote/${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                "content-type": "application/json"
+                }
+            }
+        )
+        .then(() => getComments())
     const getMpVotesEnergy = () => {
         fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
         .then(response => response.json())
@@ -111,41 +155,29 @@ const MPContainer = ({currentConstituency, token}) => {
         )
     }
 
-    const getUser = () => {
-        fetch(`http://localhost:8080/api/users/user`,
-    {
-      method: 'POST',
-      headers: {
-          "content-type": "text/plain;charset=UTF-8"
-      },
-      body: `${token}`
-        
-    }).then(response => response.json())
-    .then(data => setUser(data))
-    }
-
     useEffect(() => {
         getMpData();
+        getComments();
         getMpEmail();
         getMpTwitter();
         getMpVotesCarbon();
         getMpVotesClimate();
         getMpVotesEnvironment();
-        getUser();
         getMpVotesEnergy();
     }, [])
 
     return (
         mpData != ""?
-        <>
-        
-        <MP user={user} mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
-        email={mpEmail} twitter={mpTwitter} />
+        <>   
+        <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment]} email={mpEmail} twitter={mpTwitter} />
+        <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
+        <CommentsList comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
         </>
         :
         <p>Loading...</p>
     )
 
+}
 }
 
 export default MPContainer;
