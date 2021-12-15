@@ -18,6 +18,7 @@ const YouHelp=()=>{
                 </div>
             </header>
         </section>
+            <p className="youhelp__comment">How you can help the environment...</p>
 
         <Card card />
         </>
