@@ -13,6 +13,7 @@ function CommentForm({ getComments, token, currentConstituency}) {
     const [user, setUser] = useState([])
 
     useEffect(() => {
+        if (token){
         fetch(`http://localhost:8080/api/users/${token.userId}`,
         {
             method: 'POST',
@@ -23,7 +24,7 @@ function CommentForm({ getComments, token, currentConstituency}) {
         })
         .then(response => response.json())
         .then(data => setUser(data))
-    }, [token])
+    }}, [token])
 
     //TODO: Add some logic for content checking here (swearing, banned words, etc)
     const handleCommentSubmit = (event) => {
