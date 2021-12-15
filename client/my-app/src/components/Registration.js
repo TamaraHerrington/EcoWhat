@@ -15,26 +15,44 @@ const Registration = () => {
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value)
+        if (error) {
+            setError(null)
+        }
     }
 
     const handleLastNameChange = (event) => {
         setLastName(event.target.value)
+        if (error) {
+            setError(null)
+        }
     }
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value)
+        if (error) {
+            setError(null)
+        }
     }
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value)
+        if (error) {
+            setError(null)
+        }
     }
 
     const handleConfirmPasswordChange = (event) => {
         setConfirmPassword(event.target.value)
+        if (error) {
+            setError(null)
+        }
     }
 
     const handlePostcodeChange = (event) => {
         setPostcode(event.target.value)
+        if (error) {
+            setError(null)
+        }
     }
 
     const handleSubmit = (event) => {
