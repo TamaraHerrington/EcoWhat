@@ -7,12 +7,12 @@ html {
 }
 
 body {
-  /* background-color: #b5afcc; */
+  background-color: #ececec; 
 }
 /* || ========================= Nav Bar ========================= || */
 
 nav {
-  background-color:#9db802;
+  background-color: turquoise;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -304,12 +304,21 @@ nav {
 .youhelp__card--5 {
   background: url(https://images.unsplash.com/photo-1470608756445-2c9906b0680f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80);
 }
+.youhelp__card--6 {
+  background: url(https://images.unsplash.com/photo-1523815378073-a43ae3fbf36a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2850&q=80);
+}
+
+.youhelp__card--7 {
+  background: url(https://images.unsplash.com/photo-1596078864284-bf704dda0cc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80);
+}
 
 .youhelp__card--1,
 .youhelp__card--2,
 .youhelp__card--3,
 .youhelp__card--4,
-.youhelp__card--5 {
+.youhelp__card--5,
+.youhelp__card--6,
+.youhelp__card--7  {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -318,7 +327,7 @@ nav {
 .youhelp__card-title {
   text-align: center;
   color: white;
-  font-size: large;
+  font-size: x-large;
 }
 
 .youhelp__card:hover {

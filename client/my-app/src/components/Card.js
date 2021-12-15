@@ -24,6 +24,14 @@ const Card = ()=> {
             <h2 class="youhelp__card-title">Engage in Politics</h2>
           </section>
 
+          <section class="youhelp__card youhelp__card--6">
+            <h2 class="youhelp__card-title">Travel Sustainably</h2>
+          </section>
+
+          <section class="youhelp__card youhelp__card--7">
+            <h2 class="youhelp__card-title">Conserve Water</h2>
+          </section>
+
         </section>
     )
 }
