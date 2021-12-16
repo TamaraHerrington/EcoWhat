@@ -9,26 +9,12 @@ function CommentForm({ getComments, token, currentConstituency }) {
     const [comment, setComment] = useState();
     const [category, setCategory] = useState("Recycling");
 
-    const [user, setUser] = useState(null)
-
-    useEffect(() => {
-        if (token) {
-            fetch(`http://localhost:8080/api/users/${token.userId}`,
-            {
-                method: 'POST',
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(token)
-            })
-            .then(response => response.json())
-            .then(data => setUser(data))
-        }
-    }, [token])
 
     const handleCommentSubmit = (event) => {
         event.preventDefault();
 
+        
+        
         if(comment && title && token){
 
             let Filter = require('bad-words'),
@@ -41,7 +27,7 @@ function CommentForm({ getComments, token, currentConstituency }) {
             const dateTime = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             
             const commentToSubmit = {
-                "userId" : user.id,
+                "userId" : token.userId,
                 "comment_title" : censoredTitle,
                 "comment": censoredComment,
                 "comment_category": category,
@@ -51,7 +37,7 @@ function CommentForm({ getComments, token, currentConstituency }) {
 
             console.log(commentToSubmit)
             const commentToSubmitJSON = JSON.stringify(commentToSubmit) 
-        
+
             fetch(
                 "http://localhost:8080/api/comments/add",
                 {

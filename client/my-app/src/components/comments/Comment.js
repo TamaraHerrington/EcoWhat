@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Comment({ token, comment, upvoteComment, downvoteComment }) {
+function Comment({token, comment, upvoteComment, downvoteComment}) {
 
     return (
         <div>
