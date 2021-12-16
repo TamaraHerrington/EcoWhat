@@ -197,7 +197,7 @@ const MPContainer = ({ currentConstituency, token }) => {
         getMpVotesEnvironment();
         getMpVotesEnergy();
         getCountyData();
-    }, [])
+    }, [currentConstituency])
 
     return (
         mpData !== "" ?
