@@ -38,7 +38,6 @@ public class ConstituencyController {
     @GetMapping("/{postcode}")
     public Constituency getConstituencyFromPostcode(@PathVariable("postcode") String postcode){
             return constituencyService.getConstituencyFromPostcode(postcode);
-
     }
 
 }

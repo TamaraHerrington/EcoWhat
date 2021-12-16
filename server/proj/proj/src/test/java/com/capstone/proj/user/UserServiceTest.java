@@ -1,5 +1,6 @@
 package com.capstone.proj.user;
 
+import com.capstone.proj.comment.CommentDAO;
 import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
 import com.capstone.proj.exception.BadRequest;
@@ -29,6 +30,7 @@ import static org.mockito.Mockito.*;
 class UserServiceTest {
     private UserService userServiceTest;
     private UserDAO userDAOMock;
+    private CommentDAO commentDAOMock;
     private TokenService tokenServiceMock;
     private ConstituencyService constituencyServiceMock;
     private Validator validatorMock;
@@ -36,10 +38,11 @@ class UserServiceTest {
     @BeforeEach
     void setUp() {
         userDAOMock = mock(UserDAO.class);
+        commentDAOMock = mock(CommentDAO.class);
         tokenServiceMock = mock(TokenService.class);
         constituencyServiceMock = mock(ConstituencyService.class);
         validatorMock = mock(Validator.class);
-        userServiceTest = new UserService(userDAOMock, tokenServiceMock, constituencyServiceMock, validatorMock);
+        userServiceTest = new UserService(userDAOMock, commentDAOMock,tokenServiceMock, constituencyServiceMock, validatorMock);
     }
 
     @Nested

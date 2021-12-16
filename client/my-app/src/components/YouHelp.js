@@ -2,24 +2,26 @@ import React from "react";
 import Card from "./Card";
 //import "./YouHelp.css";
 
-const YouHelp=()=>{
+const YouHelp = () => {
 
     return(
-    <>
-        <section class="youhelp">
-        <p> For A Better   </p>
-            <div class="scroll-container">
-                <span class="scroll-text">
-                    Planet <br></br>
-                    Future <br></br>
-                    Home
-                </span>
-            </div>
-        </section>
+        <>
+            <section className="youhelp">
+                <header className="youhelp__header">
+                    <h1 className="youhelp__heading">For A Better</h1>
+                    <div className="scroll-container">
+                        <span className="scroll-text">
+                            Planet <br></br>
+                            Future <br></br>
+                            You
+                        </span>
+                    </div>
+                </header>
+            </section>
+            <h2 className="youhelp__comment">How you can help the environment...</h2>
 
-        <Card card />
-        </>
-       
+            <Card card />
+        </>   
     )
 }
 

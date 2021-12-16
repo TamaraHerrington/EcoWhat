@@ -1,0 +1,9 @@
+.env-data{
+    margin-left: auto;
+    margin-right: 5%;
+    border: 2px solid #777;
+    border-radius: 20px;
+    text-align: center;
+    width: 70%;
+    font-size: 1.5rem;
+}
