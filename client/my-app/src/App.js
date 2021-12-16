@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Login from './components/login/Login';
-import Home from './components/Home';
+import Home from './containers/Home';
 import NavBar from './components/NavBar';
-import Dashboard from './components/Dashboard';
+import Dashboard from './containers/Dashboard';
 import Registration from './components/login/Registration';
 import MPContainer from './containers/MPContainer'
-import YouHelp from './components/YouHelp';
-import About from './components/About';
+import YouHelp from './containers/YouHelp';
+import About from './containers/About';
 
 function getSessionStorageOrDefault(key, defaultValue) {
   const stored = sessionStorage.getItem(key);
@@ -69,7 +69,7 @@ function App() {
             <>
               <Route exact path="/" element={<Navigate to="/home" />} />
               <Route path="/login" element={<Navigate to="/" />} />
-              <Route path="/profile" element={<Dashboard token={token} />} />
+              <Route path="/profile" element={<Dashboard token={token} setCurrentConstituency={setCurrentConstituency} />} />
               <Route path="/registration" element={<Navigate to="/" />} /> 
             </>
           }

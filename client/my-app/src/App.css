@@ -61,6 +61,10 @@ nav {
   color: black;
 }
 
+.logo-link:visited{
+  color: black;
+}
+
 .mobile-nav {
   display: none;
   list-style: none;

@@ -1,6 +1,6 @@
 import MP from '../components/mp/MP'
 import { useState, useEffect } from 'react';
-import EnvironmentalData from '../components/EnvironmentalData';
+import EnvironmentalData from '../components/mp/EnvironmentalData';
 import CommentsList from "../components/comments/CommentsList"
 import CommentForm from '../components/comments/CommentForm';
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import Comment from "./Comment"
 
-function CommentsList({token, comments, upvoteComment, downvoteComment}) {
+function CommentsList({token, comments, upvoteComment, downvoteComment, linkToConstituency}) {
 
     const commentComponents = comments.map(comment => {
         return(
-            <Comment key={comment.id} token={token} comment={comment} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
+            <Comment key={comment.id} token={token} comment={comment} upvoteComment={upvoteComment} downvoteComment={downvoteComment} linkToConstituency={linkToConstituency}/>
         )
     } )
 

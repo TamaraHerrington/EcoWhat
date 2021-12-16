@@ -2,7 +2,7 @@ import constituencies from '../data/constituencies.json';
 import { MapContainer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Home.css';
-import SearchBar from './SearchBar';
+import SearchBar from '../components/home/SearchBar';
 import { useNavigate } from 'react-router-dom';
 
 const Home = ({ token, currentConstituency, setCurrentConstituency }) => {

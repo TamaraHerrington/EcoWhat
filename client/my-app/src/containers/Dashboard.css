@@ -1,0 +1,33 @@
+
+@media only screen and (min-width: 600px){
+.profile-main-card{
+    display: grid;
+    grid-template-areas: "usercard comments comments"
+                         ". comments comments";
+
+    justify-content: left;
+    column-gap: 3rem;
+}
+}
+
+.profile-user-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid black;
+    max-width: fit-content;
+    margin:2rem;
+    border-radius: 2rem;
+    padding: 2rem;
+    grid-area: usercard;
+}
+
+.profile-user-card > p {
+    font-size: 1.5rem;
+    margin:0.3rem;
+}
+
+.profile-user-comment-card{
+    grid-area: comments;
+}
