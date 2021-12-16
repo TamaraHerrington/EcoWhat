@@ -45,10 +45,11 @@ function CommentForm({ getComments, token, currentConstituency }) {
         filter = new Filter();
  
         let censoredComment = filter.clean(comment);
+        let censoredTitle = filter.clean(title);
 
         const commentToSubmit = {
                         "userId" : user.id,
-                        "comment_title" : title,
+                        "comment_title" : censoredTitle,
                         "comment": censoredComment,
                         "comment_category": category,
                         "constituencyId": currentConstituency.constituency_id,
