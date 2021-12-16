@@ -35,11 +35,18 @@ function Comment({ token, comment, upvoteComment, downvoteComment, linkToConstit
         <div className='comment'>
             <div className='comment-title'>
                 {linkToConstituency ?
-                    <h2 onClick={() => linkToConstituency(comment.constituencyId)}>{comment.comment_title}</h2>
+                    <>
+                        <h2 onClick={() => linkToConstituency(comment.constituencyId)}>{comment.comment_title}</h2>
+                        <h2 className={categorise(comment)}>{comment.comment_category}</h2>
+                    </>
                 :
-                    <h2>{comment.comment_title}</h2>
+                    <>
+                        <h2>{comment.comment_title}</h2>
+                        <h2 className={categorise(comment)}>{comment.comment_category}</h2>
+                        <h3 className='comment-user'>Posted by: {comment.user_name}</h3>
+                    </>
                 }
-                <h2 className={categorise(comment)}>{comment.comment_category}</h2>
+                
             </div>
             <h3 className='comment-date'>{comment.post_date}</h3>
             <p className="comment-body">{comment.comment}</p>

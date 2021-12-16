@@ -443,14 +443,26 @@ nav {
   padding: 0 2rem;
 }
 
+.about-body--section-2{
+  margin:1rem;
+}
+
+.about-body--section-2 > p{
+  font-size: 2rem;
+}
+
+.about-body--section-2 > h2{
+  font-size: 3rem;
+}
+
 .about-body__img {
   width: 100%;
 }
 
 .about-social {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  column-gap:2rem;
 }
 
 .about-icon {
@@ -486,7 +498,6 @@ nav {
 /* || ========================= Comments ========================= || */
 
 .comments-section {
-  border: 2px solid #777;
   border-radius: 2rem;
   margin: 2rem;
   padding: 2rem;
@@ -506,7 +517,7 @@ nav {
 .comment-category-energy{
   background-color: red;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -514,7 +525,7 @@ nav {
 .comment-category-recycling{
   background-color: blue;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -522,7 +533,7 @@ nav {
 .comment-category-pollution{
   background-color: orange;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -530,7 +541,7 @@ nav {
 .comment-category-policy{
   background-color: purple;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -538,7 +549,7 @@ nav {
 .comment-category-farming{
   background-color: green;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -546,7 +557,13 @@ nav {
 
 .comment-date{
   color:rgba(82, 82, 82, 0.836);
-  margin:0;
+  margin:1rem;
+}
+
+.comment-user{
+  color:rgba(82, 82, 82, 0.836);
+  font-size: 1.4rem;
+  margin:0.2rem;
 }
 
 .comment-body{

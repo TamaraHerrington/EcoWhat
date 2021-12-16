@@ -1,5 +1,6 @@
 import VotesList from './VotesList';
 import './MP.css'
+import "../../App.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
@@ -41,8 +42,7 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
             <section className="mp-votes">
                 <main>
                     <div>
-                        <h2>Voting History</h2>
-                        <button type='button' onClick={() => setOpen(!open)}>Expand MP votes on environmental bills</button>
+                        <h2>Environmental Voting History</h2>
                         <table>
                             <thead className="mp-vote-table">
                                 <tr className="mp-vote-titles">
@@ -51,11 +51,17 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
                                 </tr>
                             </thead>
                             {open ? 
-                            <VotesList mpVotes={mpVotes}/>
+                            <>
+                                <VotesList mpVotes={mpVotes}/>
+                                <button type='button' className="collapse-votes-btn"onClick={() => setOpen(!open)}>See less votes ⬆</button>
+                            </>
                             :
                                 mpVotes.length > 0 ?
                                     mpVotes.length >= 5 ?
-                                        <VotesList mpVotes={mpVotes.slice(0, 5)}/>
+                                        <>
+                                            <VotesList mpVotes={mpVotes.slice(0, 5)}/>
+                                            <button type='button' className="collapse-votes-btn"onClick={() => setOpen(!open)}>See more votes ⬇</button>
+                                        </>
                                     :
                                         <VotesList mpVotes={mpVotes.slice(0, mpVotes.length)}/>
                                 :
@@ -63,6 +69,7 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
 
                             }
                         </table>
+                        
                     </div>
                 </main>
             </section>
