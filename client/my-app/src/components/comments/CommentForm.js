@@ -69,7 +69,7 @@ function CommentForm({ getComments, token, currentConstituency }) {
 
     return (
         <form className="comment-form" onSubmit={handleCommentSubmit}>
-            <h1 className="comment-header">Add Comment</h1>
+            <h2 className="comment-header">Add Comment</h2>
 
             <label forhtml="title">Title</label>
             <input type="text" id="comment-title" onChange={(event) => setTitle(event.target.value)}/>
@@ -84,9 +84,9 @@ function CommentForm({ getComments, token, currentConstituency }) {
             </select>
 
             <label forhtml="comment_body">Comment</label>
-            <input type="text" id="comment-text" onChange={(event) => setComment(event.target.value)}/>
+            <textarea className="comment-body" type="text" id="comment-text" onChange={(event) => setComment(event.target.value)}/>
 
-            <input type="submit" value="Leave comment"/>    
+            <input className="comment-submit-btn" type="submit" value="Leave comment"/>    
         </form>    
     )
 }
