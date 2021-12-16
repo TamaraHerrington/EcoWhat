@@ -197,7 +197,8 @@ const MPContainer = ({ currentConstituency, token }) => {
         getMpVotesEnvironment();
         getMpVotesEnergy();
         getCountyData();
-    }, [currentConstituency])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         mpData !== "" ?
