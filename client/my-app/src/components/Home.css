@@ -9,3 +9,30 @@
 .header{
     text-align: center;
 }
+
+.scroll-container--home {
+    font-size: 7.5rem;
+    height: 1.2em;
+    position: relative;
+    overflow: hidden;
+    width: 4em;
+    display: inline-block;
+  }
+  .scroll-text--home {
+    position: absolute;
+    top: 0;
+    animation: slide 5s infinite;
+    font-weight: bold; 
+  }
+  
+  @keyframes slide {
+    0% {
+      top: 0;
+    }
+    25% {
+      top: -1.2em;
+    }
+    50% {
+      top: -2.4em;
+    }
+  }

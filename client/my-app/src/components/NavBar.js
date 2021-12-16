@@ -48,7 +48,7 @@ const NavBar = ({ token, onLogOut }) => {
         </nav>
             <ul className={click ? "mobile-nav active" : "mobile-nav"}>
                 <li onClick={closeMenu}><Link className="navbar-link" to="/home">Home</Link></li>
-                <li onClick={closeMenu}><Link className="navbar-link" to="/home">About</Link></li>
+                <li onClick={closeMenu}><Link className="navbar-link" to="/about">About</Link></li>
                 <li onClick={closeMenu}><Link className="navbar-link" to="/youhelp">What You Can Do</Link></li>
                 {token ?
                     <>

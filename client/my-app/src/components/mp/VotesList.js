@@ -1,18 +1,10 @@
-const VotesList = ({mpVotes}) => {
+import Vote from "./Vote"
 
-    const voteComponentsList = mpVotes.map(votes=> {
+const VotesList = ({ mpVotes }) => {
+
+    const voteComponentsList = mpVotes.map((vote, index) => {
         return (
-            <>
-                    <tr>
-                        <td>
-                            <h2>{votes.title}</h2>
-                        </td>
-
-                        <td>
-                            <h2>{votes.vote===true? "✅": "❌"}</h2>
-                        </td>
-                    </tr>
-            </>
+            <Vote key={index} vote={vote} />
         )
     })
 

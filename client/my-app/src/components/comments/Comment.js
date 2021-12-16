@@ -8,10 +8,16 @@ function Comment({token, comment, upvoteComment, downvoteComment}) {
             <h4>{comment.comment_category}</h4>
             <h5>{comment.post_date}</h5>
             <p>{comment.comment}</p>
-            <h5>{comment.upvotes}</h5>
-            <button type="button" onClick={() => upvoteComment(token, comment.id)}>Upvote</button>
-            <h5>{comment.downvotes}</h5>
-            <button type="button" onClick={() => downvoteComment(token, comment.id)}> Downvote</button>
+            {upvoteComment && downvoteComment ?
+                <>
+                    <h5>{comment.upvotes}</h5>
+                    <button type="button" onClick={() => upvoteComment(token.userId, comment.id)}>Upvote</button>
+                    <h5>{comment.downvotes}</h5>
+                    <button type="button" onClick={() => downvoteComment(token.userId, comment.id)}>Downvote</button>
+                </>
+                :
+                <></>
+            }
         </div>
     )
 }

@@ -9,6 +9,12 @@ function CommentsList({token, comments, upvoteComment, downvoteComment}) {
         )
     } )
 
+    const compareNumbers = (a, b) => {
+        return b.key - a.key;
+    }
+
+    commentComponents.sort(compareNumbers)
+
     return (
        commentComponents
     )
