@@ -36,18 +36,19 @@ const Dashboard = ({ token, setCurrentConstituency }) => {
             <p>Loading...</p> 
             :
             <section>
-                <header>
+                {/* <header>
                     <h1 className="profile-header">
                         Welcome 
                         {' ' + user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) + ' '} 
                         {user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}
                     </h1>
-                </header>
+                </header> */}
                 <main className="profile-main-card">
                     <section className="profile-user-card">
                         <img className="profile-user-img" 
                             src={`https://avatars.dicebear.com/api/jdenticon/${user.firstName+user.lastName}.svg?size=200`} alt="User avatar" />
-                        <p>Email: {user.email}</p>
+                        <p>Name: {' ' + user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) + ' '} 
+                        {user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}</p>
                         <p>Constituency: {user.constituencyName}</p>
                     </section>
                     <section className="profile-user-comment-card">
