@@ -19,11 +19,11 @@ input[type=submit]{
     margin-top: 2em;
     border-color: transparent;
 }
-input[type=submit]:hover{
+.comment-form input[type=submit]:hover{
     background-color: rgb(194, 255, 249);
 }
 
-input[type=text]{
+.comment-form input[type=text]{
     border-radius: 10px;
     border: turquoise solid 1px;
     height: 2em;
