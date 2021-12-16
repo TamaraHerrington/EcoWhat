@@ -2,7 +2,7 @@
 
 
 <h3>Introduction</h3>
-<hr>
+
 
 <h3>About the project</h3>
 <hr>
