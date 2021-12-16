@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import './Home.css';
 import SearchBar from '../components/home/SearchBar';
 import { useNavigate } from 'react-router-dom';
-import {useState, useLayoutEffect} from 'react';
+import { useState, useLayoutEffect } from 'react';
 
 const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
     const [windowSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
@@ -25,7 +25,9 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
         //     setZoom(6);
         // }
         return () => window.removeEventListener('resize', updateSize);
-      }, []);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     console.log(windowSize);
     
 

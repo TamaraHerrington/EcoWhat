@@ -32,13 +32,13 @@ const About = () => {
             <p>Welcome to EcoWhat? We're a team of eco-concious software engineers looking to make a positive change for the environment.
             Together we developed EcoWhat? - a website that allows you to get involved in eco-activism. Here you can search for your MP and use our auto-generated templates to ask them to care more for the environemnt. </p>
                 <div className="about-social">
-                    <a className="about-icon" href="#">
+                    <a className="about-icon" href="https://www.google.co.uk">
                     <FontAwesomeIcon icon={ faFacebook } />
                     </a>
-                    <a className="about-icon" href="#">
+                    <a className="about-icon" href="https://www.google.co.uk">
                     <FontAwesomeIcon icon={ faTwitter } />
                     </a>
-                    <a className="about-icon" href="#">
+                    <a className="about-icon" href="https://www.google.co.uk">
                     <FontAwesomeIcon icon={ faInstagram } />
                     </a>
                 </div>
