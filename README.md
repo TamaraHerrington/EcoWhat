@@ -2,8 +2,10 @@
 
 
 <h3>Introduction</h3>
+<hr>
 
 <h3>About the project</h3>
+<hr>
 Using React
 
 <h4>Features</h4>
@@ -17,6 +19,7 @@ Using React
 </ul>
 
 <h3>How to Set Up and Use</h3>
+<hr>
 <h4>Setup</h4>
 First, clone or download this repository. 
 The Spring Boot backend requires a local PostgreSQL database. If you do not have Psql set up on your machine, install it! This website provides a great walkthrough, just make sure to keep a note of your Psql username and password: https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database  
