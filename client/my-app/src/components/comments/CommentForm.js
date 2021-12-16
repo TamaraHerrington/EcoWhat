@@ -19,6 +19,11 @@ function CommentForm({ getComments, token, currentConstituency }) {
  
             let censoredComment = filter.clean(comment);
             let censoredTitle = filter.clean(title);
+
+            if (censoredComment !== comment || censoredTitle !== title) {
+                alert("You cannot post an inappropriate comment");
+                return;
+            }
         
             const today = new Date();
             const dateTime = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
