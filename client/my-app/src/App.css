@@ -517,7 +517,7 @@ nav {
 .comment-category-energy{
   background-color: red;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -525,7 +525,7 @@ nav {
 .comment-category-recycling{
   background-color: blue;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -533,7 +533,7 @@ nav {
 .comment-category-pollution{
   background-color: orange;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -541,7 +541,7 @@ nav {
 .comment-category-policy{
   background-color: purple;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -549,7 +549,7 @@ nav {
 .comment-category-farming{
   background-color: green;
   color: white;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 3rem;
   margin: 0;
 }
@@ -557,7 +557,13 @@ nav {
 
 .comment-date{
   color:rgba(82, 82, 82, 0.836);
-  margin:0;
+  margin:1rem;
+}
+
+.comment-user{
+  color:rgba(82, 82, 82, 0.836);
+  font-size: 1.4rem;
+  margin:0.2rem;
 }
 
 .comment-body{
