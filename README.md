@@ -8,12 +8,12 @@ Using React
 
 <h4>Features</h4>
 <ul>
-  <li><em>Encrypted passwords</em> for secure user login</li>
-  <li><em>Find your constituency</em> through our postcode search or <em>interactive map</em> that redirects you to the matching constituency page</li>
-  <li><em>Comments</em> for logged in users, which can be upvoted or downvoted and are censored for inappropriate language</li>
-  <li><em>Declarative component routing</em> using React Router to create several 'pages'</li>
-  <li><em>Up-to-date data</em> from the government's MP and votes APIs</li>
-  <li><em>Tweet or email your MP</em> from their constituency page</li>
+  <li><strong>Encrypted passwords</strong> for secure user login</li>
+  <li><strong>Find your constituency</strong> through our postcode search or <strong>interactive map</strong> that redirects you to the matching constituency page</li>
+  <li><strong>Comments</strong> for logged in users, which can be upvoted or downvoted and are censored for inappropriate language</li>
+  <li><strong>Declarative component routing</strong> using React Router to create several 'pages'</li>
+  <li><strong>Up-to-date data</strong> from the government's MP and votes APIs</li>
+  <li><strong>Tweet or email your MP</strong> from their constituency page</li>
 </ul>
 
 <h3>How to Set Up and Use</h3>
