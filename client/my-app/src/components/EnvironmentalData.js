@@ -1,7 +1,6 @@
 import './EnvironmentalData.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import { faTemperatureHigh } from "@fortawesome/free-solid-svg-icons";
 import { faTemperatureLow } from "@fortawesome/free-solid-svg-icons";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
