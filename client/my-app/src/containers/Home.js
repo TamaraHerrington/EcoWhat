@@ -4,8 +4,31 @@ import 'leaflet/dist/leaflet.css';
 import './Home.css';
 import SearchBar from '../components/home/SearchBar';
 import { useNavigate } from 'react-router-dom';
+import {useState, useLayoutEffect} from 'react';
 
 const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
+    const [windowSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
+    const [mapZoom, setZoom] = useState(7);
+    const [mapCenter, setMapCenter] = useState([53,0]);
+
+    useLayoutEffect(() => {
+        function updateSize() {
+          setWindowSize([window.innerWidth, window.innerHeight]);
+        }
+        window.addEventListener('resize', updateSize);
+        updateSize();
+        if (windowSize[0]<600){
+            setZoom(6);
+            setMapCenter([52, -2]);
+        }
+        // else if (windowSize[0]<900){
+        //     setZoom(6);
+        // }
+        return () => window.removeEventListener('resize', updateSize);
+      }, []);
+    console.log(windowSize);
+    
+
     const navigate = useNavigate();
 
     const mapStyle = {
@@ -63,8 +86,9 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
             <h2 className='header'>Find your constituency. Understand your MPs stance on climate change. Have your say.</h2>
             <SearchBar setCurrentConstituency={setCurrentConstituency}/>
 
-            <MapContainer className="map-container" style={{height: "80vh", width: "95vw"}} zoom={6.5} center={[53,0]}>
-                <GeoJSON className="geo-json" style={mapStyle} data={constituencies.features} onEachFeature={onEachConstituency}/>
+            <MapContainer key={mapZoom} className="map-container" style={{height: "80vh", width: "95vw"}} 
+            zoom={mapZoom} scrollWheelZoom={false} center={mapCenter}>
+                <GeoJSON key={mapZoom} className="geo-json" style={mapStyle} data={constituencies.features} onEachFeature={onEachConstituency}/>
             </MapContainer>
         </>
     )
