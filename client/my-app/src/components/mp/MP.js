@@ -4,11 +4,13 @@ import './MP.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import {useState} from "react";
 
 const MP = ({ mpData, mpVotes, email, twitter, user }) => {
 
     const tweetText = "Please care more about the environment!";
     const emailText = `Dear ${mpData[0].value.nameDisplayAs}, I am a constituent concerned about the environment, please help, From ${user==null?"your costituent": user.firstName + " " + user.latName}`;
+    const [open, setOpen] = useState(false);
 
     return (
         <section className="mp-section">
@@ -40,6 +42,7 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
                 <main>
                     <div>
                         <h2>Voting History</h2>
+                        <button type='button' onClick={() => setOpen(!open)}>Expand MP votes on environmental bills</button>
                         <table>
                             <thead className="mp-vote-table">
                                 <tr className="mp-vote-titles">
@@ -47,7 +50,18 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
                                     <th>Vote</th>
                                 </tr>
                             </thead>
+                            {open ? 
                             <VotesList mpVotes={mpVotes}/>
+                            :
+                                mpVotes.length > 0 ?
+                                    mpVotes.length >= 5 ?
+                                        <VotesList mpVotes={mpVotes.slice(0, 5)}/>
+                                    :
+                                        <VotesList mpVotes={mpVotes.slice(0, mpVotes.length)}/>
+                                :
+                                <></>
+
+                            }
                         </table>
                     </div>
                 </main>
