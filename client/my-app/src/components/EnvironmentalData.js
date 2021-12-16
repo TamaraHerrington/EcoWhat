@@ -11,11 +11,11 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 const EnvironmentalData = ({envData}) => {
     
     return (envData === undefined ?
-        <div key={envData} className="env-data">           
+        <section key={envData} className="env-data">           
             <p>Loading...</p>
-        </div>
+        </section>
             :
-        <div key={envData} className="env-data">
+        <section key={envData} className="env-data">
             <h2>Environmental Data</h2>
             <p><FontAwesomeIcon icon={faMapMarkerAlt} /> County: {envData.countyName}</p>
             <p><FontAwesomeIcon icon={faAtom} /> Nitrogen Dioxide: {envData.nitrogenDioxide} ug/m3</p>
@@ -23,7 +23,7 @@ const EnvironmentalData = ({envData}) => {
             <p><FontAwesomeIcon icon={faSeedling} /> Herbicides: {envData.herbicides} kg</p>
             <p><FontAwesomeIcon icon={faTemperatureHigh} /> DBPs Summer: {envData.dbpsSummer}</p>
             <p><FontAwesomeIcon icon={faTemperatureLow} /> DBPs Winter: {envData.dbpsWinter}</p>
-        </div>
+        </section>
     )
 }
 

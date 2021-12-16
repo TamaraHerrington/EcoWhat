@@ -36,7 +36,7 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
                 </header>
             </section>
 
-            <section className="mp-container">
+            <section className="mp-votes">
                 <main>
                     <div>
                         <h2>Voting History</h2>
