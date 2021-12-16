@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8bdf44e7-840d-420e-bac8-79b02e0886e7" name="Changes" comment="Add Environment data C">
-      <change beforePath="$PROJECT_DIR$/../client/my-app/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/my-app/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/my-app/src/components/comments/Comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/my-app/src/components/comments/Comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/my-app/src/components/comments/CommentsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/my-app/src/components/comments/CommentsList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/my-app/src/containers/MPContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/my-app/src/containers/MPContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="8bdf44e7-840d-420e-bac8-79b02e0886e7" name="Changes" comment="Add Environment data C" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
