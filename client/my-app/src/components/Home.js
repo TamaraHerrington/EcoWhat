@@ -50,8 +50,8 @@ const Home = ({ token, currentConstituency, setCurrentConstituency }) => {
             <section className="youhelp">
                 <header className="youhelp__header">
                     <h1 className="youhelp__heading">Eco</h1>
-                    <div className="scroll-container">
-                        <span className="scroll-text">
+                    <div className="scroll-container--home">
+                        <span className="scroll-text--home">
                             Worrier? <br></br>
                             Warrior? <br></br>
                             What?
