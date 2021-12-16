@@ -1,15 +1,13 @@
 .comment-form{
     border: 2px solid #777;
     border-radius: 15px;
-    width: 90vw;
     padding: 1em;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     display: flex;
     flex-direction: column;
-    margin-top: 3em;
-    margin-bottom: 3em;
+    margin-bottom: 1rem;
 }
 
 input[type=submit]{

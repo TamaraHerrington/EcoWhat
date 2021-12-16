@@ -208,13 +208,15 @@ const MPContainer = ({ currentConstituency, token }) => {
 
     return (
         mpData !== "" ?
-        <div className='mp-container'>   
+        <section className='mp-container'>   
             <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
                 email={mpEmail} twitter={mpTwitter} envData={envData}/>
             <EnvironmentalData envData={envData}/>
+            <section className="comments-section">
             <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
             <CommentsList token={token} comments={comments} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
-        </div>
+            </section>
+        </section>
         :
         <p>Loading...</p>
     )
