@@ -2,11 +2,13 @@
 
 
 <h2>Introduction</h2>
+A full stack application centred around climate activism, EcoWhat? allows you to understand your MPs stance on climate change and have your say about it.
 
 
 <h2>About the project</h2>
 
-Using React
+This project was created as part of the Bright Network Technology Academy bootcamp. It features a React front end and Spring Boot back end connected to a PostgreSQL database. We also use open APIs in the front and back end to collate information on Members of Parliament and their voting history on the environment.
+Our database stores user information and comments, as well as environmental and geographic data, which our API allows us to use in the front end.
 
 <h3>Features</h3>
 <ul>
