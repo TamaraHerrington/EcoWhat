@@ -3,7 +3,7 @@ import Comment from "./Comment"
 
 function CommentsList({token, comments, upvoteComment, downvoteComment}) {
 
-    const commentComponents = comments.map((comment) =>{
+    const commentComponents = comments.map(comment => {
         return(
             <Comment key={comment.id} token={token} comment={comment} upvoteComment={upvoteComment} downvoteComment={downvoteComment}/>
         )
