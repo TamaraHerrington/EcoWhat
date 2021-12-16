@@ -53,6 +53,14 @@ nav {
   cursor: pointer;
 }
 
+.logo-link{
+  text-decoration: none;
+}
+
+.logo-link:active{
+  color: black;
+}
+
 .mobile-nav {
   display: none;
   list-style: none;
