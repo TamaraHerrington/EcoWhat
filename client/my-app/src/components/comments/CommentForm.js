@@ -1,31 +1,32 @@
-import { DomEvent } from 'leaflet'
 import React from 'react'
 import {useState, useEffect} from "react";
 import { Link } from 'react-router-dom'
 import react from 'react';
 import './CommentForm.css';
 
-function CommentForm({ getComments, token, currentConstituency}) {
+
+function CommentForm({ getComments, token, currentConstituency }) {
 
     const [title, setTitle] = useState();
     const [comment, setComment] = useState();
-    const [category, setCategory] = useState("Recylcing");
+    const [category, setCategory] = useState("Recycling");
 
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
-        if (token){
-        fetch(`http://localhost:8080/api/users/${token.userId}`,
-        {
-            method: 'POST',
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(token)
-        })
-        .then(response => response.json())
-        .then(data => setUser(data))
-    }}, [token])
+        if (token) {
+            fetch(`http://localhost:8080/api/users/${token.userId}`,
+            {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(token)
+            })
+            .then(response => response.json())
+            .then(data => setUser(data))
+        }
+    }, [token])
 
     //TODO: Add some logic for content checking here (swearing, banned words, etc)
     const handleCommentSubmit = (event) => {
@@ -90,12 +91,12 @@ function CommentForm({ getComments, token, currentConstituency}) {
         <form className="comment-form" onSubmit={handleCommentSubmit}>
                     <h1 className="comment-header">Add Comment</h1>
 
-                    <label forHtml="title">Title</label>
+                    <label forhtml="title">Title</label>
                     <input type="text" id="comment-title" onChange={(event) => setTitle(event.target.value)}/>
 
-                    <label forHtml="category">Choose a relevant category</label>
+                    <label forhtml="category">Choose a relevant category</label>
                     <select id="categories" name="categories" onChange={(event) => setCategory(event.target.value)}>
-                        <option value="Recyling">Recyling</option>
+                        <option value="Recycling">Recycling</option>
                         <option value="Pollution">Pollution</option>
                         <option value="Policy">Policy</option>
                         <option value="Energy">Energy</option>

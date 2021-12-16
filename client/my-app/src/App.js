@@ -22,7 +22,9 @@ function getSessionStorageOrDefault(key, defaultValue) {
 function App() {
   
 
-  const [currentConstituency, setCurrentConstituency] = useState(getSessionStorageOrDefault("currentConstituency", null));
+  const [currentConstituency, setCurrentConstituency] = useState(
+    getSessionStorageOrDefault("currentConstituency", null)
+  );
 
   const [token, setToken] = useState(
     getSessionStorageOrDefault('token', null)
@@ -59,10 +61,9 @@ function App() {
             !token ?
             <>
               <Route exact path="/" element={<Navigate to="/home" />} /> 
-              <Route path="/login" element={<Login onLogin={onLogin} token={token}/>} />
-              <Route path="/dashboard" element={<Navigate to="/login" />} />
+              <Route path="/login" element={<Login onLogin={onLogin} token={token} />} />
+              <Route path="/profile" element={<Navigate to="/login" />} />
               <Route path="/registration" element={<Registration />} />
-              <Route path="/youhelp" element={<YouHelp token={token}/>}/> 
             </>
             :
             <>
@@ -70,14 +71,14 @@ function App() {
               <Route path="/login" element={<Navigate to="/" />} />
               <Route path="/profile" element={<Dashboard token={token} />} />
               <Route path="/registration" element={<Navigate to="/" />} /> 
-              <Route path="/youhelp" element={<YouHelp token={token}/>}/> 
             </>
           }
           
-          <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency}/>} />
+          <Route path="/home" element={<Home token={token} currentConstituency={currentConstituency} setCurrentConstituency={setCurrentConstituency} />} />
           <Route path="/about" element={<About /> } /> 
+          <Route path="/youhelp" element={<YouHelp token={token} />} /> 
           {/* <Route path={`/constituency/${currentConstituency.constituency_id}`} element={<MPContainer currentConstituency={currentConstituency}/>}/> */}
-          <Route path={`/constituency/current`} element={<MPContainer token={token} currentConstituency={currentConstituency}/>}/>
+          <Route path="/constituency/current" element={<MPContainer token={token} currentConstituency={currentConstituency} />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import './EnvironmentalData.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,7 +11,7 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 const EnvironmentalData = ({envData}) => {
     
-    return(envData==undefined?
+    return (envData === undefined ?
         <div key={envData} className="env-data">           
             <p>Loading...</p>
         </div>
@@ -26,7 +25,6 @@ const EnvironmentalData = ({envData}) => {
             <p><FontAwesomeIcon icon={faTemperatureHigh} /> DBPs Summer: {envData.dbpsSummer}</p>
             <p><FontAwesomeIcon icon={faTemperatureLow} /> DBPs Winter: {envData.dbpsWinter}</p>
         </div>
-
     )
 }
 
