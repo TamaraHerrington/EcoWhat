@@ -1,8 +1,17 @@
-const Vote = ({vote}) => {
+const Vote = ({ vote }) => {
+
     return (
-        <div className="vote">
-            <h2>Bill: {JSON.stringify(vote.PublishedDivision.Title)}</h2>
-        </div>
+        <>
+            <tr>
+                <td>
+                    <h2>{vote.title}</h2>
+                </td>
+
+                <td>
+                    <h2>{vote.vote===true? "✅": "❌"}</h2>
+                </td>
+            </tr>
+        </>
     )
 }
 

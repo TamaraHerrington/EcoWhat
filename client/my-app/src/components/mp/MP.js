@@ -36,26 +36,21 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
                 </header>
             </section>
 
-
-            <section key={mpData} className="mp-container">
+            <section className="mp-container">
                 <main>
-                
-                <div>
-                    <h2>Voting History</h2>
-                    <table>
-                        <thead className="mp-vote-table">
-                            <tr className="mp-vote-titles">
-                                <th>Bill</th>
-                                <th>Vote</th>
-                            </tr>
-                        </thead>
-                    <VotesList mpVotes={mpVotes}/>
-                    </table>
-                </div>
-
-
+                    <div>
+                        <h2>Voting History</h2>
+                        <table>
+                            <thead className="mp-vote-table">
+                                <tr className="mp-vote-titles">
+                                    <th>Bill</th>
+                                    <th>Vote</th>
+                                </tr>
+                            </thead>
+                            <VotesList mpVotes={mpVotes}/>
+                        </table>
+                    </div>
                 </main>
-
             </section>
 
         </section>

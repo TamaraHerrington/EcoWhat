@@ -1,7 +1,5 @@
 import React from 'react'
-import {useState, useEffect} from "react";
-import { Link } from 'react-router-dom'
-import react from 'react';
+import { useState, useEffect } from "react";
 import './CommentForm.css';
 
 
@@ -28,7 +26,6 @@ function CommentForm({ getComments, token, currentConstituency }) {
         }
     }, [token])
 
-    //TODO: Add some logic for content checking here (swearing, banned words, etc)
     const handleCommentSubmit = (event) => {
         event.preventDefault();
 
@@ -103,10 +100,8 @@ function CommentForm({ getComments, token, currentConstituency }) {
             <label forhtml="comment_body">Comment</label>
             <input type="text" id="comment-text" onChange={(event) => setComment(event.target.value)}/>
 
-            <input type="submit" value="Leave comment"/>
-            
-        </form>
-        
+            <input type="submit" value="Leave comment"/>    
+        </form>    
     )
 }
 
