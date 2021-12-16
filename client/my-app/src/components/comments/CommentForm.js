@@ -1,7 +1,6 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import './CommentForm.css';
-
 
 function CommentForm({ getComments, token, currentConstituency }) {
 
@@ -13,8 +12,6 @@ function CommentForm({ getComments, token, currentConstituency }) {
     const handleCommentSubmit = (event) => {
         event.preventDefault();
 
-        
-        
         if(comment && title && token){
 
             let Filter = require('bad-words'),
@@ -55,7 +52,7 @@ function CommentForm({ getComments, token, currentConstituency }) {
             })
             .then(() => getComments())
             .catch(err => {
-                alert("Comment not posted. Please try again" + err);
+                alert("Comment not posted. Please try again");
             })
         }
         else if(comment && title && !token){

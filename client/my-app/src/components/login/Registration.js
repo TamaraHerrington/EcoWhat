@@ -11,55 +11,36 @@ const Registration = () => {
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [postcode, setPostcode] = useState("")
-    const [error, setError] = useState(null)
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value)
-        if (error) {
-            setError(null)
-        }
     }
 
     const handleLastNameChange = (event) => {
         setLastName(event.target.value)
-        if (error) {
-            setError(null)
-        }
     }
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value)
-        if (error) {
-            setError(null)
-        }
     }
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value)
-        if (error) {
-            setError(null)
-        }
     }
 
     const handleConfirmPasswordChange = (event) => {
         setConfirmPassword(event.target.value)
-        if (error) {
-            setError(null)
-        }
     }
 
     const handlePostcodeChange = (event) => {
         setPostcode(event.target.value)
-        if (error) {
-            setError(null)
-        }
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
         if (password !== confirmPassword) {
-            setError(new Error("Passwords do not match"));
+            alert("Passwords do not match")
         } else {
 
             const newUser = {
@@ -86,8 +67,18 @@ const Registration = () => {
                     navigate("/login")
                 }
             })
-            .catch(err => setError(err))
-
+            .catch(err => {
+                switch (err.message) {
+                    case "Invalid email address":
+                        alert("Please enter a valid email address");
+                        break;
+                    case "Invalid password":
+                        alert("Please enter a valid password");
+                        break;
+                    default:
+                        alert(err.message);
+                }
+            })
         }
     }
 
@@ -128,14 +119,6 @@ const Registration = () => {
                     <input type="text" id="postcode" value={postcode} required onChange={handlePostcodeChange}/>
 
                     <input className="signup-btn" type="submit" value="Sign Up"/>
-
-                    {(() => {
-                        if (error) {
-                            return (
-                                <p>{error.message}</p>
-                            )
-                        }
-                    })()}
                 </form>
             </main>
         </section>
