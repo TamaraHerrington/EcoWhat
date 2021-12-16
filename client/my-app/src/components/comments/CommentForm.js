@@ -41,10 +41,15 @@ function CommentForm({ getComments, token, currentConstituency }) {
         console.log(currentConstituency.constituency_id)
         console.log(dateTime)
 
+        let Filter = require('bad-words'),
+        filter = new Filter();
+ 
+        let censoredComment = filter.clean(comment);
+
         const commentToSubmit = {
                         "userId" : user.id,
                         "comment_title" : title,
-                        "comment": comment,
+                        "comment": censoredComment,
                         "comment_category": category,
                         "constituencyId": currentConstituency.constituency_id,
                         "post_date": dateTime
