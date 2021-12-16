@@ -33,13 +33,20 @@ function CommentForm({ getComments, token, currentConstituency }) {
         event.preventDefault();
 
         if(comment && title && token){
+
+            let Filter = require('bad-words'),
+            filter = new Filter();
+ 
+            let censoredComment = filter.clean(comment);
+            let censoredTitle = filter.clean(title);
+        
             const today = new Date();
             const dateTime = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             
             const commentToSubmit = {
                 "userId" : user.id,
-                "comment_title" : title,
-                "comment": comment,
+                "comment_title" : censoredTitle,
+                "comment": censoredComment,
                 "comment_category": category,
                 "constituencyId": currentConstituency.constituency_id,
                 "post_date": dateTime
