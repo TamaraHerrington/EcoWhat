@@ -37,6 +37,7 @@
 .mp-votes {
     display: flex;
     justify-content: center;
+    height:fit-content;
 }
 
 .mp-votes > main {
@@ -96,4 +97,15 @@
         flex-direction: column;
         row-gap: 2rem;
     }
+}
+
+.collapse-votes-btn{
+    width: 50%;
+    margin: auto;
+    border-radius: 10px;
+    background-color: turquoise;
+    padding: 0.5em;
+    margin-top: 2em;
+    border-color: transparent;
+    cursor: pointer;
 }

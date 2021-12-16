@@ -16,7 +16,7 @@ const EnvironmentalData = ({envData}) => {
         </section>
             :
         <section key={envData} className="env-data">
-            <h2>Environmental Data</h2>
+            <h2>Local Environmental Data</h2>
             <p><FontAwesomeIcon icon={faMapMarkerAlt} /> County: {envData.countyName}</p>
             <p><FontAwesomeIcon icon={faAtom} /> Nitrogen Dioxide: {envData.nitrogenDioxide} ug/m3</p>
             <p><FontAwesomeIcon icon={faAirFreshener} /> Particulate Matter: {envData.particulateMatter} ug/m3</p>
