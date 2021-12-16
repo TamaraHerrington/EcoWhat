@@ -5,7 +5,7 @@
 
 
 <h3>About the project</h3>
-<hr>
+<hr style="border:1px solid gray"> </hr>
 Using React
 
 <h4>Features</h4>
