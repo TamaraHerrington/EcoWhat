@@ -52,7 +52,7 @@ function CommentForm({ getComments, token, currentConstituency }) {
             })
             .then(() => getComments())
             .catch(err => {
-                alert("Comment not posted. Please try again" + err);
+                alert("Comment not posted. Please try again");
             })
         }
         else if(comment && title && !token){

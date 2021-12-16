@@ -1,30 +1,18 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = ({ onLogin }) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState(null)
-
-    useEffect(() => {
-        setEmail("")
-        setPassword("")
-    }, [])
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value)
-        if (error) {
-            setError(null)
-        }
     }
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value)
-        if (error) {
-            setError(null)
-        }
     }
 
     const handleSubmit = (event) => {
@@ -43,7 +31,13 @@ const Login = ({ onLogin }) => {
         })
         .then(data => onLogin(data))
         .catch(err => {
-            setError(err)
+            switch (err.message) {
+                case "Invalid email address":
+                    alert("Please enter a valid email address");
+                    break;
+                default:
+                    alert(err.message)   
+            }
         })
     }
 
@@ -65,15 +59,6 @@ const Login = ({ onLogin }) => {
                         <p>Need an account?</p>
                         <Link to="/registration">Sign Up</Link>
                     </div>
-
-                    {(() => {
-                        if (error) {
-                            return (
-                                <p>{error.message}</p>
-                            )
-                        }
-                    })()}
-                    
                 </form>
             </main>  
         </section>
