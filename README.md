@@ -33,7 +33,7 @@ The About page provide information on the background of the project, and the Wha
 Most of the content is on the constituency pages, which can be accessed either by selecting a consituency through the map, or submitting a postcode through the search bar. Users can then toggle a list of of climate related votes the MP for that constituency has taken, as well as send them a tweet or email asking them to do more for the environment. Each constituency has a comments section, where logged in users can post comments and upvote or downvote them.  
 
 
-Team:
+<h4>Team:</h4>
 <ul>
   <li>Helena</li>
    <li>Chaam</li>
