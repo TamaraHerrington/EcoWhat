@@ -23,6 +23,7 @@ Using React
 First, clone or download this repository. 
 The Spring Boot backend requires a local PostgreSQL database. If you do not have Psql set up on your machine, install it! This website provides a great walkthrough, just make sure to keep a note of your Psql username and password: https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database  
 
+
 Then, create a local PostgreSQL database called ecowhat. You will need to update the application.properties file in the server side of the repository, changing the username and password to your Psql username and password. This file can be found in the /server/proj/proj/src/main/resources folder. You may also need to connect the Spring application to your local ecowhat database.  
 
 After this, you should be able to run the Spring application by running the main method in the ProjApplication.java file, which can found in the /server/proj/proj/src/main/java/com/capston/proj folder. Or, you may be able to run the project as a whole from your IDE. It may take a few seconds for the application to fully start up.
@@ -36,7 +37,9 @@ As a logged in user, you can then access all the features of the website. The ex
 
 The About page provide information on the background of the project, and the What You Can Do page provides resources for offline actions that individuals can take to help protect the environment.
 
-Most of the content is on the constituency pages, which can be accessed either by selecting a consituency through the map, or submitting a postcode through the search bar. Users can then toggle a list of of climate related votes the MP for that constituency has taken, as well as send them a tweet or email asking them to do more for the environment. Each constituency has a comments section, where logged in users can post comments and upvote or downvote them.  
+Most of the content is on the constituency pages, which can be accessed either by selecting a consituency through the map, or submitting a postcode through the search bar. Users can then toggle a list of of climate related votes the MP for that constituency has taken, as well as send them a tweet or email asking them to do more for the environment.  
+
+Each constituency has a comments section, where logged in users can post comments and upvote or downvote them.  
 
 
 <h3>Team:</h3>
