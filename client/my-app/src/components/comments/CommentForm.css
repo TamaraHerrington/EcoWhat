@@ -28,6 +28,8 @@ input[type=submit]{
     border: turquoise solid 1px;
     height: 2em;
     padding: 1rem;
+    width: 80%;
+    margin: auto;
 }
 
 label{
@@ -39,6 +41,8 @@ select{
     border-radius: 10px;
     border: turquoise solid 1px;
     height: 2em;
+    width: 80%;
+    margin:auto;
 }
 
 .comment-submit-btn {
@@ -48,4 +52,6 @@ select{
 
 .comment-body {
     resize: none;
+    width: 80%;
+    margin: auto;
 }
