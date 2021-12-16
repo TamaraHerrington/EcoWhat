@@ -1,5 +1,6 @@
 package com.capstone.proj.user;
 
+import com.capstone.proj.comment.Comment;
 import com.capstone.proj.comment.CommentDAO;
 import com.capstone.proj.constituency.Constituency;
 import com.capstone.proj.constituency.ConstituencyService;
@@ -375,19 +376,26 @@ class UserServiceTest {
                     1L,
                     "John", "Doe", "john@doe.com", "P@ssword1",
                     null, 100, "Constituency 1", null);
+            User userWithComments = new User(
+                    1L,
+                    "John", "Doe", "john@doe.com", "P@ssword1",
+                    null, 100, "Constituency 1", List.of());
 
             when(userDAOMock.getUserById(1)).thenReturn(Optional.of(user));
+            when(commentDAOMock.getCommentsByUser(1)).thenReturn(List.of());
 
             // when
-            Optional<User> expected = Optional.of(user);
+            Optional<User> expected = Optional.of(userWithComments);
             Optional<User> actual = userServiceTest.getUserById(1);
 
             // then
             assertThat(actual).isEqualTo(expected);
 
             verify(userDAOMock).getUserById(1);
+            verify(commentDAOMock).getCommentsByUser(1);
 
             verifyNoMoreInteractions(userDAOMock);
+            verifyNoMoreInteractions(commentDAOMock);
         }
 
         @Test
@@ -405,6 +413,7 @@ class UserServiceTest {
             verify(userDAOMock).getUserById(1);
 
             verifyNoMoreInteractions(userDAOMock);
+            verifyNoInteractions(commentDAOMock);
         }
     }
 
