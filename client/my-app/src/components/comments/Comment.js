@@ -2,8 +2,6 @@ import React from 'react'
 
 function Comment({token, comment, upvoteComment, downvoteComment}) {
 
-    let userId = parseInt(token.userId)
-
     return (
         <div>
             <h3>{comment.comment_title}</h3>
@@ -11,9 +9,9 @@ function Comment({token, comment, upvoteComment, downvoteComment}) {
             <h5>{comment.post_date}</h5>
             <p>{comment.comment}</p>
             <h5>{comment.upvotes}</h5>
-            <button type="button" onClick={() => upvoteComment(userId, comment.id)}>Upvote</button>
+            <button type="button" onClick={() => upvoteComment(token, comment.id)}>Upvote</button>
             <h5>{comment.downvotes}</h5>
-            <button type="button" onClick={() => downvoteComment(userId, comment.id)}> Downvote</button>
+            <button type="button" onClick={() => downvoteComment(token, comment.id)}> Downvote</button>
         </div>
     )
 }

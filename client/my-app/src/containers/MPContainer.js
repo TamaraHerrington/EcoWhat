@@ -126,48 +126,54 @@ const MPContainer = ({currentConstituency, token}) => {
             })
     }
 
-    const upvoteComment = (userId, comment_id) => {
-        console.log("upvote")
-       
-        const requestBody = JSON.stringify({
-            "user_id": userId,
-            "comment_id": comment_id,
-            "upvoted": 1,
-            "downvoted": 0
-        })
+    const upvoteComment = (token, comment_id) => {
 
-        fetch("http://localhost:8080/api/usercommentvotes",
-            {
-                method: 'PUT',
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: requestBody
-            }
-        )
-        .then(() => getComments())
+       if(token){
+            const requestBody = JSON.stringify({
+                "user_id": token.userId,
+                "comment_id": comment_id,
+                "upvoted": 1,
+                "downvoted": 0
+            })
+
+            fetch("http://localhost:8080/api/usercommentvotes",
+                {
+                    method: 'PUT',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: requestBody
+                }
+            )
+            .then(() => getComments())
+       }else{
+           alert("Please log in to upvote comments")
+       }
     }
 
-    const downvoteComment = (userId, comment_id) => {
-        console.log("downvote")
+    const downvoteComment = (token, comment_id) => {
 
-        const requestBody = JSON.stringify({
-            "user_id": userId,
-            "comment_id": comment_id,
-            "upvoted": 0,
-            "downvoted": 1
-        })
+        if(token){
+            const requestBody = JSON.stringify({
+                "user_id": token.userId,
+                "comment_id": comment_id,
+                "upvoted": 0,
+                "downvoted": 1
+            })
 
-        fetch("http://localhost:8080/api/usercommentvotes",
-            {
-                method: 'PUT',
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: requestBody
-            }
-        )
-        .then(() => getComments())
+            fetch("http://localhost:8080/api/usercommentvotes",
+                {
+                    method: 'PUT',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: requestBody
+                }
+            )
+            .then(() => getComments())
+        }else{
+            alert("Please log in to downvote comments")
+        }
     }
     
     const getMpVotesEnergy = () => {

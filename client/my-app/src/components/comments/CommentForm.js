@@ -10,38 +10,19 @@ function CommentForm({ getComments, token, currentConstituency}) {
     const [comment, setComment] = useState();
     const [category, setCategory] = useState("Recylcing");
 
-    const [user, setUser] = useState(null)
-
-    useEffect(() => {
-        if (token) {
-            fetch(`http://localhost:8080/api/users/${token.userId}`,
-            {
-                method: 'POST',
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(token)
-            })
-            .then(response => response.json())
-            .then(data => setUser(data))
-        }
-    }, [token])
 
     //TODO: Add some logic for content checking here (swearing, banned words, etc)
     const handleCommentSubmit = (event) => {
         event.preventDefault();
-        const today = new Date();
-        const dateTime = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        console.log(title)
-        console.log(comment)
-        console.log(user.id)
-        console.log(category)
-        console.log(typeof(category))
-        console.log(currentConstituency.constituency_id)
-        console.log(dateTime)
+        
+        
+        if(comment && title && token){
 
-        const commentToSubmit = {
-                        "userId" : user.id,
+            const today = new Date();
+            const dateTime = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+            const commentToSubmit = {
+                        "userId" : token.userId,
                         "comment_title" : title,
                         "comment": comment,
                         "comment_category": category,
@@ -50,13 +31,6 @@ function CommentForm({ getComments, token, currentConstituency}) {
                     };
 
         const commentToSubmitJSON = JSON.stringify(commentToSubmit) 
-
-        console.log(commentToSubmitJSON)
-
-        console.log(commentToSubmit)
-        console.log(typeof(commentToSubmit))
-        
-        if(comment && title && token){
             fetch(
                 "http://localhost:8080/api/comments/add",
                 {
