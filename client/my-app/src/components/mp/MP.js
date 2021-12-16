@@ -42,7 +42,7 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
             <section className="mp-votes">
                 <main>
                     <div>
-                        <h1>Environmental Voting History</h1>
+                        <h2>Environmental Voting History</h2>
                         <table>
                             <thead className="mp-vote-table">
                                 <tr className="mp-vote-titles">
