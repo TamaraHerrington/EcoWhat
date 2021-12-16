@@ -18,7 +18,7 @@ const YouHelp = () => {
                     </div>
                 </header>
             </section>
-            <h2 className="youhelp__comment">How you can help the environment...</h2>
+            <h2 className="youhelp__comment">Here are some of our favorite ways to help the environment:</h2>
 
             <Card card />
         </>   
