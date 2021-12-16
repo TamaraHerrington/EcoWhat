@@ -6,12 +6,14 @@ const About = () => {
         <>
             <section className="youhelp">
                 <header className="youhelp__header">
-                    <h1 className="youhelp__heading">For A Better</h1>
+                    <h1 className="youhelp__heading">Meet the Team: </h1>
                     <div className="scroll-container">
                         <span className="scroll-text">
-                            Planet <br></br>
-                            Future <br></br>
-                            You
+                            Chaam <br></br>
+                            Vinh <br></br>
+                            Helena <br></br>
+                            Jonathan<br></br>
+                            Tamara
                         </span>
                     </div>
                 </header>
