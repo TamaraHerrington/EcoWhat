@@ -4,6 +4,7 @@
 <h2>Introduction</h2>
 A full stack application centred around climate activism, EcoWhat? allows you to understand your MPs stance on climate change and have your say about it.
 
+Here is a link to the app presentation: https://view.genial.ly/61bb884656c96a0dce09a67c/presentation-ecowhat
 
 <h2>About the project</h2>
 
