@@ -1,6 +1,7 @@
 package com.capstone.proj.mp;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +32,18 @@ public class MPService {
                 = restTemplate.getForEntity(mpResourceUrl, JsonNode.class);
         JsonNode responseObj = response.getBody();
         System.out.println(responseObj.get("items"));
+        JsonNode mpResponse = responseObj.get("items").get(0);
+        System.out.println(mpResponse);
 //        non-active members have a .value.latestHouseMembership.membershipStatus of null, remove these, check if this
-        System.out.println(responseObj.get("value").get("nameDisplayAs"));
+        System.out.println(mpResponse.get("value").get("nameDisplayAs"));
 //        translates to one mp per constituency
-        String name = responseObj.get("value").get("nameDisplayAs").textValue();
-        int id = responseObj.get("value").get("id").intValue();
-        String party = responseObj.get("value").get("latestParty").get("name").textValue();
-        String thumbnailUrl = responseObj.get("value").get("thumbnailUrl").textValue();
+        String name = String.valueOf(mpResponse.get("value").get("nameDisplayAs"));
+        int id = mpResponse.get("value").get("id").intValue();
+        System.out.println(id);
+        String party = mpResponse.get("value").get("latestParty").get("name").textValue();
+        System.out.println(party);
+        String thumbnailUrl = mpResponse.get("value").get("thumbnailUrl").textValue();
+        System.out.println(thumbnailUrl);
 
         RestTemplate restTemplateContact = new RestTemplate();
         String mpContactUrl
@@ -45,13 +51,27 @@ public class MPService {
         ResponseEntity<Object[]> responseContact
                 = restTemplateContact.getForEntity(mpContactUrl, Object[].class);
 //        JsonNode responseContactObj = responseContact.getBody();
+        System.out.println(responseContact);
 
 //        String email = responseContactObj.get("value")[0].get()
 
 //        filter out data we want, may need more api calls
 
+
+//        public MP(Integer govId, String name, String photoLink, String party, String constituencyName,
+//              Integer constituencyId, String emailAddress, String twitter)
+        MP newMp = new MP(id, name, thumbnailUrl, party,
+                "placeholder", 0, "placeholder", "placeholder");
 //        add using dao
-        mpDAO.addMps();
+        mpDAO.addMps(newMp);
+    }
+
+    public void createMpTable(){
+        mpDAO.createMpTable();
+    }
+
+    public void dropMpTable(){
+        mpDAO.dropMpTable();
     }
 
 }
