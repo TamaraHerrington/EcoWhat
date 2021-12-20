@@ -12,19 +12,25 @@ import java.util.Objects;
 @EqualsAndHashCode
 @ToString
 public class MP {
-    private Integer id;
+    private Integer govId;
     private String name;
+    private String photoLink;
+    private String party;
+    private String constituencyName;
     private Integer constituencyId;
     private String emailAddress;
     private String twitter;
-    private String photoLink;
 
-    public MP(String name, Integer constituencyId, String emailAddress, String twitter, String photoLink) {
+
+    public MP(Integer govId, String name, String photoLink, String party, String constituencyName,
+              Integer constituencyId, String emailAddress, String twitter) {
+        this.govId = govId;
         this.name = name;
+        this.photoLink = photoLink;
+        this.party = party;
+        this.constituencyName = constituencyName;
         this.constituencyId = constituencyId;
         this.emailAddress = emailAddress;
         this.twitter = twitter;
-        this.photoLink = photoLink;
     }
-
 }
