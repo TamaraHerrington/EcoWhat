@@ -13,6 +13,14 @@ public class MPDataAccessService implements MPDAO{
     }
 
     public void addMps(MP mp){
+        String sql = """
+                INSERT INTO mps(name, constituency_id,
+                constituency_name, party, gov_id,
+                email_address, twitter, image_url)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+                """;
+        jdbcTemplate.update(sql, mp.getName(), mp.getConstituencyId(), mp.getConstituencyName(),
+                mp.getParty(), mp.getGovId(), mp.getEmailAddress(), mp.getTwitter(), mp.getPhotoLink());
 
     }
 
