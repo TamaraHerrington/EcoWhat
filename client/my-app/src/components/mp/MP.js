@@ -7,7 +7,7 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import {useState} from "react";
 
-const MP = ({ mpData, mpVotes, user }) => {
+const MP = ({ mpData, mpVotes, user, token }) => {
 
     const tweetText = "Please care more about the environment!";
     const emailText = `Dear ${mpData.name}, I am a constituent concerned about the environment, please help, From ${user==null?"your costituent": user.firstName + " " + user.latName}`;
@@ -24,7 +24,8 @@ const MP = ({ mpData, mpVotes, user }) => {
                     </span>
                     <h2>Party: {mpData.party}</h2>
                     <h2>Constituency: {mpData.constituencyName}</h2>
-
+                    {token?
+                    <>
                     <p>{mpData.twitter===""? "This MP doesn't have a Twitter on record. Click to tweet Downing Street instead!": ""}</p>
                     <footer className="mp-contact--icon">
                         <a className="mp-twitter--icon" href={mpData.twitter===""? `https://twitter.com/intent/tweet?text=@10DowningStreet%20${tweetText}`
@@ -36,6 +37,10 @@ const MP = ({ mpData, mpVotes, user }) => {
                             <FontAwesomeIcon icon={faEnvelope} />
                         </a>
                     </footer>
+                    </>
+                    :
+                    <h3>Sign in to contact this MP</h3>
+}
                 </header>
             </section>
 

@@ -181,7 +181,7 @@ const MPContainer = ({ currentConstituency, token }) => {
         mpData !== "" ?
         <section className='mp-container'>   
             <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
-                 envData={envData}/>
+                 envData={envData} token={token}/>
             <EnvironmentalData envData={envData}/>
             <section className="comments-section">
             <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />
