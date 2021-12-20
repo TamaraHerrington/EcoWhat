@@ -37,6 +37,8 @@ public class DataLoader implements ApplicationRunner {
         countyService.addCountyConstituencies();
         countyService.addDataNotInAPI();
         constituencyService.addAllConstituencies();
+
+        mpService.addMps();
         System.out.println("Application runner complete");
     }
 }
