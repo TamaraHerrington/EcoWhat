@@ -6,8 +6,6 @@ import CommentForm from '../components/comments/CommentForm';
 
 const MPContainer = ({ currentConstituency, token }) => {
     const [mpData, setMpData] = useState("");
-    const [mpTwitter, setMpTwitter] = useState("");
-    const [mpEmail, setMpEmail] = useState("");
     const [mpVotesCarbon, setMpVotesCarbon] = useState([]);
     const [mpVotesClimate, setMpVotesClimate] = useState([]);
     const [mpVotesEvironment, setMpVotesEnvironment] = useState([]);
@@ -27,36 +25,11 @@ const MPContainer = ({ currentConstituency, token }) => {
     }
 
     const getMpData = () => {
-        fetch("https://members-api.parliament.uk/api/Members/Search?ConstituencyId=" + currentConstituency.constituency_id + "&IsCurrentMember=true")
+        fetch("http://localhost:8080/api/mps/" + currentConstituency.constituency_id)
         .then(result => result.json())
-        .then(data => setMpData(data.items))
+        .then(data => setMpData(data))
+        console.log(mpData.constituencyId)
     }
-
-    const getMpEmail = () => {
-        fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
-        .then(response => response.json())
-        .then(data => data.value.currentRepresentation.member.value.id)
-        .then(data => fetch(`https://members-api.parliament.uk/api/Members/${data}/Contact`)
-        .then(response => response.json())
-        .then(data => data.value)
-        .then(data => data[0].email)
-        )
-        .then(data => setMpEmail(data))
-    }
-
-    const getMpTwitter = () => {
-        fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
-        .then(response => response.json())
-        .then(data => data.value.currentRepresentation.member.value.id)
-        .then(data => fetch(`https://members-api.parliament.uk/api/Members/${data}/Contact`)
-        .then(response => response.json())
-        .then(data => data.value)
-        .then(data => data.filter(d => d.type==="Twitter").length===0 ? null : data.filter(d => d.type==="Twitter")[0].line1.split('twitter.com/').at(-1))
-        )
-        .then(data => setMpTwitter(data))
-    }
-
-    
 
     const getMpVotesCarbon = () => {
         fetch("https://members-api.parliament.uk/api/Location/Constituency/" + currentConstituency.constituency_id)
@@ -196,8 +169,6 @@ const MPContainer = ({ currentConstituency, token }) => {
     useEffect(() => {
         getMpData();
         getComments();
-        getMpEmail();
-        getMpTwitter();
         getMpVotesCarbon();
         getMpVotesClimate();
         getMpVotesEnvironment();
@@ -210,7 +181,7 @@ const MPContainer = ({ currentConstituency, token }) => {
         mpData !== "" ?
         <section className='mp-container'>   
             <MP mpData={mpData} mpVotes={[...mpVotesCarbon, ...mpVotesClimate, ...mpVotesEvironment, ...mpVotesEnergy]} 
-                email={mpEmail} twitter={mpTwitter} envData={envData}/>
+                 envData={envData}/>
             <EnvironmentalData envData={envData}/>
             <section className="comments-section">
             <CommentForm getComments={getComments} token={token} currentConstituency={currentConstituency} />

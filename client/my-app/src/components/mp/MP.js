@@ -7,10 +7,10 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import {useState} from "react";
 
-const MP = ({ mpData, mpVotes, email, twitter, user }) => {
+const MP = ({ mpData, mpVotes, user }) => {
 
     const tweetText = "Please care more about the environment!";
-    const emailText = `Dear ${mpData[0].value.nameDisplayAs}, I am a constituent concerned about the environment, please help, From ${user==null?"your costituent": user.firstName + " " + user.latName}`;
+    const emailText = `Dear ${mpData.name}, I am a constituent concerned about the environment, please help, From ${user==null?"your costituent": user.firstName + " " + user.latName}`;
     const [open, setOpen] = useState(false);
 
     return (
@@ -18,21 +18,21 @@ const MP = ({ mpData, mpVotes, email, twitter, user }) => {
 
             <section className="mp-info">
                 <header className="mp-info__header">
-                    <h1 className="mp-name">{mpData[0].value.nameDisplayAs}</h1>
+                    <h1 className="mp-name">{mpData.name}</h1>
                     <span className="mp__img-container">
-                    <img className="mp__img" src={mpData[0].value.thumbnailUrl} alt="MP"/>
+                    <img className="mp__img" src={mpData.photoLink} alt="MP"/>
                     </span>
-                    <h2>Party: {mpData[0].value.latestParty.name}</h2>
-                    <h2>Constituency: {mpData[0].value.latestHouseMembership.membershipFrom}</h2>
+                    <h2>Party: {mpData.party}</h2>
+                    <h2>Constituency: {mpData.constituencyName}</h2>
 
-                    <p>{twitter==null? "This MP doesn't have a Twitter on record. Click to tweet Downing Street instead!": ""}</p>
+                    <p>{mpData.twitter===""? "This MP doesn't have a Twitter on record. Click to tweet Downing Street instead!": ""}</p>
                     <footer className="mp-contact--icon">
-                        <a className="mp-twitter--icon" href={twitter===null? `https://twitter.com/intent/tweet?text=@10DowningStreet%20${tweetText}`
-                            :`https://twitter.com/intent/tweet?text=@${twitter}%20${tweetText}`}>
+                        <a className="mp-twitter--icon" href={mpData.twitter===""? `https://twitter.com/intent/tweet?text=@10DowningStreet%20${tweetText}`
+                            :`https://twitter.com/intent/tweet?text=@${mpData.twitter.split('twitter.com/').at(-1)}%20${tweetText}`}>
                             <FontAwesomeIcon icon={faTwitter} />
                         </a>
                             
-                        <a className="mp-mail--icon" href={`mailto:${email}?subject=${"The Environment"}&body=${emailText}`}>
+                        <a className="mp-mail--icon" href={`mailto:${mpData.emailAddress}?subject=${"The Environment"}&body=${emailText}`}>
                             <FontAwesomeIcon icon={faEnvelope} />
                         </a>
                     </footer>

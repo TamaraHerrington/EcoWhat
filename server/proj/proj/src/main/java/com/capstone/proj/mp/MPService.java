@@ -63,8 +63,9 @@ public class MPService {
                         twitter = String.valueOf(obj.get("line1"));
                     }
                 }
-                MP newMp = new MP(id, name, thumbnailUrl, party,
-                        constituency.getConstituency_name(), constituencyId, email, twitter);
+                MP newMp = new MP(id, name.replaceAll("\"", ""), thumbnailUrl, party,
+                        constituency.getConstituency_name(), constituencyId, email.replaceAll("\"", ""),
+                        twitter.replaceAll("\"", ""));
 //        add using dao
                 mpDAO.addMps(newMp);
             }
