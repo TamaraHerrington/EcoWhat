@@ -1,15 +1,21 @@
 package com.capstone.proj.mp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public class MPDataAccessService implements MPDAO{
 
     private JdbcTemplate jdbcTemplate;
+    private MPRowMapper mpRowMapper;
 
+    @Autowired
     public MPDataAccessService(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
+        this.mpRowMapper = new MPRowMapper();
     }
 
     public void addMps(MP mp){
@@ -40,5 +46,13 @@ public class MPDataAccessService implements MPDAO{
                 DROP TABLE IF EXISTS mps;
                 """;
         jdbcTemplate.execute(sql);
+    }
+
+    @Override
+    public Optional<MP> getMpByConstituencyId(int id){
+        String sql = """
+                SELECT * FROM mps WHERE constituency_id = ?
+                """;
+        return jdbcTemplate.query(sql, mpRowMapper, id).stream().findFirst();
     }
 }
