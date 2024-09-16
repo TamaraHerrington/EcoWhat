@@ -3,6 +3,8 @@ package com.capstone.proj.mp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/mps")
 public class MPController {
@@ -17,6 +19,11 @@ public class MPController {
     @PostMapping
     public void addMps(){
         mpService.addMps();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<MP> getMpByConstituencyId(@PathVariable("id") int id){
+        return mpService.getMpByConstituencyId(id);
     }
 
 }
